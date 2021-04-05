@@ -5,9 +5,7 @@
 layout: home
 ---
 
-### [LinkedIn](https://linkedin.com/in/mlmabie) [GitHub](https://GitHub.com/mlmabie) [Twitter](https://twitter.com/maallaachi)
-
-Right now, the most interesting thing you can do is check out my LinkedIn. You'll see my resume, and what I'm reading.
+Right now, the most interesting thing you can do is check out my [LinkedIn](https://linkedin.com/in/mlmabie). You'll see my resume, and what I'm reading.
 
 I want to respect Academic Integrity for my past classwork, so most of my GitHub stuff is private. However, I will clean up and post some of the group projects and final individual projects I like. Or perhaps even post code snippets / jupyter html and talk about my choices on here! I love writing, and look forward to centering my thoughts.
 
