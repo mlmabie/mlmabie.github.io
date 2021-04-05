@@ -4,15 +4,7 @@ title: About
 permalink: /about/
 ---
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](https://jekyllrb.com/)
-
-You can find the source code for Minima at GitHub:
-[jekyll][jekyll-organization] /
-[minima](https://github.com/jekyll/minima)
-
-You can find the source code for Jekyll at GitHub:
-[jekyll][jekyll-organization] /
-[jekyll](https://github.com/jekyll/jekyll)
-
-
-[jekyll-organization]: https://github.com/jekyll
+I might have different experience than a lot of mechanical designers, but I think I’m a great fit for this internship. Here’s why:
+- I was obsessed with quality plastic injection and extrusion molded parts at Applied Medical. I worked with the manufacturing and assembly with open eyes, mentored by Ron Surya and Minsoo Chun. The robotic manipulators and fixtures I built were popular enough that my job changed to where I got assigned the most challenging problems, and could wander the shop floor looking for things to improve. We had a metal injection molding subassembly process that was losing more than $100k/month on variance. I developed a prototype using fishing line and a 3D printing to array the pins into a grid, then with our machine shop made a few particularly contoured suction pen tips to replace the previous magnetic ones. It completely worked, and it was a fun send off to UC San Diego. I've done work in UX Design and a Designathon here for fun team building and keeping sharp, while learning how to justify and scale my intention with complexity science.
+- My internships at Endura Technologies showed me how I could use the same mindset I had at Applied to improve and automate processes with software. My efforts helped save the engineer I worked with full weekends of hours by improving a testing algorithm's run time and by using python to write java code inferred from the excel sheets we received from across the hall. Then I worked with several engineers to start writing a test software that wouldn't need to be scrappily rewritten for every single chip we develop. I also had an internship where I developed and filtered features from audio signal data, and did things related to deep learning and the pipeline that team was working on. It was a great transition into the reinforcement learning and software engineering I'll probably be doing in the future.
+- In high school I was on a tight knit robotics team that beat NASA-funded teams all the way to world championships from our garage! There are many stories from that, but ultimately it got me my first internship at Applied Medical when I was 16. Now I'm almost done with a fulfilling experience at UCSD, and definitely feel like Thanos with another stone in his gauntlet. I'll be doing work combining organizing system knowledge with cognitive abstractions for learning agents in continuous environments, as well as investing in the perspective of everything as a visual rendering.
