@@ -5,9 +5,7 @@
 layout: home
 ---
 
-### [LinkedIn](https://linkedin.com/in/mlmabie)
-### [GitHub](https://GitHub.com/mlmabie)
-### [Twitter](https://twitter.com/maallaachi)
+### [LinkedIn](https://linkedin.com/in/mlmabie) [GitHub](https://GitHub.com/mlmabie) [Twitter](https://twitter.com/maallaachi)
 
 Right now, the most interesting thing you can do is check out my LinkedIn. You'll see my resume, and what I'm reading.
 
