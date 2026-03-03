@@ -620,6 +620,63 @@ main {
 }
 
 /* ============================================
+   MARGINALIA PAGE
+   ============================================ */
+
+.marginalia-content blockquote {
+    margin: 1.5rem 0;
+    padding: 1.2rem 2rem;
+}
+
+.marginalia-content blockquote footer {
+    font-size: 0.8rem;
+    color: var(--text-faint);
+    font-style: normal;
+    margin-top: 0.8rem;
+}
+
+.marginalia-content blockquote footer::before {
+    content: "— ";
+}
+
+.marginalia-content blockquote.long-quote {
+    background: none;
+    border-left: 3px solid var(--accent);
+    font-style: normal;
+}
+
+.marginalia-content blockquote.long-quote p {
+    margin-bottom: 1rem;
+}
+
+.marginalia-section h2 {
+    font-size: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-faint);
+    margin: 2rem 0 1.5rem;
+    padding-top: 0;
+}
+
+/* About page definition list */
+.essay-content dl {
+    margin: 1.5rem 0;
+}
+
+.essay-content dt {
+    font-weight: 600;
+    margin-top: 1.2rem;
+}
+
+.essay-content dd {
+    margin-left: 0;
+    padding-left: 1.5rem;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+}
+
+/* ============================================
    UTILITIES
    ============================================ */
 
