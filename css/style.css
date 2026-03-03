@@ -559,6 +559,67 @@ main {
 }
 
 /* ============================================
+   THEME TOGGLE
+   ============================================ */
+
+.theme-toggle {
+    background: none;
+    border: none;
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    cursor: pointer;
+    padding: 0;
+    line-height: 1;
+    transition: color var(--transition-fast);
+}
+
+.theme-toggle:hover {
+    color: var(--accent);
+}
+
+/* ============================================
+   FOOTNOTE HOVER TOOLTIPS
+   ============================================ */
+
+.fn-tooltip {
+    position: absolute;
+    max-width: 320px;
+    padding: 0.8rem 1rem;
+    background: var(--bg-alt);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: var(--text-muted);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.15s;
+    z-index: 100;
+}
+
+.fn-tooltip.visible {
+    opacity: 1;
+}
+
+/* ============================================
+   SECTION DIVIDERS (dinkus)
+   ============================================ */
+
+.essay-content hr {
+    border: none;
+    text-align: center;
+    margin: 3rem 0;
+}
+
+.essay-content hr::after {
+    content: "⁂";
+    color: var(--text-faint);
+    font-size: 1.2rem;
+    letter-spacing: 0.5em;
+}
+
+/* ============================================
    UTILITIES
    ============================================ */
 
