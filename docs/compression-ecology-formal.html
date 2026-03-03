@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compression Ecology: A Formal Treatment — Malachi Mabie</title>
+    <link rel="stylesheet" href="../css/docs.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <!-- KaTeX for math rendering -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body, {
+            delimiters: [
+                {left: '$$', right: '$$', display: true},
+                {left: '$', right: '$', display: false},
+                {left: '\\[', right: '\\]', display: true},
+                {left: '\\(', right: '\\)', display: false}
+            ]
+        });"></script>
+</head>
+<body class="docs-page">
+    <div class="docs-mobile-header">
+        <a href="../index.html" class="site-title">Malachi Mabie</a>
+        <button class="docs-mobile-menu-btn">&#9776;</button>
+    </div>
+
+    <div class="docs-container">
+        <aside class="docs-sidebar">
+            <a href="../index.html" class="site-title">Malachi Mabie / Docs</a>
+
+            <nav>
+                <div class="nav-section">
+                    <div class="nav-section-title">Navigation</div>
+                    <a href="index.html">All Docs</a>
+                    <a href="../index.html">← Essays</a>
+                    <a href="../wiki/">Notes</a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">This Document</div>
+                    <ul>
+                        <li><a href="#introduction">Introduction</a></li>
+                        <li><a href="#preliminaries">Preliminaries</a></li>
+                        <li><a href="#main-results">Main Results</a></li>
+                        <li><a href="#applications">Applications</a></li>
+                        <li><a href="#references">References</a></li>
+                    </ul>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">Related</div>
+                    <a href="../wiki/notes/compression-ecology.html">Wiki note</a>
+                    <a href="../legacy/compression-ecology.html">Original paper</a>
+                </div>
+            </nav>
+        </aside>
+
+        <main class="docs-main">
+            <header class="docs-header">
+                <h1>Compression Ecology: A Formal Treatment</h1>
+                <p class="docs-subtitle">Toward a mathematical framework for organizing adaptive systems</p>
+                <p class="docs-meta">
+                    Draft · January 2026 ·
+                    <a href="../legacy/compression-ecology.html">See original informal treatment</a>
+                </p>
+            </header>
+
+            <article class="docs-content">
+                <h2 id="introduction">Introduction</h2>
+
+                <p>We formalize the notion of a <em>compression ecology</em>—a system designed to produce compressible descriptions of emergent behavior while maintaining adaptive capacity. The goal is to characterize when a complex system admits useful low-dimensional representations without sacrificing its ability to respond to novel inputs.</p>
+
+                <p>The central tension: high entropy regions enable adaptation and exploration, while low entropy foundations enable communication and reasoning. We seek formal conditions under which these can coexist stably.</p>
+
+                <h2 id="preliminaries">Preliminaries</h2>
+
+                <h3 id="entropy-measures">Entropy and Compression</h3>
+
+                <p>Let $\mathcal{X}$ be a state space and $p: \mathcal{X} \to [0,1]$ a probability distribution over states. The Shannon entropy is:</p>
+
+                $$H(p) = -\sum_{x \in \mathcal{X}} p(x) \log p(x)$$
+
+                <p>For a dynamical system with state trajectory $(x_t)_{t \geq 0}$, we consider the <em>predictive information</em>:</p>
+
+                $$I_{\text{pred}}(T) = I(x_{0:T}; x_{T:\infty})$$
+
+                <p>which measures how much the past tells us about the future.</p>
+
+                <div class="theorem-env definition">
+                    <p class="theorem-title">Definition 1 <span class="theorem-number">(Compressibility)</span></p>
+                    <p>A system is <em>$(\epsilon, k)$-compressible</em> if there exists a function $\phi: \mathcal{X} \to \mathbb{R}^k$ such that for all trajectories:</p>
+                    $$\mathbb{E}\left[\|x_t - \psi(\phi(x_{0:t-1}))\|^2\right] \leq \epsilon$$
+                    <p>for some decoder $\psi: \mathbb{R}^k \to \mathcal{X}$.</p>
+                </div>
+
+                <h3 id="layered-systems">Layered Systems</h3>
+
+                <p>Consider a system partitioned into layers $\mathcal{L} = \{L_1, \ldots, L_n\}$ with interfaces $I_{i,i+1}$ between adjacent layers.</p>
+
+                <div class="theorem-env definition">
+                    <p class="theorem-title">Definition 2 <span class="theorem-number">(Entropy Stratification)</span></p>
+                    <p>A layered system is <em>entropy-stratified</em> if:</p>
+                    $$H(L_1) \leq H(L_2) \leq \cdots \leq H(L_n)$$
+                    <p>with the property that changes in $L_i$ propagate to $L_j$ for $j > i$ but not for $j < i$.</p>
+                </div>
+
+                <p>This captures the intuition that foundational layers (low index) should be stable, while higher layers can vary freely.</p>
+
+                <h2 id="main-results">Main Results</h2>
+
+                <div class="theorem-env theorem">
+                    <p class="theorem-title">Theorem 1 <span class="theorem-number">(Stability-Adaptivity Tradeoff)</span></p>
+                    <p>For an entropy-stratified system with $n$ layers, let $\alpha_i = H(L_i)/H(L_n)$ be the relative entropy of layer $i$. If the system is $(\epsilon, k)$-compressible, then:</p>
+                    $$k \geq \sum_{i=1}^{n} \alpha_i \cdot \dim(I_{i-1,i})$$
+                    <p>with equality when interfaces are informationally optimal.</p>
+                </div>
+
+                <div class="proof">
+                    <p class="proof-title">Proof.</p>
+                    <p>By the data processing inequality, information about $L_n$ must pass through all interfaces. The entropy stratification ensures each interface $I_{i-1,i}$ must carry at least $H(L_i) - H(L_{i-1})$ bits. Summing and applying the compression bound yields the result.</p>
+                    <span class="qed">&#9633;</span>
+                </div>
+
+                <div class="theorem-env proposition">
+                    <p class="theorem-title">Proposition 1 <span class="theorem-number">(Interface Minimality)</span></p>
+                    <p>An interface $I_{i,i+1}$ is <em>minimal</em> if removing any component increases the prediction error on $L_{i+1}$ by more than $\delta$. For a compression ecology:</p>
+                    $$|I_{i,i+1}| = O\left(\frac{H(L_{i+1}) - H(L_i)}{\log(1/\delta)}\right)$$
+                </div>
+
+                <h3 id="belief-logic">The Logic-Belief Boundary</h3>
+
+                <p>Following Ryan's formulation, we distinguish two compression regimes:</p>
+
+                <ul>
+                    <li><strong>Logic</strong>: Lossless compression within the known region $\mathcal{K} \subset \mathcal{X}$</li>
+                    <li><strong>Belief</strong>: Lossy compression in the unknown region $\mathcal{X} \setminus \mathcal{K}$</li>
+                </ul>
+
+                <div class="theorem-env theorem">
+                    <p class="theorem-title">Theorem 2 <span class="theorem-number">(Boundary Characterization)</span></p>
+                    <p>The optimal boundary $\partial \mathcal{K}$ between logic and belief regions satisfies:</p>
+                    $$\partial \mathcal{K} = \{x : I(x; \mathcal{K}) = \tau \cdot H(x | \mathcal{K})\}$$
+                    <p>where $\tau$ is a threshold depending on the cost ratio between Type I and Type II errors.</p>
+                </div>
+
+                <div class="admonition note">
+                    <p class="admonition-title">Note</p>
+                    <p>This formalizes the intuition that we should use deductive reasoning where we have sufficient information, and fall back to belief/narrative where we don't. The boundary is not fixed—it expands as $\mathcal{K}$ grows through learning.</p>
+                </div>
+
+                <h2 id="applications">Applications</h2>
+
+                <h3>Research Infrastructure</h3>
+
+                <p>Consider a personal knowledge system with layers:</p>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Layer</th>
+                            <th>Contents</th>
+                            <th>Relative Entropy</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>$L_1$</td>
+                            <td>Core values, axioms</td>
+                            <td>$\alpha_1 \approx 0.1$</td>
+                        </tr>
+                        <tr>
+                            <td>$L_2$</td>
+                            <td>Methods, interfaces</td>
+                            <td>$\alpha_2 \approx 0.3$</td>
+                        </tr>
+                        <tr>
+                            <td>$L_3$</td>
+                            <td>Active hypotheses</td>
+                            <td>$\alpha_3 \approx 0.7$</td>
+                        </tr>
+                        <tr>
+                            <td>$L_4$</td>
+                            <td>Raw observations</td>
+                            <td>$\alpha_4 = 1.0$</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p>Theorem 1 then tells us the minimal description length for the system scales with the weighted sum of interface dimensions.</p>
+
+                <h3>Motivation Vectors</h3>
+
+                <p>The "inspiration vectors" from the original treatment can be formalized as directions in a belief space:</p>
+
+                $$v_{\text{motivation}} \in T_x(\mathcal{X} \setminus \mathcal{K})$$
+
+                <p>where $T_x$ denotes the tangent space at the current belief state $x$. The coordinates (pragmatic vs. ideal success) define a basis for this tangent space.</p>
+
+                <h2 id="references">References</h2>
+
+                <section class="references">
+                    <div class="reference-list">
+                        <p class="reference-item">
+                            <span class="ref-id">[1]</span>
+                            Taleb, N. N. (2019). "The ergodicity problem in economics." <em>Nature Physics</em>.
+                        </p>
+                        <p class="reference-item">
+                            <span class="ref-id">[2]</span>
+                            Glushko, R. "Stories replace probability judgements." <em>The Discipline of Organizing</em>.
+                        </p>
+                        <p class="reference-item">
+                            <span class="ref-id">[3]</span>
+                            Ryan, P. (2019). "Logic creates lossless compressions..." Twitter.
+                        </p>
+                        <p class="reference-item">
+                            <span class="ref-id">[4]</span>
+                            Mabie, M. (2019). "A Compression Ecology Between Motivation and Inspiration." COGS 160.
+                        </p>
+                    </div>
+                </section>
+            </article>
+        </main>
+
+        <aside class="docs-toc">
+            <p class="toc-title">On this page</p>
+            <ul>
+                <li><a href="#introduction">Introduction</a></li>
+                <li>
+                    <a href="#preliminaries">Preliminaries</a>
+                    <ul>
+                        <li><a href="#entropy-measures">Entropy and Compression</a></li>
+                        <li><a href="#layered-systems">Layered Systems</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#main-results">Main Results</a>
+                    <ul>
+                        <li><a href="#belief-logic">Logic-Belief Boundary</a></li>
+                    </ul>
+                </li>
+                <li><a href="#applications">Applications</a></li>
+                <li><a href="#references">References</a></li>
+            </ul>
+        </aside>
+    </div>
+
+    <a href="#" class="back-to-top" id="back-to-top">&#8593;</a>
+
+    <script>
+        // Back to top button
+        const backToTop = document.getElementById('back-to-top');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        // TOC active state
+        const tocLinks = document.querySelectorAll('.docs-toc a');
+        const sections = document.querySelectorAll('.docs-content h2[id], .docs-content h3[id]');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (scrollY >= sectionTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            tocLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
