@@ -659,6 +659,28 @@ main {
     padding-top: 0;
 }
 
+/* Authorship note */
+.authorship-note {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    font-size: 0.85rem;
+    color: var(--text-faint);
+}
+
+/* Now page dateline in blockquote */
+.now-dateline {
+    font-size: 0.8rem;
+    color: var(--text-faint);
+    font-style: normal;
+    margin-top: 0.8rem;
+    display: block;
+}
+
+.now-dateline::before {
+    content: "— ";
+}
+
 /* About page definition list */
 .essay-content dl {
     margin: 1.5rem 0;

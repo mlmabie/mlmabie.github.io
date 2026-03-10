@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Now — Malachi Mabie</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="site-nav">
+        <a href="/" class="nav-home">Malachi Mabie</a>
+        <div class="nav-links">
+            <a href="/about.html">About</a>
+            <a href="/">Essays</a>
+            <a href="/marginalia.html">Marginalia</a>
+            <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">&#9789;</button>
+        </div>
+    </nav>
+
+    <main class="essay">
+        <header class="essay-header">
+            <h1>Now</h1>
+            <p class="essay-subtitle">What I&rsquo;m doing and thinking about&mdash;March 2026</p>
+        </header>
+
+        <article class="essay-content">
+            <p class="drop-cap">Consulting on agent infrastructure and orchestration. The arc from robotic tooling to defense ML to production AI to agent systems has converged: the attributes I pursued at every stage&mdash;efficiency under constraint, calibration, interpretability, graceful degradation&mdash;are now the attributes the entire agent paradigm demands.</p>
+
+            <h2>Conviction</h2>
+
+            <p>The bitter lesson says general methods leveraging computation consistently outperform approaches based on handcrafted human knowledge. Most agent harnesses today fight this&mdash;shifting complexity away from the part that scales (the model) into the part that doesn&rsquo;t (bespoke scaffolding).</p>
+
+            <p>Agent harnesses should be thin interfaces to scalable computation, not the place you stash the intelligence. Structure should emerge from learning rather than be imposed through design. If model capability doubles next year, does your system get dramatically simpler without major refactors? That&rsquo;s the test.</p>
+
+            <h2>Interests</h2>
+
+            <dl>
+                <dt>Agent DX</dt>
+                <dd>Interfaces designed for how agents actually work, not how we wish they worked. Recursive delegation, context isolation, deterministic control flow.</dd>
+
+                <dt>Interpretability arbitrages</dt>
+                <dd>Sparse autoencoders as first-class citizens. The less you understand it, the more GPUs it takes.</dd>
+
+                <dt>Specialized language models</dt>
+                <dd>Late interaction, sparse encoding, modular manifolds, matroshka embeddings.</dd>
+
+                <dt>Configurancy</dt>
+                <dd>Keeping systems intelligible while agents write all the code.</dd>
+
+                <dt>Context engineering</dt>
+                <dd>Prompt optimization and context distillation as underexplored primitives for post-training pipelines.</dd>
+            </dl>
+
+            <h2>Philosophy</h2>
+
+            <p>Simplicity over speed. Correctness over features. Sensemaking, justifying intuition, scaling intention&mdash;I&rsquo;ve been using AI tools for this since GPT-3, intentionally iterating on effective collaboration. Not just using the tools, but interrogating how to use them well.</p>
+
+            <p>The value of a 10K-line Python library is approaching $1 in 2026. What survives are systems that compress hard-won insights agents would have to rediscover at enormous token cost. Systems that operate on a cheaper substrate than inference. Systems that solve hard universal problems agents can&rsquo;t route around easily.</p>
+
+            <blockquote>
+                <p>Excited about designing simple affordances within complex environments.</p>
+                <footer class="now-dateline">Maui, 2021&mdash;still the sentence.</footer>
+            </blockquote>
+        </article>
+
+        <aside class="authorship-note">
+            <p><em>Written from the personal context of Malachi Mabie, with AI assistance in composition.</em></p>
+        </aside>
+    </main>
+
+    <footer class="site-footer">
+        <p>&nbsp;</p>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
