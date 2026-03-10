@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Graph — Malachi Mabie</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: #0a0a0f;
+  color: #e8e0d4;
+  font-family: 'JetBrains Mono', monospace;
+  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
+}
+
+#header {
+  position: fixed; top: 0; left: 0; right: 0;
+  height: 48px;
+  display: flex; align-items: center; gap: 16px;
+  padding: 0 20px;
+  background: rgba(10,10,15,0.92);
+  border-bottom: 1px solid rgba(45,90,107,0.25);
+  z-index: 100;
+}
+
+#back-link {
+  font-size: 12px;
+  color: #7fb3c4;
+  text-decoration: none;
+  opacity: 0.7;
+  transition: opacity 0.15s;
+}
+#back-link:hover { opacity: 1; }
+
+#breadcrumbs {
+  font-size: 13px;
+  color: #a0a0a0;
+}
+#breadcrumbs span { cursor: pointer; }
+#breadcrumbs span:hover { color: #7fb3c4; }
+#breadcrumbs .sep { color: #555; margin: 0 6px; cursor: default; }
+#breadcrumbs .current { color: #e8e0d4; cursor: default; }
+
+#search-box {
+  margin-left: auto;
+  position: relative;
+}
+#search-input {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(45,90,107,0.3);
+  border-radius: 6px;
+  color: #e8e0d4;
+  font-family: inherit;
+  font-size: 12px;
+  padding: 6px 12px 6px 28px;
+  width: 240px;
+  outline: none;
+}
+#search-input:focus { border-color: #7fb3c4; }
+#search-icon {
+  position: absolute; left: 8px; top: 50%; transform: translateY(-50%);
+  color: #666; font-size: 13px; pointer-events: none;
+}
+#search-results {
+  position: absolute; top: 100%; right: 0; margin-top: 4px;
+  background: #151520; border: 1px solid rgba(45,90,107,0.3);
+  border-radius: 6px; max-height: 300px; overflow-y: auto;
+  width: 360px; display: none; z-index: 200;
+}
+.search-item {
+  padding: 8px 12px; cursor: pointer; font-size: 11px;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+.search-item:hover { background: rgba(45,90,107,0.12); }
+.search-item .name { color: #e8e0d4; }
+.search-item .cluster { color: #888; font-size: 10px; margin-top: 2px; }
+
+canvas {
+  position: fixed;
+  top: 48px; left: 0;
+  cursor: default;
+}
+
+#detail-panel {
+  position: fixed; top: 48px; right: 0; bottom: 40px;
+  width: 320px;
+  background: rgba(15,15,22,0.95);
+  border-left: 1px solid rgba(45,90,107,0.2);
+  padding: 16px;
+  overflow-y: auto;
+  display: none;
+  z-index: 50;
+  font-size: 12px;
+}
+#detail-panel h3 { color: #7fb3c4; font-size: 14px; margin-bottom: 8px; font-weight: 500; }
+#detail-panel .meta { color: #888; margin-bottom: 12px; line-height: 1.6; }
+#detail-panel .preview { color: #a0a0a0; line-height: 1.5; margin-bottom: 16px; white-space: pre-wrap; }
+#detail-panel .neighbors-title { color: #7fb3c4; font-size: 12px; margin-bottom: 8px; }
+.neighbor-item {
+  padding: 4px 0; cursor: pointer; display: flex; align-items: center; gap: 8px;
+  border-bottom: 1px solid rgba(255,255,255,0.03);
+}
+.neighbor-item:hover { color: #7fb3c4; }
+.neighbor-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.neighbor-name { font-size: 11px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; flex: 1; }
+.neighbor-label { font-size: 9px; color: #666; flex-shrink: 0; max-width: 120px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+#legend {
+  position: fixed; bottom: 0; left: 0; right: 0;
+  height: 40px;
+  display: flex; align-items: center; gap: 16px;
+  padding: 0 20px;
+  background: rgba(10,10,15,0.92);
+  border-top: 1px solid rgba(45,90,107,0.15);
+  z-index: 100;
+  overflow-x: auto;
+}
+.legend-item {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 10px; color: #888; white-space: nowrap;
+  cursor: pointer;
+}
+.legend-item:hover { color: #e8e0d4; }
+.legend-dot { width: 8px; height: 8px; border-radius: 50%; }
+
+#tooltip {
+  position: fixed; pointer-events: none;
+  background: rgba(20,20,30,0.95);
+  border: 1px solid rgba(45,90,107,0.4);
+  border-radius: 6px;
+  padding: 8px 12px;
+  font-size: 11px;
+  max-width: 320px;
+  display: none;
+  z-index: 300;
+}
+#tooltip .tt-name { color: #7fb3c4; font-weight: 500; margin-bottom: 4px; }
+#tooltip .tt-cluster { color: #888; font-size: 10px; margin-bottom: 4px; }
+#tooltip .tt-preview { color: #a0a0a0; font-size: 10px; line-height: 1.4; }
+
+#loading {
+  position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+  display: flex; align-items: center; justify-content: center;
+  background: #0a0a0f;
+  z-index: 1000;
+  font-size: 14px;
+  color: #7fb3c4;
+}
+
+#subtitle {
+  position: fixed; bottom: 48px; left: 0; right: 0;
+  text-align: center;
+  font-size: 10px;
+  color: #444;
+  padding: 6px;
+  pointer-events: none;
+}
+</style>
+</head>
+<body>
+<div id="loading">loading graph...</div>
+
+<div id="header">
+  <a id="back-link" href="/">&larr; site</a>
+  <div id="breadcrumbs"></div>
+  <div id="search-box">
+    <span id="search-icon">&#x1F50D;</span>
+    <input id="search-input" type="text" placeholder="search notes... ( / )" autocomplete="off">
+    <div id="search-results"></div>
+  </div>
+</div>
+
+<canvas id="canvas"></canvas>
+
+<div id="detail-panel"></div>
+
+<div id="legend"></div>
+
+<div id="tooltip"></div>
+
+<div id="subtitle">183 notes &middot; 2016&ndash;2026 &middot; design, ml, music, agents, craft</div>
+
+<script>
+// ── Data & State ──────────────────────────────────
+let DATA = null;
+let adj = {};
+let clusterStats = [];
+let crossMatrix = [];
+let bridgeScores = {};
+let nodeById = {};
+
+const LEVELS = { GALAXY: 1, CLUSTER: 2, EGO: 3 };
+let level = LEVELS.GALAXY;
+let selectedCluster = null;
+let selectedNode = null;
+let hoveredNode = null;
+
+const CLUSTER_COLORS = [
+  '#2d5a6b', // 0 Design — site accent
+  '#9b6fa3', // 1 Machine Learning — purple
+  '#c75b7a', // 2 Music & Composition — rose
+  '#6b8fa3', // 3 Agents & Infrastructure — steel blue
+  '#b08d57', // 4 Craft & Shipping — warm tan
+];
+
+// ── Canvas ────────────────────────────────────────
+const canvas = document.getElementById('canvas');
+const ctx = canvas.getContext('2d');
+let W, H, dpr;
+
+function resize() {
+  dpr = window.devicePixelRatio || 1;
+  const panelW = (level === LEVELS.EGO) ? 320 : 0;
+  W = window.innerWidth - panelW;
+  H = window.innerHeight - 88;
+  canvas.style.width = W + 'px';
+  canvas.style.height = H + 'px';
+  canvas.width = W * dpr;
+  canvas.height = H * dpr;
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+}
+
+// ── Precompute ────────────────────────────────────
+function precompute() {
+  const nodes = DATA.graphNodes;
+  const edges = DATA.labeledEdges;
+  const names = DATA.clusterNames;
+
+  nodes.forEach(n => { nodeById[n.id] = n; });
+
+  adj = {};
+  nodes.forEach(n => { adj[n.id] = []; });
+  edges.forEach(e => {
+    if (adj[e.source]) adj[e.source].push({ target: e.target, label_fwd: e.label_forward, label_bwd: e.label_backward });
+    if (adj[e.target]) adj[e.target].push({ target: e.source, label_fwd: e.label_backward, label_bwd: e.label_forward });
+  });
+
+  const clusterMap = {};
+  nodes.forEach(n => {
+    const cid = n.cluster_id;
+    if (!clusterMap[cid]) clusterMap[cid] = { id: cid, name: names[cid] || `Cluster ${cid}`, count: 0, nodes: [], medoid: null, llmCenter: null };
+    clusterMap[cid].count++;
+    clusterMap[cid].nodes.push(n.id);
+    if (n.is_medoid) clusterMap[cid].medoid = n.id;
+    if (n.is_llm_center) clusterMap[cid].llmCenter = n.id;
+  });
+  clusterStats = Object.values(clusterMap).sort((a, b) => a.id - b.id);
+
+  const numClusters = clusterStats.length;
+  crossMatrix = Array.from({ length: numClusters }, () => Array(numClusters).fill(0));
+  bridgeScores = {};
+  edges.forEach(e => {
+    const s = nodeById[e.source], t = nodeById[e.target];
+    if (!s || !t) return;
+    if (s.cluster_id !== t.cluster_id) {
+      crossMatrix[s.cluster_id][t.cluster_id]++;
+      crossMatrix[t.cluster_id][s.cluster_id]++;
+      bridgeScores[e.source] = (bridgeScores[e.source] || 0) + 1;
+      bridgeScores[e.target] = (bridgeScores[e.target] || 0) + 1;
+    }
+  });
+}
+
+// ── Galaxy Layout ─────────────────────────────────
+let galaxyPositions = [];
+
+function layoutGalaxy() {
+  const n = clusterStats.length;
+  let pos = clusterStats.map((_, i) => ({
+    x: W/2 + Math.cos(i * Math.PI*2/n) * Math.min(W,H) * 0.28,
+    y: H/2 + Math.sin(i * Math.PI*2/n) * Math.min(W,H) * 0.28,
+    vx: 0, vy: 0,
+  }));
+
+  for (let iter = 0; iter < 200; iter++) {
+    for (let i = 0; i < n; i++) {
+      for (let j = i+1; j < n; j++) {
+        let dx = pos[j].x - pos[i].x, dy = pos[j].y - pos[i].y;
+        let d = Math.sqrt(dx*dx + dy*dy) || 1;
+        let f = 8000 / (d*d);
+        pos[i].vx -= dx/d*f; pos[i].vy -= dy/d*f;
+        pos[j].vx += dx/d*f; pos[j].vy += dy/d*f;
+      }
+    }
+    for (let i = 0; i < n; i++) {
+      for (let j = i+1; j < n; j++) {
+        const w = crossMatrix[i][j];
+        if (w > 0) {
+          let dx = pos[j].x - pos[i].x, dy = pos[j].y - pos[i].y;
+          let d = Math.sqrt(dx*dx + dy*dy) || 1;
+          let f = d * 0.003 * Math.log(1+w);
+          pos[i].vx += dx/d*f; pos[i].vy += dy/d*f;
+          pos[j].vx -= dx/d*f; pos[j].vy -= dy/d*f;
+        }
+      }
+    }
+    for (let i = 0; i < n; i++) {
+      pos[i].vx += (W/2 - pos[i].x) * 0.01;
+      pos[i].vy += (H/2 - pos[i].y) * 0.01;
+      pos[i].x += pos[i].vx * 0.3; pos[i].y += pos[i].vy * 0.3;
+      pos[i].vx *= 0.8; pos[i].vy *= 0.8;
+    }
+  }
+  galaxyPositions = pos;
+}
+
+// ── Cluster Layout ────────────────────────────────
+let clusterNodePositions = {};
+
+function layoutCluster(clusterId) {
+  clusterNodePositions = {};
+  const cs = clusterStats[clusterId];
+  const margin = 60;
+  const nodes = cs.nodes.map(id => nodeById[id]);
+
+  let minX=Infinity, maxX=-Infinity, minY=Infinity, maxY=-Infinity;
+  nodes.forEach(n => {
+    if (n.x_distrib < minX) minX = n.x_distrib;
+    if (n.x_distrib > maxX) maxX = n.x_distrib;
+    if (n.y_distrib < minY) minY = n.y_distrib;
+    if (n.y_distrib > maxY) maxY = n.y_distrib;
+  });
+
+  const rX = maxX - minX || 1, rY = maxY - minY || 1;
+  const scale = Math.min((W - margin*2) / rX, (H - margin*2) / rY);
+
+  nodes.forEach(n => {
+    clusterNodePositions[n.id] = {
+      x: margin + (n.x_distrib - minX) * scale + (W - margin*2 - rX*scale)/2,
+      y: margin + (n.y_distrib - minY) * scale + (H - margin*2 - rY*scale)/2,
+    };
+  });
+
+  const nodeIdSet = new Set(cs.nodes);
+  const neighborIds = new Set();
+  DATA.labeledEdges.forEach(e => {
+    if (nodeIdSet.has(e.source) && !nodeIdSet.has(e.target)) neighborIds.add(e.target);
+    if (nodeIdSet.has(e.target) && !nodeIdSet.has(e.source)) neighborIds.add(e.source);
+  });
+
+  neighborIds.forEach(nid => {
+    const connected = (adj[nid]||[]).filter(e => nodeIdSet.has(e.target));
+    if (connected.length === 0) return;
+    let ax=0, ay=0;
+    connected.forEach(e => { const p = clusterNodePositions[e.target]; if(p) { ax+=p.x; ay+=p.y; } });
+    ax /= connected.length; ay /= connected.length;
+    const cx = W/2, cy = H/2;
+    const dx = ax-cx, dy = ay-cy, d = Math.sqrt(dx*dx+dy*dy)||1;
+    clusterNodePositions[nid] = { x: ax + dx/d*30, y: ay + dy/d*30, peripheral: true };
+  });
+}
+
+// ── Ego Layout ────────────────────────────────────
+let egoPositions = {};
+
+function layoutEgo(nodeId) {
+  egoPositions = {};
+  const neighbors = adj[nodeId] || [];
+  const cx = W/2, cy = H/2;
+  egoPositions[nodeId] = { x: cx, y: cy };
+
+  const radius = Math.min(W, H) * 0.35;
+  const n = neighbors.length;
+  if (n === 0) return;
+
+  const groups = {};
+  neighbors.forEach(e => {
+    const nn = nodeById[e.target];
+    const cid = nn ? nn.cluster_id : -1;
+    if (!groups[cid]) groups[cid] = [];
+    groups[cid].push(e);
+  });
+  const sortedKeys = Object.keys(groups).sort((a,b) => +a - +b);
+  let ordered = [];
+  sortedKeys.forEach(k => ordered.push(...groups[k]));
+
+  ordered.forEach((e, i) => {
+    const angle = (i / n) * Math.PI * 2 - Math.PI / 2;
+    egoPositions[e.target] = {
+      x: cx + Math.cos(angle) * radius,
+      y: cy + Math.sin(angle) * radius,
+    };
+  });
+}
+
+// ── Drawing ───────────────────────────────────────
+function drawGalaxy() {
+  ctx.clearRect(0, 0, W, H);
+
+  for (let i = 0; i < clusterStats.length; i++) {
+    for (let j = i+1; j < clusterStats.length; j++) {
+      const w = crossMatrix[i][j];
+      if (w === 0) continue;
+      const p1 = galaxyPositions[i], p2 = galaxyPositions[j];
+      ctx.beginPath();
+      ctx.moveTo(p1.x, p1.y); ctx.lineTo(p2.x, p2.y);
+      ctx.strokeStyle = `rgba(127,179,196,${Math.min(0.4, w/100)})`;
+      ctx.lineWidth = Math.min(8, Math.log(1+w) * 1.5);
+      ctx.stroke();
+    }
+  }
+
+  clusterStats.forEach((cs, i) => {
+    const p = galaxyPositions[i];
+    const r = 24 + Math.sqrt(cs.count) * 3;
+    const hov = hoveredNode === i;
+
+    if (hov) {
+      const grad = ctx.createRadialGradient(p.x, p.y, r, p.x, p.y, r*2.5);
+      grad.addColorStop(0, CLUSTER_COLORS[i] + '40');
+      grad.addColorStop(1, 'transparent');
+      ctx.beginPath(); ctx.arc(p.x, p.y, r*2.5, 0, Math.PI*2);
+      ctx.fillStyle = grad; ctx.fill();
+    }
+
+    ctx.beginPath(); ctx.arc(p.x, p.y, r, 0, Math.PI*2);
+    ctx.fillStyle = hov ? CLUSTER_COLORS[i] : CLUSTER_COLORS[i] + 'aa';
+    ctx.fill();
+    ctx.strokeStyle = CLUSTER_COLORS[i]; ctx.lineWidth = 2; ctx.stroke();
+
+    ctx.fillStyle = '#e8e0d4'; ctx.font = '500 12px JetBrains Mono'; ctx.textAlign = 'center';
+    ctx.fillText(cs.name, p.x, p.y + r + 18);
+    ctx.fillStyle = '#888'; ctx.font = '300 10px JetBrains Mono';
+    ctx.fillText(`${cs.count} notes`, p.x, p.y + r + 32);
+  });
+}
+
+function drawCluster() {
+  ctx.clearRect(0, 0, W, H);
+  const cs = clusterStats[selectedCluster];
+  const nodeIdSet = new Set(cs.nodes);
+
+  ctx.globalAlpha = 0.08;
+  ctx.strokeStyle = CLUSTER_COLORS[selectedCluster];
+  ctx.lineWidth = 0.5;
+  DATA.labeledEdges.forEach(e => {
+    const p1 = clusterNodePositions[e.source], p2 = clusterNodePositions[e.target];
+    if (!p1 || !p2 || p1.peripheral || p2.peripheral) return;
+    if (!nodeIdSet.has(e.source) || !nodeIdSet.has(e.target)) return;
+    ctx.beginPath(); ctx.moveTo(p1.x, p1.y); ctx.lineTo(p2.x, p2.y); ctx.stroke();
+  });
+  ctx.globalAlpha = 1;
+
+  Object.entries(clusterNodePositions).forEach(([id, pos]) => {
+    if (!pos.peripheral) return;
+    const n = nodeById[+id]; if (!n) return;
+    ctx.beginPath(); ctx.arc(pos.x, pos.y, 2, 0, Math.PI*2);
+    ctx.fillStyle = CLUSTER_COLORS[n.cluster_id] + '30'; ctx.fill();
+  });
+
+  cs.nodes.forEach(id => {
+    const pos = clusterNodePositions[id]; if (!pos) return;
+    const n = nodeById[id];
+    const isBridge = (bridgeScores[id]||0) > 2;
+    const hov = hoveredNode === id;
+    let r = hov ? 5 : 3;
+    if (n.is_medoid || n.is_llm_center) r = 6;
+    if (isBridge) r = 4;
+
+    ctx.beginPath(); ctx.arc(pos.x, pos.y, r, 0, Math.PI*2);
+    ctx.fillStyle = hov ? '#fff' : CLUSTER_COLORS[selectedCluster];
+    ctx.fill();
+
+    if (isBridge && !hov) {
+      ctx.beginPath(); ctx.arc(pos.x, pos.y, r+3, 0, Math.PI*2);
+      ctx.strokeStyle = '#7fb3c4' + '60'; ctx.lineWidth = 1; ctx.stroke();
+    }
+    if (n.is_medoid) drawStar(pos.x, pos.y, r+4, '#7fb3c4');
+    if (n.is_llm_center) drawDiamond(pos.x, pos.y, r+5, '#7fb3c4');
+  });
+}
+
+function drawEgo() {
+  ctx.clearRect(0, 0, W, H);
+  const neighbors = adj[selectedNode] || [];
+  const center = egoPositions[selectedNode]; if (!center) return;
+
+  neighbors.forEach(e => {
+    const pos = egoPositions[e.target]; if (!pos) return;
+    const n = nodeById[e.target];
+    const hov = hoveredNode === e.target;
+
+    ctx.beginPath(); ctx.moveTo(center.x, center.y); ctx.lineTo(pos.x, pos.y);
+    ctx.strokeStyle = hov ? CLUSTER_COLORS[n.cluster_id] : CLUSTER_COLORS[n.cluster_id] + '40';
+    ctx.lineWidth = hov ? 2 : 1; ctx.stroke();
+
+    if (hov && e.label_fwd && e.label_fwd !== 'connects to') {
+      const mx = (center.x+pos.x)/2, my = (center.y+pos.y)/2;
+      ctx.fillStyle = '#7fb3c4'; ctx.font = '10px JetBrains Mono'; ctx.textAlign = 'center';
+      ctx.fillText(e.label_fwd, mx, my - 6);
+    }
+  });
+
+  neighbors.forEach(e => {
+    const pos = egoPositions[e.target]; if (!pos) return;
+    const n = nodeById[e.target];
+    const hov = hoveredNode === e.target;
+    const r = hov ? 8 : 6;
+
+    ctx.beginPath(); ctx.arc(pos.x, pos.y, r, 0, Math.PI*2);
+    ctx.fillStyle = hov ? CLUSTER_COLORS[n.cluster_id] : CLUSTER_COLORS[n.cluster_id] + 'bb';
+    ctx.fill();
+
+    const name = n.name || n.filename.replace('.md','');
+    const displayName = name.length > 35 ? name.slice(0,35)+'...' : name;
+    ctx.fillStyle = hov ? '#e8e0d4' : '#888';
+    ctx.font = '10px JetBrains Mono';
+
+    const dx = pos.x - center.x, dy = pos.y - center.y;
+    const angle = Math.atan2(dy, dx);
+    const lOff = r + 12;
+    const lx = pos.x + Math.cos(angle)*lOff, ly = pos.y + Math.sin(angle)*lOff;
+
+    ctx.save(); ctx.translate(lx, ly);
+    let tA = angle;
+    if (tA > Math.PI/2 || tA < -Math.PI/2) tA += Math.PI;
+    ctx.rotate(tA);
+    ctx.textAlign = (angle > Math.PI/2 || angle < -Math.PI/2) ? 'right' : 'left';
+    ctx.fillText(displayName, 0, 4);
+    ctx.restore();
+  });
+
+  ctx.beginPath(); ctx.arc(center.x, center.y, 14, 0, Math.PI*2);
+  ctx.fillStyle = CLUSTER_COLORS[nodeById[selectedNode].cluster_id]; ctx.fill();
+  ctx.strokeStyle = '#e8e0d4'; ctx.lineWidth = 2; ctx.stroke();
+
+  const cn = nodeById[selectedNode];
+  const cname = cn.name || cn.filename.replace('.md','');
+  ctx.fillStyle = '#e8e0d4'; ctx.font = '500 12px JetBrains Mono'; ctx.textAlign = 'center';
+  ctx.fillText(cname.length > 40 ? cname.slice(0,40)+'...' : cname, center.x, center.y + 30);
+}
+
+function drawStar(cx, cy, r, color) {
+  ctx.beginPath();
+  for (let i = 0; i < 5; i++) {
+    const a = (i*4*Math.PI/5) - Math.PI/2;
+    ctx[i===0?'moveTo':'lineTo'](cx+Math.cos(a)*r, cy+Math.sin(a)*r);
+  }
+  ctx.closePath(); ctx.strokeStyle = color; ctx.lineWidth = 1.5; ctx.stroke();
+}
+
+function drawDiamond(cx, cy, r, color) {
+  ctx.beginPath();
+  ctx.moveTo(cx, cy-r); ctx.lineTo(cx+r*0.6, cy); ctx.lineTo(cx, cy+r); ctx.lineTo(cx-r*0.6, cy);
+  ctx.closePath(); ctx.strokeStyle = color; ctx.lineWidth = 1.5; ctx.stroke();
+}
+
+function draw() {
+  if (level === LEVELS.GALAXY) drawGalaxy();
+  else if (level === LEVELS.CLUSTER) drawCluster();
+  else if (level === LEVELS.EGO) drawEgo();
+}
+
+// ── Hit Detection ─────────────────────────────────
+function hitTest(mx, my) {
+  if (level === LEVELS.GALAXY) {
+    for (let i = 0; i < clusterStats.length; i++) {
+      const p = galaxyPositions[i];
+      const r = 24 + Math.sqrt(clusterStats[i].count) * 3 + 10;
+      const dx = mx-p.x, dy = my-p.y;
+      if (dx*dx + dy*dy < r*r) return i;
+    }
+    return null;
+  }
+  if (level === LEVELS.CLUSTER) {
+    const cs = clusterStats[selectedCluster];
+    let closest = null, closestDist = 15;
+    cs.nodes.forEach(id => {
+      const pos = clusterNodePositions[id]; if (!pos) return;
+      const d = Math.sqrt((mx-pos.x)**2 + (my-pos.y)**2);
+      if (d < closestDist) { closestDist = d; closest = id; }
+    });
+    return closest;
+  }
+  if (level === LEVELS.EGO) {
+    const cp = egoPositions[selectedNode];
+    if (cp && (mx-cp.x)**2+(my-cp.y)**2 < 196) return selectedNode;
+    for (const e of (adj[selectedNode]||[])) {
+      const pos = egoPositions[e.target]; if (!pos) continue;
+      if ((mx-pos.x)**2+(my-pos.y)**2 < 100) return e.target;
+    }
+    return null;
+  }
+}
+
+// ── Navigation ────────────────────────────────────
+function goGalaxy() {
+  level = LEVELS.GALAXY; selectedCluster = null; selectedNode = null; hoveredNode = null;
+  document.getElementById('detail-panel').style.display = 'none';
+  document.getElementById('subtitle').style.display = 'block';
+  resize(); layoutGalaxy(); updateBreadcrumbs(); updateLegend(); draw();
+}
+
+function goCluster(clusterId) {
+  level = LEVELS.CLUSTER; selectedCluster = clusterId; selectedNode = null; hoveredNode = null;
+  document.getElementById('detail-panel').style.display = 'none';
+  document.getElementById('subtitle').style.display = 'none';
+  resize(); layoutCluster(clusterId); updateBreadcrumbs(); updateLegend(); draw();
+}
+
+function goEgo(nodeId) {
+  level = LEVELS.EGO; selectedNode = nodeId; hoveredNode = null;
+  if (selectedCluster === null) selectedCluster = nodeById[nodeId].cluster_id;
+  document.getElementById('subtitle').style.display = 'none';
+  resize(); layoutEgo(nodeId); updateBreadcrumbs(); updateLegend();
+  updateDetailPanel(nodeId);
+  document.getElementById('detail-panel').style.display = 'block';
+  draw();
+}
+
+// ── UI ────────────────────────────────────────────
+function updateBreadcrumbs() {
+  const el = document.getElementById('breadcrumbs');
+  let h = '<span onclick="goGalaxy()">Graph</span>';
+  if (level >= LEVELS.CLUSTER && selectedCluster !== null) {
+    const name = clusterStats[selectedCluster].name;
+    h += '<span class="sep">\u203A</span>';
+    h += level === LEVELS.CLUSTER
+      ? `<span class="current">${name}</span>`
+      : `<span onclick="goCluster(${selectedCluster})">${name}</span>`;
+  }
+  if (level === LEVELS.EGO && selectedNode !== null) {
+    const n = nodeById[selectedNode];
+    const name = (n.name || n.filename.replace('.md',''));
+    const short = name.length > 40 ? name.slice(0,40)+'...' : name;
+    h += `<span class="sep">\u203A</span><span class="current">${esc(short)}</span>`;
+  }
+  el.innerHTML = h;
+}
+
+function updateLegend() {
+  const el = document.getElementById('legend');
+  el.innerHTML = clusterStats.map((cs, i) =>
+    `<div class="legend-item" onclick="${level===LEVELS.GALAXY ? `goCluster(${i})` : 'goGalaxy()'}">
+      <div class="legend-dot" style="background:${CLUSTER_COLORS[i]}"></div>${cs.name} (${cs.count})</div>`
+  ).join('');
+}
+
+function updateDetailPanel(nodeId) {
+  const n = nodeById[nodeId];
+  const neighbors = adj[nodeId] || [];
+  const panel = document.getElementById('detail-panel');
+  const name = n.name || n.filename.replace('.md','');
+  const preview = (n.text_preview||'').slice(0,400);
+  const bridge = bridgeScores[nodeId]||0;
+  const created = n.created ? n.created.slice(0,10) : '';
+
+  let h = `<h3>${esc(name)}</h3>`;
+  h += `<div class="meta">`;
+  h += `<b>Cluster:</b> ${esc(n.cluster_name)}<br>`;
+  if (created) h += `<b>Created:</b> ${created}<br>`;
+  h += `<b>Neighbors:</b> ${neighbors.length}<br>`;
+  if (bridge) h += `<b>Bridge:</b> ${bridge} cross-cluster`;
+  h += `</div>`;
+  h += `<div class="preview">${esc(preview)}</div>`;
+  h += `<div class="neighbors-title">Neighbors (${neighbors.length})</div>`;
+
+  const sorted = [...neighbors].sort((a,b) => {
+    const na = nodeById[a.target], nb = nodeById[b.target];
+    if (!na || !nb) return 0;
+    const ca = na.cluster_id !== n.cluster_id ? 1 : 0;
+    const cb = nb.cluster_id !== n.cluster_id ? 1 : 0;
+    if (ca !== cb) return cb - ca;
+    return (bridgeScores[b.target]||0) - (bridgeScores[a.target]||0);
+  });
+
+  sorted.forEach(e => {
+    const nn = nodeById[e.target]; if (!nn) return;
+    const nname = nn.name || nn.filename.replace('.md','');
+    const label = e.label_fwd && e.label_fwd !== 'connects to' ? e.label_fwd : '';
+    h += `<div class="neighbor-item" onclick="goEgo(${e.target})">
+      <div class="neighbor-dot" style="background:${CLUSTER_COLORS[nn.cluster_id]}"></div>
+      <div class="neighbor-name">${esc(nname)}</div>
+      <div class="neighbor-label">${esc(label)}</div></div>`;
+  });
+  panel.innerHTML = h;
+}
+
+function esc(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+// ── Tooltip ───────────────────────────────────────
+function showTooltip(x, y, ref) {
+  const tt = document.getElementById('tooltip');
+  let h = '';
+  if (level === LEVELS.GALAXY) {
+    const cs = clusterStats[ref];
+    h = `<div class="tt-name">${cs.name}</div><div class="tt-cluster">${cs.count} notes</div>`;
+    const bridges = [];
+    for (let j = 0; j < clusterStats.length; j++) {
+      if (j !== ref && crossMatrix[ref][j] > 0) bridges.push({name: clusterStats[j].name, count: crossMatrix[ref][j]});
+    }
+    bridges.sort((a,b) => b.count-a.count);
+    if (bridges.length) {
+      h += '<div class="tt-preview">Connections:<br>';
+      bridges.forEach(b => { h += `  ${b.name}: ${b.count}<br>`; });
+      h += '</div>';
+    }
+  } else {
+    const n = nodeById[ref]; if (!n) return;
+    const name = n.name || n.filename.replace('.md','');
+    h = `<div class="tt-name">${esc(name)}</div>`;
+    h += `<div class="tt-cluster">${n.cluster_name}`;
+    const bs = bridgeScores[ref]||0;
+    if (bs) h += ` \u00B7 bridge: ${bs}`;
+    h += '</div>';
+    const preview = (n.text_preview||'').slice(0,150);
+    if (preview) h += `<div class="tt-preview">${esc(preview)}</div>`;
+  }
+  tt.innerHTML = h; tt.style.display = 'block';
+  const rect = tt.getBoundingClientRect();
+  let tx = x+15, ty = y+15;
+  if (tx + rect.width > window.innerWidth-10) tx = x - rect.width - 15;
+  if (ty + rect.height > window.innerHeight-10) ty = y - rect.height - 15;
+  tt.style.left = tx+'px'; tt.style.top = ty+'px';
+}
+
+function hideTooltip() { document.getElementById('tooltip').style.display = 'none'; }
+
+// ── Events ────────────────────────────────────────
+canvas.addEventListener('mousemove', e => {
+  const rect = canvas.getBoundingClientRect();
+  const mx = e.clientX - rect.left, my = e.clientY - rect.top;
+  const hit = hitTest(mx, my);
+  if (hit !== hoveredNode) {
+    hoveredNode = hit;
+    canvas.style.cursor = hit !== null ? 'pointer' : 'default';
+    draw();
+  }
+  if (hit !== null) showTooltip(e.clientX, e.clientY, hit);
+  else hideTooltip();
+});
+
+canvas.addEventListener('click', e => {
+  const rect = canvas.getBoundingClientRect();
+  const hit = hitTest(e.clientX - rect.left, e.clientY - rect.top);
+  hideTooltip();
+  if (hit === null) return;
+  if (level === LEVELS.GALAXY) goCluster(hit);
+  else if (level === LEVELS.CLUSTER) goEgo(hit);
+  else if (level === LEVELS.EGO && hit !== selectedNode) goEgo(hit);
+});
+
+canvas.addEventListener('mouseleave', () => { hoveredNode = null; hideTooltip(); draw(); });
+
+// Search
+const searchInput = document.getElementById('search-input');
+const searchResults = document.getElementById('search-results');
+
+searchInput.addEventListener('input', () => {
+  const q = searchInput.value.trim().toLowerCase();
+  if (q.length < 2) { searchResults.style.display = 'none'; return; }
+  const matches = DATA.graphNodes
+    .filter(n => (n.name||n.filename).toLowerCase().includes(q))
+    .slice(0, 20);
+  if (!matches.length) { searchResults.style.display = 'none'; return; }
+  searchResults.innerHTML = matches.map(n => {
+    const name = n.name || n.filename.replace('.md','');
+    return `<div class="search-item" data-id="${n.id}">
+      <div class="name">${esc(name)}</div>
+      <div class="cluster" style="color:${CLUSTER_COLORS[n.cluster_id]}">${n.cluster_name}</div></div>`;
+  }).join('');
+  searchResults.style.display = 'block';
+});
+
+searchResults.addEventListener('click', e => {
+  const item = e.target.closest('.search-item'); if (!item) return;
+  searchResults.style.display = 'none'; searchInput.value = '';
+  goEgo(+item.dataset.id);
+});
+
+searchInput.addEventListener('blur', () => { setTimeout(() => { searchResults.style.display = 'none'; }, 200); });
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    if (level === LEVELS.EGO) goCluster(selectedCluster);
+    else if (level === LEVELS.CLUSTER) goGalaxy();
+    searchResults.style.display = 'none'; searchInput.blur();
+  }
+  if (e.key === '/' && document.activeElement !== searchInput) {
+    e.preventDefault(); searchInput.focus();
+  }
+});
+
+window.addEventListener('resize', () => {
+  resize();
+  if (level === LEVELS.GALAXY) layoutGalaxy();
+  else if (level === LEVELS.CLUSTER) layoutCluster(selectedCluster);
+  else if (level === LEVELS.EGO) layoutEgo(selectedNode);
+  draw();
+});
+
+// ── Boot ──────────────────────────────────────────
+fetch('preload.json')
+  .then(r => r.json())
+  .then(data => {
+    DATA = data;
+    precompute();
+    document.getElementById('loading').style.display = 'none';
+    resize(); layoutGalaxy(); updateBreadcrumbs(); updateLegend(); draw();
+
+    const params = new URLSearchParams(location.search);
+    const startCluster = params.get('cluster');
+    const startNode = params.get('node');
+    if (startNode) {
+      const match = DATA.graphNodes.find(n => n.filename === startNode);
+      if (match) goEgo(match.id);
+    } else if (startCluster !== null) {
+      const cid = parseInt(startCluster);
+      if (clusterStats[cid]) goCluster(cid);
+    }
+  })
+  .catch(err => {
+    document.getElementById('loading').textContent = 'failed to load: ' + err.message;
+  });
+</script>
+</body>
+</html>
