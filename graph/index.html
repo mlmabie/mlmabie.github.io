@@ -167,6 +167,7 @@ canvas {
 
 <div id="header">
   <a id="back-link" href="/">&larr; site</a>
+  <a id="garden-link" href="../garden/" style="font-size:11px;color:#666;text-decoration:none;transition:color 0.15s;">garden view</a>
   <div id="breadcrumbs"></div>
   <div id="search-box">
     <span id="search-icon">&#x1F50D;</span>
@@ -190,13 +191,11 @@ canvas {
 let DATA = null;
 let adj = {};
 let clusterStats = [];
-let crossMatrix = [];
 let bridgeScores = {};
 let nodeById = {};
 
-const LEVELS = { GALAXY: 1, CLUSTER: 2, EGO: 3 };
-let level = LEVELS.GALAXY;
-let selectedCluster = null;
+const LEVELS = { SCATTER: 1, EGO: 2 };
+let level = LEVELS.SCATTER;
 let selectedNode = null;
 let hoveredNode = null;
 
@@ -243,115 +242,50 @@ function precompute() {
   const clusterMap = {};
   nodes.forEach(n => {
     const cid = n.cluster_id;
-    if (!clusterMap[cid]) clusterMap[cid] = { id: cid, name: names[cid] || `Cluster ${cid}`, count: 0, nodes: [], medoid: null, llmCenter: null };
+    if (!clusterMap[cid]) clusterMap[cid] = { id: cid, name: names[cid] || `Cluster ${cid}`, count: 0, nodes: [] };
     clusterMap[cid].count++;
     clusterMap[cid].nodes.push(n.id);
-    if (n.is_medoid) clusterMap[cid].medoid = n.id;
-    if (n.is_llm_center) clusterMap[cid].llmCenter = n.id;
   });
   clusterStats = Object.values(clusterMap).sort((a, b) => a.id - b.id);
 
-  const numClusters = clusterStats.length;
-  crossMatrix = Array.from({ length: numClusters }, () => Array(numClusters).fill(0));
   bridgeScores = {};
   edges.forEach(e => {
     const s = nodeById[e.source], t = nodeById[e.target];
     if (!s || !t) return;
     if (s.cluster_id !== t.cluster_id) {
-      crossMatrix[s.cluster_id][t.cluster_id]++;
-      crossMatrix[t.cluster_id][s.cluster_id]++;
       bridgeScores[e.source] = (bridgeScores[e.source] || 0) + 1;
       bridgeScores[e.target] = (bridgeScores[e.target] || 0) + 1;
     }
   });
 }
 
-// ── Galaxy Layout ─────────────────────────────────
-let galaxyPositions = [];
+// ── Scatter Layout (all nodes) ───────────────────
+let scatterPositions = {};
 
-function layoutGalaxy() {
-  const n = clusterStats.length;
-  let pos = clusterStats.map((_, i) => ({
-    x: W/2 + Math.cos(i * Math.PI*2/n) * Math.min(W,H) * 0.28,
-    y: H/2 + Math.sin(i * Math.PI*2/n) * Math.min(W,H) * 0.28,
-    vx: 0, vy: 0,
-  }));
+function layoutScatter() {
+  scatterPositions = {};
+  const nodes = DATA.graphNodes;
+  const margin = 50;
 
-  for (let iter = 0; iter < 200; iter++) {
-    for (let i = 0; i < n; i++) {
-      for (let j = i+1; j < n; j++) {
-        let dx = pos[j].x - pos[i].x, dy = pos[j].y - pos[i].y;
-        let d = Math.sqrt(dx*dx + dy*dy) || 1;
-        let f = 8000 / (d*d);
-        pos[i].vx -= dx/d*f; pos[i].vy -= dy/d*f;
-        pos[j].vx += dx/d*f; pos[j].vy += dy/d*f;
-      }
-    }
-    for (let i = 0; i < n; i++) {
-      for (let j = i+1; j < n; j++) {
-        const w = crossMatrix[i][j];
-        if (w > 0) {
-          let dx = pos[j].x - pos[i].x, dy = pos[j].y - pos[i].y;
-          let d = Math.sqrt(dx*dx + dy*dy) || 1;
-          let f = d * 0.003 * Math.log(1+w);
-          pos[i].vx += dx/d*f; pos[i].vy += dy/d*f;
-          pos[j].vx -= dx/d*f; pos[j].vy -= dy/d*f;
-        }
-      }
-    }
-    for (let i = 0; i < n; i++) {
-      pos[i].vx += (W/2 - pos[i].x) * 0.01;
-      pos[i].vy += (H/2 - pos[i].y) * 0.01;
-      pos[i].x += pos[i].vx * 0.3; pos[i].y += pos[i].vy * 0.3;
-      pos[i].vx *= 0.8; pos[i].vy *= 0.8;
-    }
-  }
-  galaxyPositions = pos;
-}
-
-// ── Cluster Layout ────────────────────────────────
-let clusterNodePositions = {};
-
-function layoutCluster(clusterId) {
-  clusterNodePositions = {};
-  const cs = clusterStats[clusterId];
-  const margin = 60;
-  const nodes = cs.nodes.map(id => nodeById[id]);
-
+  // Use x_central/y_central for positioning
   let minX=Infinity, maxX=-Infinity, minY=Infinity, maxY=-Infinity;
   nodes.forEach(n => {
-    if (n.x_distrib < minX) minX = n.x_distrib;
-    if (n.x_distrib > maxX) maxX = n.x_distrib;
-    if (n.y_distrib < minY) minY = n.y_distrib;
-    if (n.y_distrib > maxY) maxY = n.y_distrib;
+    const x = n.x_central || 0, y = n.y_central || 0;
+    if (x < minX) minX = x;
+    if (x > maxX) maxX = x;
+    if (y < minY) minY = y;
+    if (y > maxY) maxY = y;
   });
 
   const rX = maxX - minX || 1, rY = maxY - minY || 1;
   const scale = Math.min((W - margin*2) / rX, (H - margin*2) / rY);
 
   nodes.forEach(n => {
-    clusterNodePositions[n.id] = {
-      x: margin + (n.x_distrib - minX) * scale + (W - margin*2 - rX*scale)/2,
-      y: margin + (n.y_distrib - minY) * scale + (H - margin*2 - rY*scale)/2,
+    const x = n.x_central || 0, y = n.y_central || 0;
+    scatterPositions[n.id] = {
+      x: margin + (x - minX) * scale + (W - margin*2 - rX*scale)/2,
+      y: margin + (y - minY) * scale + (H - margin*2 - rY*scale)/2,
     };
-  });
-
-  const nodeIdSet = new Set(cs.nodes);
-  const neighborIds = new Set();
-  DATA.labeledEdges.forEach(e => {
-    if (nodeIdSet.has(e.source) && !nodeIdSet.has(e.target)) neighborIds.add(e.target);
-    if (nodeIdSet.has(e.target) && !nodeIdSet.has(e.source)) neighborIds.add(e.source);
-  });
-
-  neighborIds.forEach(nid => {
-    const connected = (adj[nid]||[]).filter(e => nodeIdSet.has(e.target));
-    if (connected.length === 0) return;
-    let ax=0, ay=0;
-    connected.forEach(e => { const p = clusterNodePositions[e.target]; if(p) { ax+=p.x; ay+=p.y; } });
-    ax /= connected.length; ay /= connected.length;
-    const cx = W/2, cy = H/2;
-    const dx = ax-cx, dy = ay-cy, d = Math.sqrt(dx*dx+dy*dy)||1;
-    clusterNodePositions[nid] = { x: ax + dx/d*30, y: ay + dy/d*30, peripheral: true };
   });
 }
 
@@ -389,89 +323,38 @@ function layoutEgo(nodeId) {
 }
 
 // ── Drawing ───────────────────────────────────────
-function drawGalaxy() {
+function drawScatter() {
   ctx.clearRect(0, 0, W, H);
 
-  for (let i = 0; i < clusterStats.length; i++) {
-    for (let j = i+1; j < clusterStats.length; j++) {
-      const w = crossMatrix[i][j];
-      if (w === 0) continue;
-      const p1 = galaxyPositions[i], p2 = galaxyPositions[j];
-      ctx.beginPath();
-      ctx.moveTo(p1.x, p1.y); ctx.lineTo(p2.x, p2.y);
-      ctx.strokeStyle = `rgba(127,179,196,${Math.min(0.4, w/100)})`;
-      ctx.lineWidth = Math.min(8, Math.log(1+w) * 1.5);
-      ctx.stroke();
-    }
-  }
-
-  clusterStats.forEach((cs, i) => {
-    const p = galaxyPositions[i];
-    const r = 24 + Math.sqrt(cs.count) * 3;
-    const hov = hoveredNode === i;
-
-    if (hov) {
-      const grad = ctx.createRadialGradient(p.x, p.y, r, p.x, p.y, r*2.5);
-      grad.addColorStop(0, CLUSTER_COLORS[i] + '40');
-      grad.addColorStop(1, 'transparent');
-      ctx.beginPath(); ctx.arc(p.x, p.y, r*2.5, 0, Math.PI*2);
-      ctx.fillStyle = grad; ctx.fill();
-    }
-
-    ctx.beginPath(); ctx.arc(p.x, p.y, r, 0, Math.PI*2);
-    ctx.fillStyle = hov ? CLUSTER_COLORS[i] : CLUSTER_COLORS[i] + 'aa';
-    ctx.fill();
-    ctx.strokeStyle = CLUSTER_COLORS[i]; ctx.lineWidth = 2; ctx.stroke();
-
-    ctx.fillStyle = '#e8e0d4'; ctx.font = '500 12px JetBrains Mono'; ctx.textAlign = 'center';
-    ctx.fillText(cs.name, p.x, p.y + r + 18);
-    ctx.fillStyle = '#888'; ctx.font = '300 10px JetBrains Mono';
-    ctx.fillText(`${cs.count} notes`, p.x, p.y + r + 32);
-  });
-}
-
-function drawCluster() {
-  ctx.clearRect(0, 0, W, H);
-  const cs = clusterStats[selectedCluster];
-  const nodeIdSet = new Set(cs.nodes);
-
-  ctx.globalAlpha = 0.08;
-  ctx.strokeStyle = CLUSTER_COLORS[selectedCluster];
+  // Draw edges
+  ctx.globalAlpha = 0.06;
   ctx.lineWidth = 0.5;
   DATA.labeledEdges.forEach(e => {
-    const p1 = clusterNodePositions[e.source], p2 = clusterNodePositions[e.target];
-    if (!p1 || !p2 || p1.peripheral || p2.peripheral) return;
-    if (!nodeIdSet.has(e.source) || !nodeIdSet.has(e.target)) return;
+    const p1 = scatterPositions[e.source], p2 = scatterPositions[e.target];
+    if (!p1 || !p2) return;
+    const s = nodeById[e.source], t = nodeById[e.target];
+    const cross = s && t && s.cluster_id !== t.cluster_id;
+    ctx.strokeStyle = cross ? '#7fb3c4' : CLUSTER_COLORS[s ? s.cluster_id : 0];
     ctx.beginPath(); ctx.moveTo(p1.x, p1.y); ctx.lineTo(p2.x, p2.y); ctx.stroke();
   });
   ctx.globalAlpha = 1;
 
-  Object.entries(clusterNodePositions).forEach(([id, pos]) => {
-    if (!pos.peripheral) return;
-    const n = nodeById[+id]; if (!n) return;
-    ctx.beginPath(); ctx.arc(pos.x, pos.y, 2, 0, Math.PI*2);
-    ctx.fillStyle = CLUSTER_COLORS[n.cluster_id] + '30'; ctx.fill();
-  });
-
-  cs.nodes.forEach(id => {
-    const pos = clusterNodePositions[id]; if (!pos) return;
-    const n = nodeById[id];
-    const isBridge = (bridgeScores[id]||0) > 2;
-    const hov = hoveredNode === id;
+  // Draw nodes
+  DATA.graphNodes.forEach(n => {
+    const pos = scatterPositions[n.id]; if (!pos) return;
+    const isBridge = (bridgeScores[n.id]||0) > 2;
+    const hov = hoveredNode === n.id;
     let r = hov ? 5 : 3;
-    if (n.is_medoid || n.is_llm_center) r = 6;
     if (isBridge) r = 4;
 
     ctx.beginPath(); ctx.arc(pos.x, pos.y, r, 0, Math.PI*2);
-    ctx.fillStyle = hov ? '#fff' : CLUSTER_COLORS[selectedCluster];
+    ctx.fillStyle = hov ? '#fff' : CLUSTER_COLORS[n.cluster_id] || '#888';
     ctx.fill();
 
     if (isBridge && !hov) {
       ctx.beginPath(); ctx.arc(pos.x, pos.y, r+3, 0, Math.PI*2);
-      ctx.strokeStyle = '#7fb3c4' + '60'; ctx.lineWidth = 1; ctx.stroke();
+      ctx.strokeStyle = CLUSTER_COLORS[n.cluster_id] + '40'; ctx.lineWidth = 1; ctx.stroke();
     }
-    if (n.is_medoid) drawStar(pos.x, pos.y, r+4, '#7fb3c4');
-    if (n.is_llm_center) drawDiamond(pos.x, pos.y, r+5, '#7fb3c4');
   });
 }
 
@@ -551,29 +434,18 @@ function drawDiamond(cx, cy, r, color) {
 }
 
 function draw() {
-  if (level === LEVELS.GALAXY) drawGalaxy();
-  else if (level === LEVELS.CLUSTER) drawCluster();
+  if (level === LEVELS.SCATTER) drawScatter();
   else if (level === LEVELS.EGO) drawEgo();
 }
 
 // ── Hit Detection ─────────────────────────────────
 function hitTest(mx, my) {
-  if (level === LEVELS.GALAXY) {
-    for (let i = 0; i < clusterStats.length; i++) {
-      const p = galaxyPositions[i];
-      const r = 24 + Math.sqrt(clusterStats[i].count) * 3 + 10;
-      const dx = mx-p.x, dy = my-p.y;
-      if (dx*dx + dy*dy < r*r) return i;
-    }
-    return null;
-  }
-  if (level === LEVELS.CLUSTER) {
-    const cs = clusterStats[selectedCluster];
+  if (level === LEVELS.SCATTER) {
     let closest = null, closestDist = 15;
-    cs.nodes.forEach(id => {
-      const pos = clusterNodePositions[id]; if (!pos) return;
+    DATA.graphNodes.forEach(n => {
+      const pos = scatterPositions[n.id]; if (!pos) return;
       const d = Math.sqrt((mx-pos.x)**2 + (my-pos.y)**2);
-      if (d < closestDist) { closestDist = d; closest = id; }
+      if (d < closestDist) { closestDist = d; closest = n.id; }
     });
     return closest;
   }
@@ -589,23 +461,15 @@ function hitTest(mx, my) {
 }
 
 // ── Navigation ────────────────────────────────────
-function goGalaxy() {
-  level = LEVELS.GALAXY; selectedCluster = null; selectedNode = null; hoveredNode = null;
+function goScatter() {
+  level = LEVELS.SCATTER; selectedNode = null; hoveredNode = null;
   document.getElementById('detail-panel').style.display = 'none';
   document.getElementById('subtitle').style.display = 'block';
-  resize(); layoutGalaxy(); updateBreadcrumbs(); updateLegend(); draw();
-}
-
-function goCluster(clusterId) {
-  level = LEVELS.CLUSTER; selectedCluster = clusterId; selectedNode = null; hoveredNode = null;
-  document.getElementById('detail-panel').style.display = 'none';
-  document.getElementById('subtitle').style.display = 'none';
-  resize(); layoutCluster(clusterId); updateBreadcrumbs(); updateLegend(); draw();
+  resize(); layoutScatter(); updateBreadcrumbs(); updateLegend(); draw();
 }
 
 function goEgo(nodeId) {
   level = LEVELS.EGO; selectedNode = nodeId; hoveredNode = null;
-  if (selectedCluster === null) selectedCluster = nodeById[nodeId].cluster_id;
   document.getElementById('subtitle').style.display = 'none';
   resize(); layoutEgo(nodeId); updateBreadcrumbs(); updateLegend();
   updateDetailPanel(nodeId);
@@ -616,14 +480,7 @@ function goEgo(nodeId) {
 // ── UI ────────────────────────────────────────────
 function updateBreadcrumbs() {
   const el = document.getElementById('breadcrumbs');
-  let h = '<span onclick="goGalaxy()">Graph</span>';
-  if (level >= LEVELS.CLUSTER && selectedCluster !== null) {
-    const name = clusterStats[selectedCluster].name;
-    h += '<span class="sep">\u203A</span>';
-    h += level === LEVELS.CLUSTER
-      ? `<span class="current">${name}</span>`
-      : `<span onclick="goCluster(${selectedCluster})">${name}</span>`;
-  }
+  let h = '<span onclick="goScatter()">Graph</span>';
   if (level === LEVELS.EGO && selectedNode !== null) {
     const n = nodeById[selectedNode];
     const name = (n.name || n.filename.replace('.md',''));
@@ -636,7 +493,7 @@ function updateBreadcrumbs() {
 function updateLegend() {
   const el = document.getElementById('legend');
   el.innerHTML = clusterStats.map((cs, i) =>
-    `<div class="legend-item" onclick="${level===LEVELS.GALAXY ? `goCluster(${i})` : 'goGalaxy()'}">
+    `<div class="legend-item">
       <div class="legend-dot" style="background:${CLUSTER_COLORS[i]}"></div>${cs.name} (${cs.count})</div>`
   ).join('');
 }
@@ -687,20 +544,7 @@ function esc(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>
 function showTooltip(x, y, ref) {
   const tt = document.getElementById('tooltip');
   let h = '';
-  if (level === LEVELS.GALAXY) {
-    const cs = clusterStats[ref];
-    h = `<div class="tt-name">${cs.name}</div><div class="tt-cluster">${cs.count} notes</div>`;
-    const bridges = [];
-    for (let j = 0; j < clusterStats.length; j++) {
-      if (j !== ref && crossMatrix[ref][j] > 0) bridges.push({name: clusterStats[j].name, count: crossMatrix[ref][j]});
-    }
-    bridges.sort((a,b) => b.count-a.count);
-    if (bridges.length) {
-      h += '<div class="tt-preview">Connections:<br>';
-      bridges.forEach(b => { h += `  ${b.name}: ${b.count}<br>`; });
-      h += '</div>';
-    }
-  } else {
+  {
     const n = nodeById[ref]; if (!n) return;
     const name = n.name || n.filename.replace('.md','');
     h = `<div class="tt-name">${esc(name)}</div>`;
@@ -740,8 +584,7 @@ canvas.addEventListener('click', e => {
   const hit = hitTest(e.clientX - rect.left, e.clientY - rect.top);
   hideTooltip();
   if (hit === null) return;
-  if (level === LEVELS.GALAXY) goCluster(hit);
-  else if (level === LEVELS.CLUSTER) goEgo(hit);
+  if (level === LEVELS.SCATTER) goEgo(hit);
   else if (level === LEVELS.EGO && hit !== selectedNode) goEgo(hit);
 });
 
@@ -777,8 +620,7 @@ searchInput.addEventListener('blur', () => { setTimeout(() => { searchResults.st
 
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') {
-    if (level === LEVELS.EGO) goCluster(selectedCluster);
-    else if (level === LEVELS.CLUSTER) goGalaxy();
+    if (level === LEVELS.EGO) goScatter();
     searchResults.style.display = 'none'; searchInput.blur();
   }
   if (e.key === '/' && document.activeElement !== searchInput) {
@@ -788,8 +630,7 @@ document.addEventListener('keydown', e => {
 
 window.addEventListener('resize', () => {
   resize();
-  if (level === LEVELS.GALAXY) layoutGalaxy();
-  else if (level === LEVELS.CLUSTER) layoutCluster(selectedCluster);
+  if (level === LEVELS.SCATTER) layoutScatter();
   else if (level === LEVELS.EGO) layoutEgo(selectedNode);
   draw();
 });
@@ -801,17 +642,13 @@ fetch('preload.json')
     DATA = data;
     precompute();
     document.getElementById('loading').style.display = 'none';
-    resize(); layoutGalaxy(); updateBreadcrumbs(); updateLegend(); draw();
+    resize(); layoutScatter(); updateBreadcrumbs(); updateLegend(); draw();
 
     const params = new URLSearchParams(location.search);
-    const startCluster = params.get('cluster');
     const startNode = params.get('node');
     if (startNode) {
       const match = DATA.graphNodes.find(n => n.filename === startNode);
       if (match) goEgo(match.id);
-    } else if (startCluster !== null) {
-      const cid = parseInt(startCluster);
-      if (clusterStats[cid]) goCluster(cid);
     }
   })
   .catch(err => {
