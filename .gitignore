@@ -3,3 +3,6 @@ assets/originals/UC-Application-insights.pdf
 assets/originals/Personal-Statement.pdf
 assets/originals/weird-brainstorm-on-narrative-architecture-harmonic-esoteric-stuff.docx
 TXT; __hermes_rc=$?; printf '__HERMES_FENCE_a9f7b3__'; exit $__hermes_rc
+
+# Resume privacy
+assets/resumes/*.pdf

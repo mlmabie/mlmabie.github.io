@@ -1,9 +1,8 @@
-Place these 4 resume PDFs here to power /resume.html:
+Resume PDFs are intentionally not published on the public site to reduce scraping of personal contact details.
 
-- ai-systems-resume.pdf
-- ai-research-resume.pdf
-- ai-security-resume.pdf
-- ai-physical-systems-resume.pdf
+Current access path:
+- LinkedIn message: https://www.linkedin.com/in/mlmabie/
+- X DM: https://x.com/init_malachi
 
-The resume page preserves PDF formatting using an in-page viewer and download links.
+When publishing again, use redacted PDFs with phone number removed.
 MD; __hermes_rc=$?; printf '__HERMES_FENCE_a9f7b3__'; exit $__hermes_rc
