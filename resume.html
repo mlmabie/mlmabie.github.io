@@ -28,13 +28,13 @@
     <header class="essay-header">
       <h1>Resume Variants</h1>
       <p class="essay-subtitle">One hub, four tracks: AI Systems · AI Research · AI Security · AI for Physical Systems</p>
-      <p class="essay-meta">Source-preserved PDF format</p>
+      <p class="essay-meta">Public preview is privacy-protected</p>
     </header>
 
     <article class="essay-content">
       <section class="source-preserve">
         <h2>Choose a focus</h2>
-        <p>Each version preserves original PDF formatting. Swap tracks without leaving the page.</p>
+        <p>I keep four targeted resume variants, tuned to role context and decision criteria.</p>
 
         <div class="resume-tabs" role="tablist" aria-label="Resume variants">
           <button class="resume-tab active" data-key="systems" role="tab" aria-selected="true">AI Systems</button>
@@ -44,25 +44,14 @@
         </div>
 
         <p id="resume-caption" class="resume-caption"></p>
-        <p><a id="resume-download" href="#" target="_blank" rel="noopener">Download current resume PDF</a></p>
-        <iframe id="resume-frame" class="source-frame" title="Resume preview"></iframe>
+        <p class="resume-caption"><strong>Note:</strong> downloadable PDFs are intentionally withheld from this public page to prevent phone-number scraping. Send a DM and I’ll share the right version directly.</p>
       </section>
 
       <section class="source-preserve">
-        <h2>Contact without exposing personal identifiers</h2>
-        <p>This gate prevents direct email scraping by requiring a lightweight human check before revealing the contact route.</p>
-
-        <form id="contact-gate" class="contact-gate" novalidate>
-          <label for="human-check">Human check: what is 4 + 3?</label>
-          <input id="human-check" name="human_check" type="text" inputmode="numeric" autocomplete="off" required>
-
-          <label for="website" class="sr-only">Leave this empty</label>
-          <input id="website" name="website" type="text" autocomplete="off" tabindex="-1" aria-hidden="true" class="honeypot">
-
-          <button type="submit">Unlock contact</button>
-        </form>
-
-        <div id="contact-result" class="contact-result" aria-live="polite"></div>
+        <h2>Contact</h2>
+        <p>Best channel: LinkedIn message.</p>
+        <p>Fast channel: X DM at <a href="https://x.com/init_malachi" target="_blank" rel="noopener">@init_malachi</a>.</p>
+        <p><a href="https://www.linkedin.com/in/mlmabie/" target="_blank" rel="noopener">Message on LinkedIn</a></p>
       </section>
     </article>
   </main>
@@ -75,106 +64,27 @@
   <script>
     (function () {
       const resumes = {
-        systems: {
-          title: 'AI Systems Resume',
-          path: 'assets/resumes/ai-systems-resume.pdf',
-          caption: 'Systems architecture, agent orchestration, deployment, and production reliability.'
-        },
-        research: {
-          title: 'AI Research Resume',
-          path: 'assets/resumes/ai-research-resume.pdf',
-          caption: 'Model design, experiments, evaluations, and technical writing for research contexts.'
-        },
-        security: {
-          title: 'AI Security Resume',
-          path: 'assets/resumes/ai-security-resume.pdf',
-          caption: 'Adversarial thinking, secure pipelines, risk mitigation, and resilient AI systems.'
-        },
-        physical: {
-          title: 'AI for Physical Systems Resume',
-          path: 'assets/resumes/ai-physical-systems-resume.pdf',
-          caption: 'Robotics, controls, embodied systems, and AI integrated with real-world hardware.'
-        }
+        systems: 'Systems architecture, agent orchestration, deployment, and production reliability.',
+        research: 'Model design, experiments, evaluations, and technical writing for research contexts.',
+        security: 'Adversarial thinking, secure pipelines, risk mitigation, and resilient AI systems.',
+        physical: 'Robotics, controls, embodied systems, and AI integrated with real-world hardware.'
       };
 
       const tabs = document.querySelectorAll('.resume-tab');
-      const frame = document.getElementById('resume-frame');
-      const link = document.getElementById('resume-download');
       const caption = document.getElementById('resume-caption');
 
-      async function switchResume(key) {
-        const item = resumes[key];
-        if (!item) return;
-
+      function switchResume(key) {
+        if (!resumes[key]) return;
         tabs.forEach(t => {
           const active = t.dataset.key === key;
           t.classList.toggle('active', active);
           t.setAttribute('aria-selected', active ? 'true' : 'false');
         });
-
-        caption.textContent = item.caption;
-
-        try {
-          const res = await fetch(item.path, { method: 'HEAD' });
-          if (res.ok) {
-            frame.src = item.path + '#view=FitH';
-            link.href = item.path;
-            link.textContent = 'Download ' + item.title;
-          } else {
-            frame.removeAttribute('src');
-            link.href = 'assets/resumes/README.md';
-            link.textContent = 'Resume file missing — add PDFs in assets/resumes/';
-          }
-        } catch (_) {
-          frame.removeAttribute('src');
-          link.href = 'assets/resumes/README.md';
-          link.textContent = 'Resume file missing — add PDFs in assets/resumes/';
-        }
+        caption.textContent = resumes[key];
       }
 
       tabs.forEach(t => t.addEventListener('click', () => switchResume(t.dataset.key)));
       switchResume('systems');
-
-      // Contact gate (no plain email in HTML source)
-      const gateForm = document.getElementById('contact-gate');
-      const result = document.getElementById('contact-result');
-      const start = Date.now();
-
-      function buildAddress() {
-        const local = ['h','e','l','l','o'].join('');
-        const host = window.location.hostname.replace(/^www\./, '');
-        return local + '@' + host;
-      }
-
-      gateForm.addEventListener('submit', function (e) {
-        e.preventDefault();
-
-        const hp = document.getElementById('website').value.trim();
-        const answer = document.getElementById('human-check').value.trim();
-        const elapsed = (Date.now() - start) / 1000;
-
-        if (hp) {
-          result.textContent = 'Submission blocked.';
-          return;
-        }
-
-        if (elapsed < 4) {
-          result.textContent = 'Please wait a few seconds, then try again.';
-          return;
-        }
-
-        if (answer !== '7') {
-          result.textContent = 'Human check failed. Try again.';
-          return;
-        }
-
-        const addr = buildAddress();
-        const subject = encodeURIComponent('Website inquiry');
-        const body = encodeURIComponent('Hi Malachi,\n\nI saw your resume page and wanted to reach out about...\n');
-        const href = 'mailto:' + addr + '?subject=' + subject + '&body=' + body;
-
-        result.innerHTML = 'Contact unlocked. <a href="' + href + '">Open secure contact draft</a>.';
-      });
     })();
   </script>
 </body>
