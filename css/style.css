@@ -786,3 +786,112 @@ main {
         text-decoration: underline;
     }
 }
+
+
+/* Source-preserved media blocks */
+.source-preserve {
+    margin: 0 0 2.5rem;
+    padding: 1.2rem 1.3rem;
+    background: var(--bg-alt);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+}
+
+.source-preserve h2 {
+    margin-top: 0.2rem;
+}
+
+.source-frame {
+    width: 100%;
+    height: 70vh;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: white;
+}
+
+.slide-block {
+    margin: 2.4rem 0;
+}
+
+.slide-block figure {
+    margin: 1rem 0 1.4rem;
+}
+
+.slide-block img {
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--bg-alt);
+}
+
+/* Resume hub */
+.resume-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin: 1rem 0 1.2rem;
+}
+
+.resume-tab {
+    border: 1px solid var(--border);
+    background: var(--bg);
+    color: var(--text);
+    padding: 0.45rem 0.75rem;
+    border-radius: 999px;
+    cursor: pointer;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+}
+
+.resume-tab.active {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.resume-caption {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+.contact-gate {
+    display: grid;
+    gap: 0.6rem;
+    max-width: 420px;
+}
+
+.contact-gate input[type="text"] {
+    padding: 0.55rem 0.65rem;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-serif);
+}
+
+.contact-gate button {
+    width: fit-content;
+    border: 1px solid var(--border);
+    background: var(--bg);
+    color: var(--text);
+    padding: 0.45rem 0.75rem;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.contact-gate button:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.honeypot {
+    position: absolute !important;
+    left: -10000px !important;
+    opacity: 0 !important;
+}
+
+.contact-result {
+    margin-top: 0.8rem;
+    color: var(--text-muted);
+}
+CSS; __hermes_rc=$?; printf '__HERMES_FENCE_a9f7b3__'; exit $__hermes_rc
