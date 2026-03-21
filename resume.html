@@ -28,7 +28,7 @@
     <header class="essay-header">
       <h1>Resume Variants</h1>
       <p class="essay-subtitle">One hub, four tracks: AI Systems · AI Research · AI Security · AI for Physical Systems</p>
-      <p class="essay-meta">Public preview is privacy-protected</p>
+      <p class="essay-meta">Public PDFs with phone number removed</p>
     </header>
 
     <article class="essay-content">
@@ -44,7 +44,15 @@
         </div>
 
         <p id="resume-caption" class="resume-caption"></p>
-        <p class="resume-caption"><strong>Note:</strong> downloadable PDFs are intentionally withheld from this public page to prevent phone-number scraping. Send a DM and I’ll share the right version directly.</p>
+        <p class="resume-caption"><strong>Privacy:</strong> public versions redact phone number. Contact via LinkedIn or X DM for direct outreach.</p>
+
+        <p class="resume-actions">
+          <a id="resume-open" href="/assets/resumes/resume_ai_systems.pdf" target="_blank" rel="noopener">Open in new tab</a>
+          ·
+          <a id="resume-download" href="/assets/resumes/resume_ai_systems.pdf" download>Download PDF</a>
+        </p>
+
+        <iframe id="resume-frame" class="source-frame" src="/assets/resumes/resume_ai_systems.pdf" title="Resume preview"></iframe>
       </section>
 
       <section class="source-preserve">
@@ -64,23 +72,44 @@
   <script>
     (function () {
       const resumes = {
-        systems: 'Systems architecture, agent orchestration, deployment, and production reliability.',
-        research: 'Model design, experiments, evaluations, and technical writing for research contexts.',
-        security: 'Adversarial thinking, secure pipelines, risk mitigation, and resilient AI systems.',
-        physical: 'Robotics, controls, embodied systems, and AI integrated with real-world hardware.'
+        systems: {
+          caption: 'Systems architecture, agent orchestration, deployment, and production reliability.',
+          pdf: '/assets/resumes/resume_ai_systems.pdf'
+        },
+        research: {
+          caption: 'Model design, experiments, evaluations, and technical writing for research contexts.',
+          pdf: '/assets/resumes/resume_ai_research.pdf'
+        },
+        security: {
+          caption: 'Adversarial thinking, secure pipelines, risk mitigation, and resilient AI systems.',
+          pdf: '/assets/resumes/resume_ai_security.pdf'
+        },
+        physical: {
+          caption: 'Robotics, controls, embodied systems, and AI integrated with real-world hardware.',
+          pdf: '/assets/resumes/resume_ai_physical.pdf'
+        }
       };
 
       const tabs = document.querySelectorAll('.resume-tab');
       const caption = document.getElementById('resume-caption');
+      const frame = document.getElementById('resume-frame');
+      const openLink = document.getElementById('resume-open');
+      const downloadLink = document.getElementById('resume-download');
 
       function switchResume(key) {
         if (!resumes[key]) return;
+        const item = resumes[key];
+
         tabs.forEach(t => {
           const active = t.dataset.key === key;
           t.classList.toggle('active', active);
           t.setAttribute('aria-selected', active ? 'true' : 'false');
         });
-        caption.textContent = resumes[key];
+
+        caption.textContent = item.caption;
+        frame.src = item.pdf;
+        openLink.href = item.pdf;
+        downloadLink.href = item.pdf;
       }
 
       tabs.forEach(t => t.addEventListener('click', () => switchResume(t.dataset.key)));
@@ -89,4 +118,3 @@
   </script>
 </body>
 </html>
-HTML; __hermes_rc=$?; printf '__HERMES_FENCE_a9f7b3__'; exit $__hermes_rc

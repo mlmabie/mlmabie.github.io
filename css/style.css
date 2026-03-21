@@ -894,4 +894,17 @@ main {
     margin-top: 0.8rem;
     color: var(--text-muted);
 }
-CSS; __hermes_rc=$?; printf '__HERMES_FENCE_a9f7b3__'; exit $__hermes_rc
+
+.resume-actions {
+    margin: 0.8rem 0 1rem;
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+}
+
+.resume-actions a {
+    text-decoration: none;
+}
+
+.resume-actions a:hover {
+    text-decoration: underline;
+}
