@@ -1,8 +1,11 @@
-Resume PDFs are intentionally not published on the public site to reduce scraping of personal contact details.
+Published resume PDFs in this folder are redacted for public web use (phone number removed).
 
-Current access path:
-- LinkedIn message: https://www.linkedin.com/in/mlmabie/
+Files:
+- resume_ai_systems.pdf
+- resume_ai_research.pdf
+- resume_ai_security.pdf
+- resume_ai_physical.pdf
+
+Direct contact routes remain:
+- LinkedIn: https://www.linkedin.com/in/mlmabie/
 - X DM: https://x.com/init_malachi
-
-When publishing again, use redacted PDFs with phone number removed.
-MD; __hermes_rc=$?; printf '__HERMES_FENCE_a9f7b3__'; exit $__hermes_rc
