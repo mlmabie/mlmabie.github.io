@@ -908,3 +908,12 @@ main {
 .resume-actions a:hover {
     text-decoration: underline;
 }
+
+
+.sound-frame {
+    width: 100%;
+    height: 380px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--bg-alt);
+}

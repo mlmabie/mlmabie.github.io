@@ -18,6 +18,7 @@
       <a href="/now.html">Now</a>
       <a href="/marginalia.html">Marginalia</a>
       <a href="/resume.html">Resume</a>
+      <a href="/music.html">Music</a>
       <a href="/garden/">Garden</a>
       <a href="/graph/">Graph</a>
       <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">&#9789;</button>
@@ -34,7 +35,7 @@
     <article class="essay-content">
       <section class="source-preserve">
         <h2>Choose a focus</h2>
-        <p>I keep four targeted resume variants, tuned to role context and decision criteria.</p>
+        <p>Each variant is intentionally biased toward a different evaluator: systems teams optimizing for execution, research teams optimizing for novelty and rigor, security teams optimizing for adversarial resilience, and physical-AI teams optimizing for embodiment constraints.</p>
 
         <div class="resume-tabs" role="tablist" aria-label="Resume variants">
           <button class="resume-tab active" data-key="systems" role="tab" aria-selected="true">AI Systems</button>
@@ -44,7 +45,7 @@
         </div>
 
         <p id="resume-caption" class="resume-caption"></p>
-        <p class="resume-caption"><strong>Privacy:</strong> public versions redact phone number. Contact via LinkedIn or X DM for direct outreach.</p>
+        <p class="resume-caption"><strong>Privacy:</strong> these public PDFs are redacted (no phone number). For direct outreach, use LinkedIn or X DM.</p>
 
         <p class="resume-actions">
           <a id="resume-open" href="/assets/resumes/resume_ai_systems.pdf" target="_blank" rel="noopener">Open in new tab</a>
@@ -73,19 +74,19 @@
     (function () {
       const resumes = {
         systems: {
-          caption: 'Systems architecture, agent orchestration, deployment, and production reliability.',
+          caption: 'Architecture, deployment, and reliability for production AI systems operating under real latency, cost, and failure constraints.',
           pdf: '/assets/resumes/resume_ai_systems.pdf'
         },
         research: {
-          caption: 'Model design, experiments, evaluations, and technical writing for research contexts.',
+          caption: 'Research-forward framing: model design, experimental method, evaluation discipline, and publication-quality technical communication.',
           pdf: '/assets/resumes/resume_ai_research.pdf'
         },
         security: {
-          caption: 'Adversarial thinking, secure pipelines, risk mitigation, and resilient AI systems.',
+          caption: 'Security posture for AI systems: adversarial analysis, secure pipeline design, and fault-tolerant operational controls.',
           pdf: '/assets/resumes/resume_ai_security.pdf'
         },
         physical: {
-          caption: 'Robotics, controls, embodied systems, and AI integrated with real-world hardware.',
+          caption: 'Embodied AI orientation: robotics, controls, and the interface between learned models and physical-world constraints.',
           pdf: '/assets/resumes/resume_ai_physical.pdf'
         }
       };
