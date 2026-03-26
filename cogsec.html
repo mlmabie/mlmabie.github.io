@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cognitive Security — Malachi Mabie</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+  <nav class="site-nav">
+    <a href="/" class="nav-home">Malachi Mabie</a>
+    <div class="nav-links">
+      <a href="/about.html">About</a>
+      <a href="/">Essays</a>
+      <a href="/now.html">Now</a>
+      <a href="/marginalia.html">Marginalia</a>
+      <a href="/resume.html">Resume</a>
+      <a href="/research.html">Research</a>
+      <a href="/work.html">Work</a>
+      <a href="/music.html">Music</a>
+      <a href="/garden/">Garden</a>
+      <a href="/graph/">Graph</a>
+      <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">&#9789;</button>
+    </div>
+  </nav>
+
+  <main class="essay">
+    <header class="essay-header">
+      <h1>Cognitive Security</h1>
+      <p class="essay-subtitle">Security as calibrated knowledge under adversarial uncertainty</p>
+      <p class="essay-meta">T-UEBA / COG-SAFE arc</p>
+    </header>
+
+    <article class="essay-content">
+      <p class="drop-cap">Cognitive security is the discipline of preserving trustworthy judgment in contested information environments. In tactical settings, “normal” is unstable, labels are sparse, and operators are overloaded. A useful system therefore has to model uncertainty, context transitions, and analyst cognition as first-class engineering constraints.</p>
+
+      <section class="source-preserve">
+        <h2>Operational thesis</h2>
+        <p>Traditional anomaly detection fails when mission context mutates faster than static baselines. The replacement is not “more alerts”; it is a layered epistemic loop: contextual representation, calibrated inference, and explainable operator interaction.</p>
+      </section>
+
+      <section class="source-preserve">
+        <h2>T-UEBA design pattern</h2>
+        <ul>
+          <li>Heterogeneous temporal graph representation for entities and relations across sources.</li>
+          <li>Adaptive thresholds and confidence-aware scoring instead of fixed rules.</li>
+          <li>Operator feedback loops to reduce false positives without blinding the system.</li>
+          <li>Deployment posture that survives disconnected and resource-constrained operation.</li>
+        </ul>
+      </section>
+
+      <section class="source-preserve">
+        <h2>Why this matters beyond defense</h2>
+        <p>Enterprise AI agents now face the same failure mode: epistemic capture through brittle heuristics and uncalibrated confidence. Cognitive security provides a transferable blueprint for keeping automated systems legible, corrigible, and mission-aligned.</p>
+        <p><a href="/work.html#tueba">Related artifact: T-UEBA work summary</a></p>
+      </section>
+    </article>
+  </main>
+
+  <footer class="site-footer"><p>&nbsp;</p></footer>
+  <script src="js/main.js"></script>
+</body>
+</html>
