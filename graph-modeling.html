@@ -1,77 +1,34 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Graph Modeling — Malachi Mabie</title>
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-</head>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Graph Modeling — Malachi Mabie</title><link rel="stylesheet" href="css/style.css"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"></head>
 <body>
-  <nav class="site-nav">
-    <a href="/" class="nav-home">Malachi Mabie</a>
-    <div class="nav-links">
-      <a href="/about.html">About</a>
-      <a href="/">Essays</a>
-      <a href="/now.html">Now</a>
-      <a href="/marginalia.html">Marginalia</a>
-      <a href="/resume.html">Resume</a>
-      <a href="/research.html">Research</a>
-      <a href="/work.html">Work</a>
-      <a href="/music.html">Music</a>
-      <a href="/garden/">Garden</a>
-      <a href="/graph/">Graph</a>
-      <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">&#9789;</button>
-    </div>
-  </nav>
+<nav class="site-nav"><a href="/" class="nav-home">Malachi Mabie</a><div class="nav-links">
+<a href="/about.html">About</a><a href="/">Essays</a><a href="/now.html">Now</a><a href="/marginalia.html">Marginalia</a>
+<a href="/resume.html">Resume</a><a href="/research.html">Research</a><a href="/work.html">Work</a><a href="/music.html">Music</a>
+<a href="/garden/">Garden</a><a href="/graph/">Graph</a><button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">&#9789;</button></div></nav>
 
-  <main class="essay">
-    <header class="essay-header">
-      <h1>Graph Modeling</h1>
-      <p class="essay-subtitle">From tactical behavior analytics (T-UEBA) to spatial assembly modeling (Augrade)</p>
-    </header>
+<main class="essay"><header class="essay-header"><h1>Graph Modeling</h1>
+<p class="essay-subtitle">A single representational law across T-UEBA and Augrade</p></header>
+<article class="essay-content">
+<p class="drop-cap">Graph modeling works best when paired with explicit boundaries: learned compression inside, deterministic constraints outside.</p>
 
-    <article class="essay-content">
-      <p class="drop-cap">My graph modeling work converges on one boundary question: what should stay explicit in structure, and what should be absorbed by learned representation? The same tension appears in cyber behavior modeling and 3D assembly inference.</p>
+<section class="source-preserve">
+  <h2>T-UEBA: temporal heterogeneity</h2>
+  <p>In tactical security, graphs encode users, hosts, processes, and events over time. The objective is causal legibility under shift, not abstract embedding quality.</p>
+  <ul><li>streaming graph updates</li><li>multi-plane risk calibration</li><li>evidence drilldown for analysts</li></ul>
+</section>
 
-      <section class="source-preserve">
-        <h2>T-UEBA: temporal heterogeneity first</h2>
-        <p>In tactical security, graphs encode users, hosts, processes, events, and cross-source relations over time. The point is not graph aesthetics; it is preserving causal legibility while enabling adaptive inference under shift.</p>
-        <ul>
-          <li>Temporal graph updates over streaming events</li>
-          <li>Multi-plane risk scoring and confidence calibration</li>
-          <li>Operator-facing drilldown from score to evidence chain</li>
-        </ul>
-      </section>
+<section class="source-preserve">
+  <h2>Augrade: geometry with editability</h2>
+  <p>In 2D→3D workflows, graph-only models underfit hierarchy and repeated structure. A graph-program hybrid better preserves motifs, constraints, and revision semantics.</p>
+  <ul><li>geometry-native object tokens</li><li>typed relation graphs</li><li>program-like edit grammars + validators</li></ul>
+</section>
 
-      <section class="source-preserve">
-        <h2>Augrade: geometry and editability</h2>
-        <p>For 2D→3D BIM/CAD transformation, graph-only representations are insufficient. Assemblies also contain reusable, program-like structure. The stronger hypothesis is a graph-program hybrid with deterministic validators outside the learned core.</p>
-        <ul>
-          <li>Geometry-native perception and stable object tokenization</li>
-          <li>Typed relation graphs for support, adjacency, and dependency</li>
-          <li>Program layer for motifs, hierarchy, and allowed edit grammars</li>
-        </ul>
-      </section>
-
-      
-      <section class="source-preserve">
-        <h2>DAICON and distributed graph execution</h2>
-        <p>In DAICON-style environments, graph computation is not only a modeling question but a systems question: where to place computation, how to shard tensor work across heterogeneous nodes, and how to preserve useful state under unreliable connectivity.</p>
-        <p>This is one reason I prefer graph-program hybrids: they provide a bridge between local message passing and explicit orchestration logic for distributed execution.</p>
-      </section>
-
-      <section class="source-preserve">
-        <h2>Shared design law</h2>
-        <p>Use learned models for compression and proposal; use explicit systems for invariants and hard constraints. This split preserves both capability growth and operator trust.</p>
-        <p><a href="/work.html#augrade">Related artifact: Augrade framing notes</a> · <a href="/ram-labs.html">RAM Labs dossier</a></p>
-      </section>
-    </article>
-  </main>
-
-  <footer class="site-footer"><p>&nbsp;</p></footer>
-  <script src="js/main.js"></script>
-</body>
-</html>
+<section class="source-preserve">
+  <h2>Distributed execution implication</h2>
+  <p>DAICON-style deployment pressures make representation and systems inseparable: you must decide what state travels, what computes locally, and what remains verifiable under unreliable links.</p>
+  <p><a href="/ram-labs.html">RAM Labs dossier</a> · <a href="/work.html#augrade">Augrade artifact summary</a></p>
+</section>
+</article></main>
+<footer class="site-footer"><p>&nbsp;</p></footer><script src="js/main.js"></script></body></html>

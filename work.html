@@ -1,73 +1,44 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Selected Work — Malachi Mabie</title>
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-</head>
+  <link rel="stylesheet" href="css/style.css"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"></head>
 <body>
-  <nav class="site-nav">
-    <a href="/" class="nav-home">Malachi Mabie</a>
-    <div class="nav-links">
-      <a href="/about.html">About</a>
-      <a href="/">Essays</a>
-      <a href="/now.html">Now</a>
-      <a href="/marginalia.html">Marginalia</a>
-      <a href="/resume.html">Resume</a>
-      <a href="/research.html">Research</a>
-      <a href="/work.html">Work</a>
-      <a href="/music.html">Music</a>
-      <a href="/garden/">Garden</a>
-      <a href="/graph/">Graph</a>
-      <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">&#9789;</button>
-    </div>
-  </nav>
+<nav class="site-nav"><a href="/" class="nav-home">Malachi Mabie</a><div class="nav-links">
+<a href="/about.html">About</a><a href="/">Essays</a><a href="/now.html">Now</a><a href="/marginalia.html">Marginalia</a>
+<a href="/resume.html">Resume</a><a href="/research.html">Research</a><a href="/work.html">Work</a><a href="/music.html">Music</a>
+<a href="/garden/">Garden</a><a href="/graph/">Graph</a><button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">&#9789;</button></div></nav>
 
-  <main class="essay">
-    <header class="essay-header">
-      <h1>Selected Work</h1>
-      <p class="essay-subtitle">Constraints, decisions, and outcomes</p>
-    </header>
+<main class="essay"><header class="essay-header"><h1>Selected Work</h1><p class="essay-subtitle">High-signal artifacts with operational context</p></header>
+<article class="essay-content">
 
-    <article class="essay-content">
-      <section id="tueba" class="source-preserve">
-        <h2>T-UEBA (U.S. Army tactical Zero Trust)</h2>
-        <p><strong>Problem:</strong> detect high-risk behavior under nonstationary conditions, degraded connectivity, and analyst workload limits.</p>
-        <p><strong>Architecture:</strong> heterogeneous temporal graph models, adaptive thresholding, multi-plane risk scoring, and operator-facing explainability loops.</p>
-        <p><strong>Outcome profile:</strong> high precision behavioral detection in constrained settings, with focus on calibration and operational usability rather than benchmark theater.</p>
-        <p><a href="/cogsec.html">See cognitive security brief</a></p>
-      </section>
+<section id="tueba" class="source-preserve">
+  <h2>T-UEBA (Army tactical Zero Trust)</h2>
+  <p><strong>Constraint:</strong> shifting context, sparse labels, limited compute, analyst overload.</p>
+  <p><strong>Approach:</strong> heterogeneous temporal graphs + adaptive risk calibration + operator-facing evidence drilldown.</p>
+  <p><strong>Why it matters:</strong> shows how to keep ML useful when the definition of “normal” changes faster than static baselines.</p>
+  <p><a href="/cogsec.html">Cognitive Security</a> · <a href="/ram-labs.html">RAM Labs dossier</a></p>
+</section>
 
-      
-      <section class="source-preserve">
-        <h2>RAM Labs program record</h2>
-        <p>This public summary reflects the project profile used in RAM Labs materials: T-UEBA (tactical UEBA for Zero Trust), DL-PATCHER (automated vulnerability repair), SpHyRE-Net (low-SWaP anomaly detection), DAICON (distributed edge AI over content-oriented networking), and DEVIS (binary vulnerability detection with ML-assisted prioritization).</p>
-        <p>My role crossed model design, data pipelines, and deployment pragmatics: temporal/heterogeneous graph modeling, code-model fine-tuning, distributed inference strategy, and analyst-facing security workflows.</p>
-        <p>Patent context: co-inventor on automated bug fixing with deep learning (U.S. application 18/375,839).</p>
-        <p><a href="/ram-labs.html">Read full RAM Labs dossier</a></p>
-      </section>
+<section id="augrade" class="source-preserve">
+  <h2>Augrade framing (2D→3D BIM/CAD)</h2>
+  <p><strong>Constraint:</strong> geometry, relation, and editability must coexist without losing validity.</p>
+  <p><strong>Approach:</strong> geometry-native perception → stable object state → typed graph → compression → deterministic validators.</p>
+  <p><strong>Why it matters:</strong> reframes “use a GNN” as a representation-boundary problem with stronger long-horizon maintainability.</p>
+  <p><a href="/graph-modeling.html">Graph Modeling thesis</a></p>
+</section>
 
-      <section id="augrade" class="source-preserve">
-        <h2>Augrade framing (2D→3D BIM/CAD pipeline)</h2>
-        <p><strong>Problem:</strong> represent assemblies so learning systems can reason over geometry, relation, and edits without losing determinism.</p>
-        <p><strong>Thesis:</strong> geometry-native perception → stable object tokens → typed graph → compression → deterministic validators → planning loop.</p>
-        <p><strong>Why this matters:</strong> the moat is workflow exhaust and repair traces, not just static labels.</p>
-        <p><a href="/graph-modeling.html">See graph modeling page</a></p>
-      </section>
+<section class="source-preserve">
+  <h2>RAM Labs program breadth</h2>
+  <p>T-UEBA, DL-PATCHER, SpHyRE-Net, DAICON, and DEVIS collectively shaped a practical pattern: model innovation only survives if deployment constraints are first-class.</p>
+  <p><a href="/ram-labs.html">Read full dossier</a></p>
+</section>
 
-      <section class="source-preserve">
-        <h2>Production systems delivery (Drone Institute + consulting)</h2>
-        <p>Shipped end-to-end systems under severe cost constraints, including architecture, deployment, observability, and operational runbooks. Emphasis: legible interfaces and reliable failure handling over ornamental complexity.</p>
-        <p><a href="/resume.html">Resume variants with project context</a></p>
-      </section>
-    </article>
-  </main>
+<section class="source-preserve">
+  <h2>Production delivery</h2>
+  <p>Outside defense, shipped end-to-end systems under strict cost and reliability constraints. Emphasis: legible interfaces, predictable failure modes, and operational discipline.</p>
+  <p><a href="/resume.html">Resume variants</a></p>
+</section>
 
-  <footer class="site-footer"><p>&nbsp;</p></footer>
-  <script src="js/main.js"></script>
-</body>
-</html>
+</article></main>
+<footer class="site-footer"><p>&nbsp;</p></footer><script src="js/main.js"></script></body></html>
