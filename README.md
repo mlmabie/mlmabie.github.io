@@ -1,6 +1,8 @@
 # mlmabie.github.io
 
-Personal site — essays, knowledge graph, and garden visualization. Static HTML hosted on GitHub Pages.
+Personal site — essays, resume variants, selected work, knowledge graph, and garden visualization. Static HTML hosted on GitHub Pages.
+
+This non-iCloud checkout is the source of truth for the public website. Resume sources and private career strategy live in the separate private `~/Projects/resume-portfolio` repo; this site only carries deployable public artifacts.
 
 ## Structure
 
@@ -8,7 +10,10 @@ Personal site — essays, knowledge graph, and garden visualization. Static HTML
 ├── index.html              # Homepage
 ├── about.html / now.html   # Bio and current focus
 ├── marginalia.html         # Aphorisms & fragments
+├── resume.html             # Public redacted resume variants
+├── research.html / work.html
 ├── essays/                 # Long-form writing
+├── assets/resumes/         # Published redacted PDFs
 ├── graph/                  # Interactive knowledge graph (3 topology views)
 │   └── preload.json        # Deployed from notes-network pipeline
 ├── garden/                 # Three.js garden visualization
@@ -38,3 +43,14 @@ Open any HTML file directly — no build step. For live reload:
 ```bash
 python3 -m http.server 8000
 ```
+
+## Resume Workflow
+
+Public PDFs in `assets/resumes/` are redacted for web use. Keep source edits in `~/Projects/resume-portfolio`, then publish the generated public PDF into this repo.
+
+```bash
+cd ~/Projects/resume-portfolio
+make publish-public-systems
+```
+
+Avoid making iCloud Drive the working directory for resume edits.

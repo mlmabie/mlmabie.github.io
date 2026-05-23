@@ -1,10 +1,13 @@
 Published resume PDFs in this folder are redacted for public web use (phone number removed).
 
 Files:
-- resume_ai_systems.pdf
+- resume_ai_systems.pdf (updated May 2026)
 - resume_ai_research.pdf
 - resume_ai_security.pdf
 - resume_ai_physical.pdf
+
+Source:
+- /Users/malachi/Projects/resume-portfolio/resumes/public/resume_ai_systems.tex
 
 Direct contact routes remain:
 - LinkedIn: https://www.linkedin.com/in/mlmabie/
