@@ -112,18 +112,21 @@ body {
 .site-nav {
     display: flex;
     justify-content: space-between;
-    align-items: baseline;
+    align-items: flex-start;
+    gap: 1.25rem;
     max-width: calc(var(--content-width) + var(--sidenote-width) + var(--sidenote-gap));
     margin: 0 auto;
     padding: 2rem 1.5rem 1rem;
 }
 
 .nav-home {
+    flex: 0 0 auto;
     font-size: 0.9rem;
     font-weight: 600;
     letter-spacing: 0.02em;
     color: var(--text);
     text-decoration: none;
+    white-space: nowrap;
     transition: color var(--transition-fast);
 }
 
@@ -133,11 +136,13 @@ body {
 
 .nav-links {
     display: flex;
-    gap: 1.5rem;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 0.4rem 0.72rem;
 }
 
 .nav-links a {
-    font-size: 0.85rem;
+    font-size: 0.78rem;
     color: var(--text-muted);
     text-decoration: none;
     transition: color var(--transition-fast);
@@ -410,6 +415,39 @@ main {
     line-height: 1.5;
 }
 
+.signal-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+    margin: 1.5rem 0 2rem;
+}
+
+.signal-grid div {
+    padding: 1rem;
+    background: var(--bg-alt);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+}
+
+.signal-grid strong,
+.signal-grid span {
+    display: block;
+}
+
+.signal-grid strong {
+    margin-bottom: 0.4rem;
+    font-size: 0.82rem;
+    font-family: var(--font-mono);
+    color: var(--text);
+    letter-spacing: 0.02em;
+}
+
+.signal-grid span {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: var(--text-muted);
+}
+
 /* ============================================
    SIDENOTES (Gwern-style)
    ============================================ */
@@ -468,6 +506,12 @@ main {
         color: var(--accent);
         text-decoration: underline;
         cursor: pointer;
+    }
+}
+
+@media (max-width: 760px) {
+    .signal-grid {
+        grid-template-columns: 1fr;
     }
 }
 
