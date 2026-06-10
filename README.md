@@ -1,12 +1,15 @@
 # mlmabie.github.io
 
-Personal site — essays, knowledge graph, and garden visualization. Static HTML hosted on GitHub Pages.
+Personal site and portfolio surface: career proof, current doctrine, preserved essays, marginalia, and public graph views. Static HTML hosted on GitHub Pages.
 
 ## Structure
 
 ```
 ├── index.html              # Homepage
 ├── about.html / now.html   # Bio and current focus
+├── work.html / research.html
+├── mechanical.html / music.html
+├── resume.html             # Public redacted resume variants
 ├── marginalia.html         # Aphorisms & fragments
 ├── essays/                 # Long-form writing
 ├── graph/                  # Interactive knowledge graph (3 topology views)

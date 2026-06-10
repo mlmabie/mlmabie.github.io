@@ -180,9 +180,53 @@ main {
 
 .site-description {
     font-size: 1.1rem;
-    color: var(--text-muted);
+    color: var(--text);
     margin: 0;
-    max-width: 540px;
+    max-width: 620px;
+}
+
+.site-note {
+    max-width: 620px;
+    margin: 1.1rem 0 0;
+    padding-left: 1rem;
+    border-left: 2px solid var(--border);
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.home-principles {
+    max-width: var(--content-width);
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.75rem;
+    margin: -1.2rem 0 3.2rem;
+}
+
+.home-principles div {
+    border-top: 1px solid var(--border);
+    padding-top: 0.75rem;
+}
+
+.home-principles span,
+.home-principles strong {
+    display: block;
+}
+
+.home-principles span {
+    margin-bottom: 0.3rem;
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+}
+
+.home-principles strong {
+    font-size: 0.92rem;
+    line-height: 1.45;
+    font-weight: 600;
+    color: var(--text);
 }
 
 /* Section links on home */
@@ -213,6 +257,31 @@ main {
     max-width: var(--content-width);
 }
 
+.home-group {
+    margin: 0 0 3.8rem;
+}
+
+.home-group-title {
+    margin: 0 0 0.35rem;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+}
+
+.home-group-intro {
+    margin: 0 0 1.6rem;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+.home-group .essay-preview {
+    margin-bottom: 1.65rem;
+    padding-bottom: 1.65rem;
+}
+
 .essay-preview {
     margin-bottom: 2.5rem;
     padding-bottom: 2.5rem;
@@ -229,7 +298,8 @@ main {
     display: block;
 }
 
-.essay-preview h2 {
+.essay-preview h2,
+.essay-preview h3 {
     font-size: 1.4rem;
     font-weight: 600;
     margin: 0 0 0.3rem;
@@ -237,7 +307,8 @@ main {
     transition: color var(--transition-fast);
 }
 
-.essay-preview a:hover h2 {
+.essay-preview a:hover h2,
+.essay-preview a:hover h3 {
     color: var(--accent);
 }
 
@@ -512,6 +583,11 @@ main {
 @media (max-width: 760px) {
     .signal-grid {
         grid-template-columns: 1fr;
+    }
+
+    .home-principles {
+        grid-template-columns: 1fr;
+        margin-top: -0.8rem;
     }
 }
 
@@ -800,6 +876,10 @@ main {
     }
 
     .essay-preview h2 {
+        font-size: 1.2rem;
+    }
+
+    .essay-preview h3 {
         font-size: 1.2rem;
     }
 }

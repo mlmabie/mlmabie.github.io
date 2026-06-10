@@ -14,15 +14,13 @@
     <a href="/" class="nav-home">Malachi Mabie</a>
     <div class="nav-links">
       <a href="/about.html">About</a>
-      <a href="/">Essays</a>
       <a href="/now.html">Now</a>
-      <a href="/marginalia.html">Marginalia</a>
-      <a href="/resume.html">Resume</a>
-            <a href="/research.html">Research</a>
             <a href="/work.html">Work</a>
+            <a href="/research.html">Research</a>
             <a href="/mechanical.html">Mechanical</a>
             <a href="/music.html">Music</a>
-      <a href="/garden/">Garden</a>
+      <a href="/marginalia.html">Marginalia</a>
+      <a href="/resume.html">Resume</a>
       <a href="/graph/">Graph</a>
       <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">&#9789;</button>
     </div>
@@ -31,14 +29,14 @@
   <main class="essay">
     <header class="essay-header">
       <h1>Resume Variants</h1>
-      <p class="essay-subtitle">One hub, four tracks: AI Systems · AI Research · AI Security · AI for Physical Systems</p>
+      <p class="essay-subtitle">Four public surfaces for the same underlying proof</p>
       <p class="essay-meta">Public PDFs with phone number removed</p>
     </header>
 
     <article class="essay-content">
       <section class="source-preserve">
         <h2>Choose a focus</h2>
-        <p>Each variant is intentionally biased toward a different evaluator: systems teams optimizing for execution, research teams optimizing for novelty and rigor, security teams optimizing for adversarial resilience, and physical-AI teams optimizing for embodiment constraints.</p>
+        <p>Each variant is intentionally biased toward a different evaluator: systems teams looking for execution, research teams looking for rigor, security teams looking for adversarial resilience, and physical-AI teams looking for embodied constraints.</p>
 
         <div class="resume-tabs" role="tablist" aria-label="Resume variants">
           <button class="resume-tab active" data-key="systems" role="tab" aria-selected="true">AI Systems</button>
@@ -77,7 +75,7 @@
     (function () {
       const resumes = {
         systems: {
-          caption: 'Architecture, deployment, and reliability for production AI systems operating under real latency, cost, and failure constraints.',
+          caption: 'Architecture, deployment, and reliability for production systems operating under real latency, cost, and failure constraints.',
           pdf: '/assets/resumes/resume_ai_systems.pdf'
         },
         research: {
@@ -85,7 +83,7 @@
           pdf: '/assets/resumes/resume_ai_research.pdf'
         },
         security: {
-          caption: 'Security posture for AI systems: adversarial analysis, secure pipeline design, and fault-tolerant operational controls.',
+          caption: 'Security posture: adversarial analysis, secure pipeline design, and fault-tolerant operational controls.',
           pdf: '/assets/resumes/resume_ai_security.pdf'
         },
         physical: {
