@@ -8,6 +8,8 @@ Personal site and portfolio surface: career proof, current doctrine, preserved e
 ├── index.html              # Homepage
 ├── about.html / now.html   # Bio and current focus
 ├── work.html / research.html
+├── applied-epistemics.html
+├── agent-environments.html
 ├── mechanical.html / music.html
 ├── resume.html             # Public redacted resume variants
 ├── marginalia.html         # Aphorisms & fragments

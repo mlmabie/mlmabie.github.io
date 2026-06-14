@@ -519,6 +519,147 @@ main {
     color: var(--text-muted);
 }
 
+.region-map {
+    margin: 2rem 0 2.5rem;
+}
+
+.region-map figcaption {
+    margin: 0 0 1rem;
+    color: var(--text-muted);
+    font-size: 0.92rem;
+    line-height: 1.55;
+}
+
+.region-field {
+    position: relative;
+    min-height: 520px;
+    border-left: 1px solid var(--text-muted);
+    border-bottom: 1px solid var(--text-muted);
+    background:
+        linear-gradient(to right, transparent calc(50% - 0.5px), var(--border) calc(50% - 0.5px), var(--border) calc(50% + 0.5px), transparent calc(50% + 0.5px)),
+        linear-gradient(to bottom, transparent calc(50% - 0.5px), var(--border) calc(50% - 0.5px), var(--border) calc(50% + 0.5px), transparent calc(50% + 0.5px)),
+        linear-gradient(135deg, rgba(45, 90, 107, 0.03), transparent 58%);
+    border-radius: 2px;
+    padding: 1rem;
+    overflow: hidden;
+}
+
+.region-axis,
+.region-corner,
+.region-label span,
+.region-label em {
+    font-family: var(--font-mono);
+}
+
+.region-axis {
+    position: absolute;
+    color: var(--text-faint);
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.region-axis-y {
+    left: 0.75rem;
+    top: 0.65rem;
+}
+
+.region-axis-x {
+    right: 0.75rem;
+    bottom: 0.65rem;
+}
+
+.region-corner {
+    position: absolute;
+    z-index: 1;
+    color: var(--text-faint);
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.region-corner-blessed {
+    top: 0.8rem;
+    right: 0.9rem;
+}
+
+.region-corner-cursed {
+    left: 0.9rem;
+    bottom: 0.8rem;
+}
+
+.region-label {
+    position: absolute;
+    z-index: 2;
+    max-width: 12.75rem;
+    padding: 0.62rem 0.72rem;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.045);
+}
+
+.region-label::before {
+    content: "";
+    position: absolute;
+    width: 0.55rem;
+    height: 0.55rem;
+    left: -0.28rem;
+    top: 50%;
+    transform: translateY(-50%);
+    border-radius: 999px;
+    background: var(--accent);
+}
+
+.region-label span,
+.region-label em {
+    display: block;
+    font-size: 0.58rem;
+    line-height: 1.35;
+    color: var(--text-faint);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.region-label strong {
+    display: block;
+    margin: 0.16rem 0 0.14rem;
+    font-size: 0.88rem;
+    line-height: 1.25;
+}
+
+.region-label em {
+    font-style: normal;
+    text-transform: none;
+    letter-spacing: 0;
+    color: var(--text-muted);
+}
+
+.region-label-nl {
+    top: 13%;
+    left: 53%;
+}
+
+.region-label-math {
+    top: 38%;
+    left: 62%;
+}
+
+.region-label-world {
+    top: 66%;
+    left: 9%;
+}
+
+.region-label-security {
+    top: 50%;
+    left: 36%;
+}
+
+.region-label-metadata {
+    top: 76%;
+    left: 47%;
+}
+
 /* ============================================
    SIDENOTES (Gwern-style)
    ============================================ */
@@ -583,6 +724,60 @@ main {
 @media (max-width: 760px) {
     .signal-grid {
         grid-template-columns: 1fr;
+    }
+
+    .region-field {
+        display: grid;
+        gap: 0.75rem;
+        min-height: 0;
+        padding: 2.6rem 1rem 1rem;
+        overflow: hidden;
+    }
+
+    .region-axis-y {
+        left: 0.7rem;
+        top: 0.6rem;
+    }
+
+    .region-axis-x {
+        display: none;
+    }
+
+    .region-corner {
+        display: none;
+    }
+
+    .region-label {
+        position: relative;
+        top: auto;
+        left: auto;
+        max-width: none;
+        width: 100%;
+    }
+
+    .region-label-nl {
+        top: auto;
+        left: auto;
+    }
+
+    .region-label-math {
+        top: auto;
+        left: auto;
+    }
+
+    .region-label-security {
+        top: auto;
+        left: auto;
+    }
+
+    .region-label-world {
+        top: auto;
+        left: auto;
+    }
+
+    .region-label-metadata {
+        top: auto;
+        left: auto;
     }
 
     .home-principles {
@@ -860,11 +1055,24 @@ main {
     }
 
     .site-nav {
+        display: block;
         padding: 1.5rem 1rem 0.5rem;
+    }
+
+    .nav-links {
+        justify-content: flex-start;
+        margin-top: 0.7rem;
     }
 
     main {
         padding: 0 1rem 3rem;
+    }
+
+    .essay-header,
+    .essay-content,
+    .site-header,
+    .essays-list {
+        max-width: 100%;
     }
 
     .site-header h1 {
@@ -873,6 +1081,7 @@ main {
 
     .essay-header h1 {
         font-size: 1.9rem;
+        overflow-wrap: break-word;
     }
 
     .essay-preview h2 {
