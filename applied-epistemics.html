@@ -29,44 +29,9 @@
     <article class="essay-content">
       <p class="drop-cap">AI systems are easiest when abstraction is high and data is abundant. Natural language and math currently sit in the blessed region because frontier models have enough pretraining support and clean symbolic or compositional structure. Physical AI, robotics, neuro-data, vision/world modeling, cognitive security, and research metadata sit closer to cursed regions: lower data, harder compression, weaker ground truth, or unstable objectives.</p>
 
-      <figure class="region-map source-preserve" aria-labelledby="region-map-caption">
-        <figcaption id="region-map-caption">Tasks become &ldquo;blessed&rdquo; when the model has enough data, abstraction, and compositional structure to learn from weak supervision. Cursed domains require stronger environment design: artifacts, validators, traces, and feedback loops.</figcaption>
-        <div class="region-field" role="img" aria-label="Map of task regions from low abstraction and scarce data to high abstraction and abundant data.">
-          <div class="region-corner region-corner-blessed">blessed region</div>
-          <div class="region-corner region-corner-cursed">cursed region</div>
-          <div class="region-axis region-axis-y">higher abstraction</div>
-          <div class="region-axis region-axis-x">more abundant data</div>
-
-          <div class="region-label region-label-nl">
-            <span>high abstraction / high data</span>
-            <strong>Natural language</strong>
-            <em>weak supervision becomes fertile</em>
-          </div>
-
-          <div class="region-label region-label-math">
-            <span>symbolic / compositional</span>
-            <strong>Math and code</strong>
-            <em>cleaner verification surfaces</em>
-          </div>
-
-          <div class="region-label region-label-world">
-            <span>low abstraction / unstable state</span>
-            <strong>Physical AI and robotics</strong>
-            <em>world contact stays expensive</em>
-          </div>
-
-          <div class="region-label region-label-security">
-            <span>adversarial objectives</span>
-            <strong>Cognitive security</strong>
-            <em>belief, incentives, and interface drift</em>
-          </div>
-
-          <div class="region-label region-label-metadata">
-            <span>sparse labels / weak truth</span>
-            <strong>Research metadata and neuro-data</strong>
-            <em>identity and evidence need scaffolding</em>
-          </div>
-        </div>
+      <figure class="image-figure source-preserve">
+        <img src="/assets/images/cursed-regions.png" alt="Diagram mapping blessed and cursed AI task regions by data availability and abstraction level.">
+        <figcaption>Tasks become &ldquo;blessed&rdquo; when the model has enough data, abstraction, and compositional structure to learn from weak supervision. Cursed domains require stronger environment design: artifacts, validators, traces, and feedback loops.</figcaption>
       </figure>
 
       <section class="source-preserve">
