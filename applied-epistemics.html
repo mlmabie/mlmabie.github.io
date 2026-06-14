@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Applied Epistemics in Cursed Regions &mdash; Malachi Mabie</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+  <nav class="site-nav">
+    <a href="/" class="nav-home">Malachi Mabie</a>
+    <div class="nav-links">
+      <a href="/about.html">About</a><a href="/now.html">Now</a><a href="/work.html">Work</a><a href="/research.html">Research</a>
+      <a href="/mechanical.html">Mechanical</a><a href="/music.html">Music</a>
+      <a href="/marginalia.html">Marginalia</a><a href="/resume.html">Resume</a><a href="/graph/">Graph</a>
+      <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">&#9789;</button>
+    </div>
+  </nav>
+
+  <main class="essay">
+    <header class="essay-header">
+      <h1>Applied Epistemics in Cursed Regions</h1>
+      <p class="essay-subtitle">Why agent systems, physical AI, cognitive security, and research metadata need different doctrine than blessed natural-language/math tasks.</p>
+    </header>
+
+    <article class="essay-content">
+      <p class="drop-cap">AI systems are easiest when abstraction is high and data is abundant. Natural language and math currently sit in the blessed region because frontier models have enough pretraining support and clean symbolic or compositional structure. Physical AI, robotics, neuro-data, vision/world modeling, cognitive security, and research metadata sit closer to cursed regions: lower data, harder compression, weaker ground truth, or unstable objectives.</p>
+
+      <figure class="region-map source-preserve" aria-labelledby="region-map-caption">
+        <figcaption id="region-map-caption">Tasks become &ldquo;blessed&rdquo; when the model has enough data, abstraction, and compositional structure to learn from weak supervision. Cursed domains require stronger environment design: artifacts, validators, traces, and feedback loops.</figcaption>
+        <div class="region-field" role="img" aria-label="Map of task regions from low abstraction and scarce data to high abstraction and abundant data.">
+          <div class="region-corner region-corner-blessed">blessed region</div>
+          <div class="region-corner region-corner-cursed">cursed region</div>
+          <div class="region-axis region-axis-y">higher abstraction</div>
+          <div class="region-axis region-axis-x">more abundant data</div>
+
+          <div class="region-label region-label-nl">
+            <span>high abstraction / high data</span>
+            <strong>Natural language</strong>
+            <em>weak supervision becomes fertile</em>
+          </div>
+
+          <div class="region-label region-label-math">
+            <span>symbolic / compositional</span>
+            <strong>Math and code</strong>
+            <em>cleaner verification surfaces</em>
+          </div>
+
+          <div class="region-label region-label-world">
+            <span>low abstraction / unstable state</span>
+            <strong>Physical AI and robotics</strong>
+            <em>world contact stays expensive</em>
+          </div>
+
+          <div class="region-label region-label-security">
+            <span>adversarial objectives</span>
+            <strong>Cognitive security</strong>
+            <em>belief, incentives, and interface drift</em>
+          </div>
+
+          <div class="region-label region-label-metadata">
+            <span>sparse labels / weak truth</span>
+            <strong>Research metadata and neuro-data</strong>
+            <em>identity and evidence need scaffolding</em>
+          </div>
+        </div>
+      </figure>
+
+      <section class="source-preserve">
+        <h2>Thesis</h2>
+        <p>The durable work is making messy reality legible enough to act on. In cursed regions, the first job is not picking the biggest model. It is building an environment truthful enough that model improvement means something.</p>
+      </section>
+
+      <section class="source-preserve">
+        <h2>The map</h2>
+        <p>High-abstraction, high-data tasks can often borrow structure from pretraining. Lower-data or lower-abstraction domains need stronger explicit scaffolds: object identity, typed relations, state boundaries, hard validators, trace capture, and human review loops.</p>
+        <p>This is why my work keeps returning to the same pattern across unrelated surfaces: preserve the artifact, expose constraints, build validators, and learn only the residual.</p>
+      </section>
+
+      <section class="source-preserve">
+        <h2>Why blessed-region methods fail elsewhere</h2>
+        <p>Benchmarks become products. Final rewards smear credit. Models appear smart because the base distribution was already fertile. Capability jumps can make a method look causal when the model simply crossed a threshold where the task became compressible.</p>
+        <p>Agent systems make the issue sharper: post-training depends on whether the environment produces localized feedback. Tool-call failures, state-boundary violations, runtime errors, and verifier failures should become correction signals, not terminal noise spread across whole rollouts.</p>
+      </section>
+
+      <section class="source-preserve">
+        <h2>What survives in cursed regions</h2>
+        <ul>
+          <li>Exact artifacts and preserved provenance.</li>
+          <li>Stable object identity and typed relations.</li>
+          <li>State boundaries, hard validators, and calibrated uncertainty.</li>
+          <li>Trace capture, review loops, and operator-facing evidence.</li>
+          <li>Learned residuals only after the measurable environment exists.</li>
+        </ul>
+      </section>
+
+      <section class="source-preserve">
+        <h2>How this shows up in my work</h2>
+        <p><strong>T-UEBA</strong> used constrained graph ML, active learning, synthetic-data triggers, and calibration because tactical behavior does not stay stationary. <strong>AIxCC / DL-Patcher</strong> used code-model harnesses, checker feedback, patch verification, and human-in-loop repair because code repair needs verifier pressure. <strong>DXF-to-CAD</strong> treats drawings as structured artifact environments: HATCH-IoU, hard validators, typed geometry, and learned residual repair.</p>
+        <p>The same doctrine also explains the Applied Medical manufacturing fix and Drone Services Startup systems work: the useful move was not mystifying the model. It was making the operating surface legible enough for action.</p>
+      </section>
+
+      <section class="source-preserve">
+        <h2>Practical rule</h2>
+        <p>Build the environment and measurement loop first. Spend compute only where the feedback signal is real.</p>
+        <p><a href="/research.html">Research map</a> &middot; <a href="/agent-environments.html">Agent post-training as environment design</a> &middot; <a href="/work.html">Selected work</a></p>
+      </section>
+    </article>
+  </main>
+
+  <footer class="site-footer"><p>&nbsp;</p></footer>
+  <script src="js/main.js"></script>
+</body>
+</html>
