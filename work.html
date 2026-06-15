@@ -1,55 +1,77 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Selected Work — Malachi Mabie</title>
-  <link rel="stylesheet" href="css/style.css"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"></head>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Selected Work | Malachi Mabie</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
 <body>
-<nav class="site-nav"><a href="/" class="nav-home">Malachi Mabie</a><div class="nav-links">
-<a href="/about.html">About</a><a href="/now.html">Now</a><a href="/work.html">Work</a><a href="/research.html">Research</a>
-            <a href="/mechanical.html">Mechanical</a>
-            <a href="/music.html">Music</a>
-<a href="/marginalia.html">Marginalia</a><a href="/resume.html">Resume</a><a href="/graph/">Graph</a><button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">&#9789;</button></div></nav>
+  <nav class="site-nav">
+  <a href="/" class="nav-home">Malachi Mabie</a>
+  <div class="nav-links">
+    <a href="/work.html">Work</a>
+    <a href="/research.html">Research</a>
+    <a href="/mabie-industries.html">Mabie Industries</a>
+    <a href="/resume.html">Resume</a>
+    <a href="/archive.html">Archive</a>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">&#9789;</button>
+  </div>
+</nav>
 
-<main class="essay"><header class="essay-header"><h1>Selected Work</h1><p class="essay-subtitle">Artifacts, constraints, validators, residuals</p></header>
-<article class="essay-content">
+  <main class="essay">
+    <header class="essay-header">
+      <h1>Selected Work</h1>
+      <p class="essay-subtitle">Proof before doctrine.</p>
+    </header>
 
-<p class="drop-cap">The work is easier to understand by constraint than by job title. I keep returning to the same move: stabilize the object, expose the relation, validate what can be validated, and let learning handle the leftover ambiguity.</p>
+    <article class="essay-content">
+      <p class="drop-cap">The work repeats one move: preserve the object, expose the relation, validate what can be checked, and learn the remainder.</p>
 
-<section id="tueba" class="source-preserve">
-  <h2>T-UEBA (Army tactical Zero Trust)</h2>
-  <p><strong>Constraint:</strong> shifting context, sparse labels, limited compute, analyst overload.</p>
-  <p><strong>Approach:</strong> heterogeneous temporal graphs + adaptive risk calibration + operator-facing evidence drilldown.</p>
-  <p><strong>Why it matters:</strong> shows how to keep ML useful when the definition of "normal" changes faster than static baselines.</p>
-  <p><a href="/cogsec.html">Cognitive Security</a> · <a href="/ram-labs.html">RAM Labs dossier</a></p>
-</section>
+      <section id="mechanical" class="source-preserve">
+        <h2>Applied Medical</h2>
+        <p><strong>Constraint:</strong> tooling had to survive material variation, operator habits, machine timing, and production pressure.</p>
+        <p><strong>Work:</strong> CAD, prototypes, fixtures, pneumatic tooling, robotic EOAT, test, qualification, and shop-floor debugging.</p>
+        <p><strong>Outcome:</strong> a MIM insert-molding process fix cut roughly $100k/month in operating variance.</p>
+        <p><a href="/mechanical.html">Mechanical details</a></p>
+      </section>
 
-<section id="augrade" class="source-preserve">
-  <h2>Augrade framing (2D→3D BIM/CAD)</h2>
-  <p><strong>Constraint:</strong> geometry, relation, editability, and auditability have to coexist without losing the source artifact.</p>
-  <p><strong>Approach:</strong> exact artifact → stable object state → typed relation graph → multiscale compression → deterministic validators → learned residual repair.</p>
-  <p><strong>Why it matters:</strong> reframes "use a GNN" as a representation-boundary problem with stronger long-horizon maintainability and better human review.</p>
-  <p><a href="/graph-modeling.html">Graph Modeling thesis</a></p>
-</section>
+      <section id="tueba" class="source-preserve">
+        <h2>T-UEBA</h2>
+        <p><strong>Constraint:</strong> tactical behavior shifts fast. Labels stay sparse. Analysts need evidence, not alert volume.</p>
+        <p><strong>Work:</strong> constrained heterogeneous temporal graphs, calibration, active learning, synthetic-data triggers, and evidence drilldown.</p>
+        <p><strong>Outcome:</strong> $250k SBIR PI work for Army tactical Zero Trust behavior analytics.</p>
+        <p><a href="/cogsec.html">Cognitive security</a> &middot; <a href="/ram-labs.html">RAM Labs</a></p>
+      </section>
 
-<section id="mechanical" class="source-preserve">
-  <h2>Mechanical engineering and manufacturing automation</h2>
-  <p><strong>Constraint:</strong> physical tooling has to work under variation: operator habits, material tolerances, machine timing, and real production pressure.</p>
-  <p><strong>Approach:</strong> CAD → prototype → fixture/tooling → qualification → shop-floor debugging, with representation discipline carried from LEGO/FIRST mechanisms into medical-device manufacturing.</p>
-  <p><strong>Outcome:</strong> at Applied Medical, a metal-injection insert-molding process fix using an orientation grid, sorting geometry, and stainless suction-pen tips saved roughly $100k/month in operating variance.</p>
-  <p><a href="/mechanical.html">Mechanical Engineering</a></p>
-</section>
+      <section id="augrade" class="source-preserve">
+        <h2>DXF/CAD representation</h2>
+        <p><strong>Constraint:</strong> geometry, relations, editability, and auditability have to survive conversion.</p>
+        <p><strong>Work:</strong> exact artifact, object state, typed relation graph, deterministic validators, learned residual repair.</p>
+        <p><strong>Signal:</strong> HATCH-IoU, provenance, and reviewable state make CAD-native learning less vague.</p>
+        <p><a href="/graph-modeling.html">Graph modeling</a> &middot; <a href="/applied-epistemics.html">Applied epistemics</a></p>
+      </section>
 
-<section class="source-preserve">
-  <h2>RAM Labs program breadth</h2>
-  <p>T-UEBA, DL-PATCHER, SpHyRE-Net, DAICON, and DEVIS collectively shaped a practical pattern: model innovation only survives if deployment constraints are first-class.</p>
-  <p><a href="/ram-labs.html">Read full dossier</a></p>
-</section>
+      <section id="patcher" class="source-preserve">
+        <h2>AIxCC / DL-Patcher</h2>
+        <p><strong>Constraint:</strong> code repair needs checker pressure, runtime feedback, and human review. Prompting alone cannot carry the patch loop.</p>
+        <p><strong>Work:</strong> code-model harnesses, static analysis, fuzzing, verifier feedback, and patent-filed repair architecture.</p>
+        <p><a href="/agent-environments.html">Agent environments</a></p>
+      </section>
 
-<section class="source-preserve">
-  <h2>Production delivery</h2>
-  <p>Outside defense, shipped end-to-end systems under strict cost and reliability constraints. Emphasis: legible interfaces, predictable failure modes, lean infrastructure, and humans who can still understand the system they operate.</p>
-  <p><a href="/resume.html">Resume variants</a></p>
-</section>
+      <section id="production" class="source-preserve">
+        <h2>Production systems</h2>
+        <p><strong>Constraint:</strong> small teams need systems that stay legible under cost, latency, and operational limits.</p>
+        <p><strong>Work:</strong> AWS workflows, thermal/GIS processing, customer-facing tools, and production handoff.</p>
+        <p><a href="/resume.html">Resume variants</a></p>
+      </section>
+    </article>
+  </main>
 
-</article></main>
-<footer class="site-footer"><p>&nbsp;</p></footer><script src="js/main.js"></script></body></html>
+  <footer class="site-footer"><p>&nbsp;</p></footer>
+  <script src="js/main.js"></script>
+</body>
+</html>
