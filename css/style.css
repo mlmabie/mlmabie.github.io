@@ -714,6 +714,259 @@ main {
 }
 
 /* ============================================
+   MABIE INDUSTRIES
+   ============================================ */
+
+.industry-page {
+    max-width: calc(var(--content-width) + var(--sidenote-width) + var(--sidenote-gap));
+}
+
+.industry-hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(280px, 0.72fr);
+    gap: 2rem;
+    align-items: end;
+    margin: 2.5rem 0 3rem;
+}
+
+.industry-hero-copy {
+    max-width: 720px;
+}
+
+.industry-kicker,
+.industry-principles span,
+.industry-tags span,
+.industry-proof-card span {
+    font-family: var(--font-mono);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.industry-kicker {
+    margin: 0 0 0.8rem;
+    color: var(--text-faint);
+    font-size: 0.72rem;
+}
+
+.industry-hero h1 {
+    margin: 0;
+    font-size: clamp(2.35rem, 6vw, 4.2rem);
+    line-height: 1.02;
+    font-weight: 600;
+}
+
+.industry-lede {
+    margin: 1.35rem 0 0;
+    color: var(--text);
+    font-size: clamp(1.05rem, 2vw, 1.32rem);
+    line-height: 1.45;
+}
+
+.industry-note {
+    margin: 1.1rem 0 0;
+    padding-left: 1rem;
+    border-left: 2px solid var(--border);
+    color: var(--text-muted);
+    font-size: 0.96rem;
+    line-height: 1.55;
+}
+
+.industry-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+    margin-top: 1.4rem;
+}
+
+.industry-actions a,
+.industry-contact a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.35rem;
+    padding: 0.42rem 0.7rem;
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: border-color var(--transition-fast), color var(--transition-fast), background var(--transition-fast);
+}
+
+.industry-actions a:first-child,
+.industry-contact a {
+    border-color: var(--accent);
+    background: var(--bg-alt);
+}
+
+.industry-actions a:hover,
+.industry-contact a:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+}
+
+.industry-hero-figure {
+    margin: 0;
+}
+
+.industry-hero-figure img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    background: var(--bg-alt);
+}
+
+.industry-hero-figure figcaption {
+    margin-top: 0.6rem;
+    color: var(--text-muted);
+    font-size: 0.78rem;
+    line-height: 1.45;
+}
+
+.industry-principles,
+.industry-service-grid,
+.industry-proof-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.9rem;
+}
+
+.industry-principles {
+    margin: 0 0 3.2rem;
+}
+
+.industry-principles div,
+.industry-service-grid article,
+.industry-proof-card {
+    border-top: 1px solid var(--border);
+    padding-top: 0.8rem;
+}
+
+.industry-principles span,
+.industry-proof-card span {
+    display: block;
+    margin-bottom: 0.36rem;
+    color: var(--text-faint);
+    font-size: 0.64rem;
+}
+
+.industry-principles strong {
+    display: block;
+    margin-bottom: 0.42rem;
+    font-size: 0.98rem;
+    line-height: 1.35;
+}
+
+.industry-principles p,
+.industry-service-grid p,
+.industry-proof-card p,
+.industry-contact p {
+    margin: 0;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    line-height: 1.55;
+}
+
+.industry-section {
+    margin: 0 0 3.4rem;
+}
+
+.industry-section-header {
+    max-width: var(--content-width);
+    margin-bottom: 1.4rem;
+}
+
+.industry-section h2,
+.industry-contact h2 {
+    margin: 0;
+    font-size: clamp(1.55rem, 4vw, 2.35rem);
+    line-height: 1.12;
+}
+
+.industry-service-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.industry-service-grid h3,
+.industry-proof-card h3 {
+    margin: 0 0 0.55rem;
+    font-size: 1.1rem;
+    line-height: 1.25;
+}
+
+.industry-band {
+    margin: 0 0 3.4rem;
+    padding: 1.3rem 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+}
+
+.industry-band p {
+    max-width: 760px;
+    margin: 0 0 1rem;
+    font-size: clamp(1.1rem, 2vw, 1.35rem);
+    line-height: 1.45;
+}
+
+.industry-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+}
+
+.industry-tags span {
+    padding: 0.25rem 0.45rem;
+    background: var(--bg-alt);
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    font-size: 0.58rem;
+}
+
+.industry-proof-card {
+    color: inherit;
+    text-decoration: none;
+}
+
+.industry-proof-card img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    margin-bottom: 0.8rem;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    background: var(--bg-alt);
+}
+
+.industry-proof-card:first-child img {
+    object-fit: contain;
+    padding: 0.3rem;
+}
+
+.industry-proof-card:hover h3 {
+    color: var(--accent);
+}
+
+.industry-contact {
+    display: grid;
+    grid-template-columns: minmax(220px, 0.72fr) minmax(0, 1fr);
+    gap: 1.2rem;
+    align-items: start;
+    margin: 0 0 1rem;
+    padding-top: 1.4rem;
+    border-top: 1px solid var(--border);
+}
+
+.industry-contact a {
+    grid-column: 2;
+    justify-self: start;
+}
+
+/* ============================================
    SIDENOTES (Gwern-style)
    ============================================ */
 
@@ -775,6 +1028,50 @@ main {
 }
 
 @media (max-width: 760px) {
+    .site-nav {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .nav-links {
+        justify-content: flex-start;
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .industry-hero,
+    .industry-principles,
+    .industry-service-grid,
+    .industry-proof-grid,
+    .industry-contact {
+        grid-template-columns: 1fr;
+    }
+
+    .industry-hero {
+        margin-top: 1.4rem;
+    }
+
+    .industry-hero h1 {
+        font-size: clamp(2rem, 11vw, 2.7rem);
+    }
+
+    .industry-hero-figure img {
+        aspect-ratio: 16 / 10;
+    }
+
+    .industry-actions {
+        display: grid;
+    }
+
+    .industry-actions a {
+        justify-content: center;
+        width: 100%;
+    }
+
+    .industry-contact a {
+        grid-column: auto;
+    }
+
     .signal-grid {
         grid-template-columns: 1fr;
     }
@@ -840,6 +1137,33 @@ main {
     .home-principles {
         grid-template-columns: 1fr;
         margin-top: -0.8rem;
+    }
+}
+
+@media (max-width: 520px) {
+    .site-nav,
+    main,
+    .site-footer {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    .nav-links,
+    .industry-hero-copy,
+    .industry-hero-figure,
+    .industry-principles,
+    .industry-section,
+    .industry-band,
+    .industry-contact {
+        max-width: 20rem;
+    }
+
+    .nav-links {
+        gap: 0.35rem 0.6rem;
+    }
+
+    .industry-lede {
+        font-size: 1rem;
     }
 }
 
