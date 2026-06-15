@@ -11,14 +11,16 @@
 </head>
 <body>
   <nav class="site-nav">
-    <a href="/" class="nav-home">Malachi Mabie</a>
-    <div class="nav-links">
-      <a href="/about.html">About</a><a href="/now.html">Now</a><a href="/work.html">Work</a><a href="/research.html">Research</a>
-      <a href="/mechanical.html">Mechanical</a><a href="/music.html">Music</a>
-      <a href="/marginalia.html">Marginalia</a><a href="/resume.html">Resume</a><a href="/graph/">Graph</a>
-      <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">&#9789;</button>
-    </div>
-  </nav>
+  <a href="/" class="nav-home">Malachi Mabie</a>
+  <div class="nav-links">
+    <a href="/work.html">Work</a>
+    <a href="/research.html">Research</a>
+    <a href="/mabie-industries.html">Mabie Industries</a>
+    <a href="/resume.html">Resume</a>
+    <a href="/archive.html">Archive</a>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">&#9789;</button>
+  </div>
+</nav>
 
   <main class="essay">
     <header class="essay-header">
@@ -27,7 +29,8 @@
     </header>
 
     <article class="essay-content">
-      <p class="drop-cap">AI systems are easiest when abstraction is high and data is abundant. Natural language and math currently sit in the blessed region because frontier models have enough pretraining support and clean symbolic or compositional structure. Physical AI, robotics, neuro-data, vision/world modeling, cognitive security, and research metadata sit closer to cursed regions: lower data, harder compression, weaker ground truth, or unstable objectives.</p>
+      <p class="drop-cap">AI systems get easier when abstraction is high and data is abundant. Natural language and math have pretraining support and clean symbolic structure. They sit in the blessed region.</p>
+      <p>Physical AI, robotics, neuro-data, world models, cognitive security, and research metadata sit closer to cursed regions: lower data, weaker ground truth, harder compression, unstable objectives.</p>
 
       <figure class="image-figure source-preserve">
         <img src="/assets/images/cursed-regions.png" alt="Diagram mapping blessed and cursed AI task regions by data availability and abstraction level.">
@@ -36,19 +39,23 @@
 
       <section class="source-preserve">
         <h2>Thesis</h2>
-        <p>The durable work is making messy reality legible enough to act on. In cursed regions, the first job is not picking the biggest model. It is building an environment truthful enough that model improvement means something.</p>
+        <p>The durable work is making messy reality legible enough to act on.</p>
+        <p>In cursed regions, the first job is not picking the biggest model. It is building an environment truthful enough that model improvement means something.</p>
       </section>
 
       <section class="source-preserve">
         <h2>The map</h2>
-        <p>High-abstraction, high-data tasks can often borrow structure from pretraining. Lower-data or lower-abstraction domains need stronger explicit scaffolds: object identity, typed relations, state boundaries, hard validators, trace capture, and human review loops.</p>
+        <p>High-abstraction, high-data tasks can borrow structure from pretraining.</p>
+        <p>Lower-data or lower-abstraction domains need explicit scaffolds: object identity, typed relations, state boundaries, hard validators, trace capture, and human review loops.</p>
         <p>This is why my work keeps returning to the same pattern across unrelated surfaces: preserve the artifact, expose constraints, build validators, and learn only the residual.</p>
       </section>
 
       <section class="source-preserve">
         <h2>Why blessed-region methods fail elsewhere</h2>
-        <p>Benchmarks become products. Final rewards smear credit. Models appear smart because the base distribution was already fertile. Capability jumps can make a method look causal when the model simply crossed a threshold where the task became compressible.</p>
-        <p>Agent systems make the issue sharper: post-training depends on whether the environment produces localized feedback. Tool-call failures, state-boundary violations, runtime errors, and verifier failures should become correction signals, not terminal noise spread across whole rollouts.</p>
+        <p>Benchmarks become products. Final rewards smear credit. Models appear smart because the base distribution was already fertile.</p>
+        <p>Capability jumps can make a method look causal when the model crossed a threshold where the task became compressible.</p>
+        <p>Agent systems make the issue sharper. Post-training depends on whether the environment produces localized feedback.</p>
+        <p>Tool-call failures, state-boundary violations, runtime errors, and verifier failures should become correction signals, not terminal noise spread across whole rollouts.</p>
       </section>
 
       <section class="source-preserve">
@@ -64,8 +71,10 @@
 
       <section class="source-preserve">
         <h2>How this shows up in my work</h2>
-        <p><strong>T-UEBA</strong> used constrained graph ML, active learning, synthetic-data triggers, and calibration because tactical behavior does not stay stationary. <strong>AIxCC / DL-Patcher</strong> used code-model harnesses, checker feedback, patch verification, and human-in-loop repair because code repair needs verifier pressure. <strong>DXF-to-CAD</strong> treats drawings as structured artifact environments: HATCH-IoU, hard validators, typed geometry, and learned residual repair.</p>
-        <p>The same doctrine also explains the Applied Medical manufacturing fix and Drone Services Startup systems work: the useful move was not mystifying the model. It was making the operating surface legible enough for action.</p>
+        <p><strong>T-UEBA</strong> used constrained graph ML, active learning, synthetic-data triggers, and calibration because tactical behavior does not stay stationary.</p>
+        <p><strong>AIxCC / DL-Patcher</strong> used code-model harnesses, checker feedback, patch verification, and human-in-loop repair because code repair needs verifier pressure.</p>
+        <p><strong>DXF-to-CAD</strong> treats drawings as structured artifact environments: HATCH-IoU, hard validators, typed geometry, and learned residual repair.</p>
+        <p>The Applied Medical and Drone Services Startup work had the same shape: make the operating surface legible enough for action.</p>
       </section>
 
       <section class="source-preserve">

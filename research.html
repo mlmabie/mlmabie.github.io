@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Research — Malachi Mabie</title>
+  <title>Research | Malachi Mabie</title>
   <link rel="stylesheet" href="css/style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,58 +13,57 @@
   <nav class="site-nav">
     <a href="/" class="nav-home">Malachi Mabie</a>
     <div class="nav-links">
-    <a href="/about.html">About</a><a href="/now.html">Now</a><a href="/work.html">Work</a><a href="/research.html">Research</a>
-            <a href="/mechanical.html">Mechanical</a>
-            <a href="/music.html">Music</a>
-      <a href="/marginalia.html">Marginalia</a><a href="/resume.html">Resume</a><a href="/graph/">Graph</a>
+      <a href="/work.html">Work</a>
+      <a href="/research.html">Research</a>
+      <a href="/mabie-industries.html">Mabie Industries</a>
+      <a href="/resume.html">Resume</a>
+      <a href="/archive.html">Archive</a>
       <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">&#9789;</button>
     </div>
   </nav>
 
   <main class="essay">
     <header class="essay-header">
-      <h1>Research Thesis Map</h1>
-      <p class="essay-subtitle">Cursed regions, representation boundaries, calibrated action, and learned residuals</p>
+      <h1>Research Map</h1>
+      <p class="essay-subtitle">Representation, validation, residual learning.</p>
     </header>
 
     <article class="essay-content">
-      <p class="drop-cap">The learned part should not carry the whole burden of the system. My recurring research question is structural: what should remain explicit, what should become an object, what should become a relation, what should be validated deterministically, and what ambiguity is actually worth learning.</p>
+      <p class="drop-cap">The model should not carry the whole system. Keep artifacts, state, relations, validators, and review loops outside the learned part.</p>
 
       <section class="source-preserve">
-        <h2>0) Cursed regions</h2>
-        <p>Some domains are hard not because models are weak, but because the artifact is low-abstraction, data is insufficient, or the objective is unstable. In those domains, the first job is not model selection. It is making the environment measurable.</p>
-        <p>Cursed domains require applied epistemics: make the environment truthful before asking the model to improve. Good abstractions collapse complexity rather than manage it.</p>
-        <p><a href="/applied-epistemics.html">Applied Epistemics in Cursed Regions</a> &middot; <a href="/agent-environments.html">Agent Post-Training as Environment Design</a></p>
+        <h2>Cursed regions</h2>
+        <p>Low-abstraction artifacts, scarce data, and unstable objectives need measurement before model selection.</p>
+        <p><a href="/applied-epistemics.html">Applied epistemics</a> &middot; <a href="/work.html#augrade">DXF/CAD proof</a></p>
       </section>
 
       <section class="source-preserve">
-        <h2>1) Cognitive security and calibrated action</h2>
-        <p>In contested environments, anomaly detection without confidence and context is operationally brittle. The target is calibrated inference with analyst-legible evidence paths, not alert volume or abstract embedding quality.</p>
-        <p>Cognitive security is applied epistemology under adversarial information metabolism: humans, agents, tools, incentives, and interfaces can all steer or corrupt belief.</p>
-        <p><a href="/cogsec.html">Cognitive Security brief</a> &middot; <a href="/ram-labs.html">RAM Labs dossier</a></p>
+        <h2>Cognitive security</h2>
+        <p>Adversarial information systems need evidence paths, confidence, context, and operator agency.</p>
+        <p><a href="/cogsec.html">Cognitive security</a> &middot; <a href="/work.html#tueba">T-UEBA proof</a></p>
       </section>
 
       <section class="source-preserve">
-        <h2>2) Graph modeling and representation boundaries</h2>
-        <p>Graph methods are strongest when they do not pretend to be the whole stack. In cyber this means temporal heterogeneity and evidence drilldown. In spatial systems this means geometry-native object identity, typed relations, edit semantics, and deterministic validators. The lesson comes as much from fixtures and CAD as from papers.</p>
-        <p><a href="/graph-modeling.html">Graph Modeling</a> · <a href="/work.html#augrade">Augrade framing</a></p>
+        <h2>Graph boundaries</h2>
+        <p>A graph is the relation layer. It works after object identity has been stabilized and validators keep the artifact honest.</p>
+        <p><a href="/graph-modeling.html">Graph modeling</a> &middot; <a href="/ram-labs.html">RAM Labs</a></p>
       </section>
 
       <section class="source-preserve">
-        <h2>3) Thin control planes for stronger models</h2>
-        <p>As model capability scales, orchestration should simplify. Good harnesses preserve observability, provenance, evaluation, and operator control while minimizing bespoke glue code. The system should expose uncertainty, not perform confidence.</p>
-        <p>Agent post-training is downstream of environment design: state, memory, tools, traces, verifier failures, and review loops define what the model can learn from.</p>
-        <p><a href="/agent-environments.html">Agent environments</a> &middot; <a href="/now.html">Current position</a> &middot; <a href="/marginalia.html#on-intelligence">Compressed forms</a></p>
+        <h2>Agent environments</h2>
+        <p>Post-training depends on state, tools, traces, verifier failures, and feedback close to the action that caused the failure.</p>
+        <p><a href="/agent-environments.html">Agent environments</a> &middot; <a href="/work.html#patcher">AIxCC / DL-Patcher</a></p>
       </section>
 
       <section class="source-preserve">
-        <h2>4) Current physical-AI stack</h2>
-        <p>For CAD and AEC workflows, the stack I keep returning to is: exact artifact → stable object state → typed relation graph → multiscale compression → hard validators → learned residual repair → review loop.</p>
-        <p><a href="/work.html#augrade">DXF/CAD work summary</a> &middot; <a href="/mechanical.html">Mechanical roots</a></p>
+        <h2>Physical AI</h2>
+        <p>CAD and AEC workflows need exact artifacts, stable object state, typed relations, hard validators, learned residuals, and review.</p>
+        <p><a href="/mechanical.html">Mechanical roots</a> &middot; <a href="/work.html#mechanical">Manufacturing proof</a></p>
       </section>
     </article>
   </main>
 
   <footer class="site-footer"><p>&nbsp;</p></footer>
   <script src="js/main.js"></script>
-</body></html>
+</body>
+</html>

@@ -11,14 +11,16 @@
 </head>
 <body>
   <nav class="site-nav">
-    <a href="/" class="nav-home">Malachi Mabie</a>
-    <div class="nav-links">
-      <a href="/about.html">About</a><a href="/now.html">Now</a><a href="/work.html">Work</a><a href="/research.html">Research</a>
-      <a href="/mechanical.html">Mechanical</a><a href="/music.html">Music</a>
-      <a href="/marginalia.html">Marginalia</a><a href="/resume.html">Resume</a><a href="/graph/">Graph</a>
-      <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">&#9789;</button>
-    </div>
-  </nav>
+  <a href="/" class="nav-home">Malachi Mabie</a>
+  <div class="nav-links">
+    <a href="/work.html">Work</a>
+    <a href="/research.html">Research</a>
+    <a href="/mabie-industries.html">Mabie Industries</a>
+    <a href="/resume.html">Resume</a>
+    <a href="/archive.html">Archive</a>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">&#9789;</button>
+  </div>
+</nav>
 
   <main class="essay">
     <header class="essay-header">
@@ -27,7 +29,8 @@
     </header>
 
     <article class="essay-content">
-      <p class="drop-cap">The model is not the whole system. The durable layer is environment, objective, verifier, state, trace, and feedback. Post-training is useful when those layers turn behavior into correction signals instead of letting rewards become vague applause at the end of a rollout.</p>
+      <p class="drop-cap">The model is not the whole system. The durable layer is environment, objective, verifier, state, trace, and feedback.</p>
+      <p>Post-training is useful when those layers turn behavior into correction signals instead of vague applause at the end of a rollout.</p>
 
       <blockquote>
         <p>Post-training is best understood as distribution reshaping over trajectories.</p>
@@ -36,7 +39,8 @@
       <section class="source-preserve">
         <h2>Distributional view</h2>
         <p>A model is a distribution over trajectories. SFT, RL, on-policy distillation, rejection sampling, and verifier-feedback methods differ in how they define the target distribution and where credit assignment enters.</p>
-        <p>For agents, the interesting question is not whether a reward exists. It is whether the environment makes the right counterfactual visible: which tool call failed, which state boundary was violated, which evidence was missing, which verifier rejected the artifact, and which human review changed the objective.</p>
+        <p>For agents, the question is not whether a reward exists. It is whether the environment makes the right counterfactual visible.</p>
+        <p>Which tool call failed? Which state boundary was violated? Which evidence was missing? Which verifier rejected the artifact? Which human review changed the objective?</p>
       </section>
 
       <section class="source-preserve">
@@ -46,12 +50,14 @@
           <div><strong>Timing</strong><span>terminal reward, step-level critique, tool-call failure, state diff, review gate, regression test</span></div>
           <div><strong>Trust</strong><span>gold label, synthetic task, noisy preference, adversarial trace, production correction, operator override</span></div>
         </div>
-        <p>Good environments move feedback closer to the action that caused it. That is the difference between learning a behavior and learning a superstition about the benchmark.</p>
+        <p>Good environments move feedback closer to the action that caused it.</p>
+        <p>That is the difference between learning a behavior and learning a superstition about the benchmark.</p>
       </section>
 
       <section class="source-preserve">
         <h2>Objective maintenance</h2>
-        <p>Agent objectives decay when tools, memory, traces, reward channels, and eval loops are treated as glue code. They are part of the learning surface. The environment has to preserve provenance, keep state explicit, expose uncertainty, and resist silent objective drift.</p>
+        <p>Agent objectives decay when tools, memory, traces, reward channels, and eval loops are treated as glue code.</p>
+        <p>They are part of the learning surface. The environment has to preserve provenance, keep state explicit, expose uncertainty, and resist silent objective drift.</p>
         <p>Always look at the data, especially when the benchmark is the product being sold.</p>
       </section>
 
@@ -67,7 +73,8 @@
 
       <section class="source-preserve">
         <h2>Practical frame</h2>
-        <p>Problem discovery and problem solving have to happen together when the representation is not yet trustworthy. Build the environment that tells the truth, then ask the model to improve inside it.</p>
+        <p>Problem discovery and problem solving have to happen together when the representation is not yet trustworthy.</p>
+        <p>Build the environment that tells the truth, then ask the model to improve inside it.</p>
         <p><a href="/applied-epistemics.html">Applied epistemics in cursed regions</a> &middot; <a href="/research.html">Research map</a> &middot; <a href="/ram-labs.html">RAM Labs dossier</a></p>
       </section>
     </article>
