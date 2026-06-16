@@ -7,6 +7,7 @@ Personal site and portfolio surface: career proof, current doctrine, preserved e
 ```
 ├── index.html              # Homepage
 ├── work.html / research.html
+├── blog.html               # New public writing index
 ├── mabie-industries.html   # Commercial surface
 ├── applied-epistemics.html
 ├── agent-environments.html
@@ -15,7 +16,7 @@ Personal site and portfolio surface: career proof, current doctrine, preserved e
 ├── mechanical.html / music.html
 ├── resume.html             # Public redacted resume variants
 ├── marginalia.html         # Aphorisms & fragments
-├── essays/                 # Long-form writing
+├── essays/                 # Long-form writing and blog posts
 ├── graph/                  # Interactive knowledge graph (3 topology views)
 │   └── preload.json        # Deployed from notes-network pipeline
 ├── garden/                 # Three.js garden visualization
