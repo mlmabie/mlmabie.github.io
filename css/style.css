@@ -516,18 +516,18 @@ main {
     line-height: 1.5;
 }
 
-.proof-gallery {
+.artifact-gallery {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 1rem;
     margin: 2rem 0 2.5rem;
 }
 
-.proof-photo {
+.artifact-photo {
     margin: 0;
 }
 
-.proof-photo img {
+.artifact-photo img {
     display: block;
     width: 100%;
     aspect-ratio: 4 / 3;
@@ -537,12 +537,12 @@ main {
     background: var(--bg-alt);
 }
 
-.proof-photo-contain img {
+.artifact-photo-contain img {
     object-fit: contain;
     padding: 0.4rem;
 }
 
-.proof-photo figcaption {
+.artifact-photo figcaption {
     margin-top: 0.55rem;
     color: var(--text-muted);
     font-size: 0.78rem;
@@ -767,7 +767,7 @@ main {
         grid-template-columns: 1fr;
     }
 
-    .proof-gallery {
+    .artifact-gallery {
         grid-template-columns: 1fr;
     }
 
