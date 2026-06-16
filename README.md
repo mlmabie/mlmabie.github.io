@@ -1,6 +1,6 @@
 # mlmabie.github.io
 
-Personal site and portfolio surface: career proof, current doctrine, preserved essays, marginalia, and public graph views. Static HTML hosted on GitHub Pages.
+Personal site: work, research, essays, marginalia, music, and public graph views. Static HTML hosted on GitHub Pages.
 
 ## Structure
 
