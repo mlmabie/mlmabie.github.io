@@ -28,11 +28,19 @@
   <main class="essay">
     <header class="essay-header">
       <h1>Selected Work</h1>
-      <p class="essay-subtitle">Projects where tools, models, and physical constraints meet.</p>
+      <p class="essay-subtitle">Work that turns ambiguous physical and technical problems into testable systems.</p>
     </header>
 
     <article class="essay-content">
-      <p class="drop-cap">The work repeats one move: preserve the object, expose the relation, validate what can be checked, and learn the remainder.</p>
+      <p class="drop-cap">I am most useful when a team has a difficult object, too many plausible directions, and no clean way to tell what is working. I help find the core decision, make it inspectable, and build the next test.</p>
+
+      <section id="amr" class="source-preserve">
+        <h2>Advanced Metal Research</h2>
+        <p><strong>Constraint:</strong> a useful weld planner has to look ahead through awkward geometry without producing jerky or unsafe robot motion.</p>
+        <p><strong>Work:</strong> a test-driven planning and search harness for weld sequences and robot paths, with explicit representations for welds, waypoints, poses, and candidate configurations.</p>
+        <p><strong>Evaluation:</strong> smoothness, jerk, reachability, collision risk, torch angle, configuration changes, cycle time, and similarity to manually programmed paths.</p>
+        <p><strong>Current state:</strong> active project. The first milestone is a bounded offline harness that generates and compares several candidate plans on real CAD and CAM examples.</p>
+      </section>
 
       <section id="mechanical" class="source-preserve">
         <h2>Applied Medical</h2>

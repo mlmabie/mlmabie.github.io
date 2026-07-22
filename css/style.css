@@ -173,19 +173,61 @@ main {
     max-width: var(--content-width);
 }
 
+.site-kicker {
+    margin: 0 0 0.8rem;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+}
+
 .site-header h1 {
-    font-size: 2.2rem;
+    font-size: clamp(2.25rem, 6vw, 4.8rem);
     font-weight: 600;
-    margin: 0 0 1rem;
-    line-height: 1.2;
+    margin: 0 0 1.35rem;
+    line-height: 0.98;
+    letter-spacing: -0.035em;
 }
 
 .site-description {
-    font-size: 1.1rem;
+    font-size: 1.18rem;
     color: var(--text);
     margin: 0;
     max-width: 620px;
     overflow-wrap: break-word;
+}
+
+.field-note {
+    max-width: var(--content-width);
+    display: grid;
+    grid-template-columns: 8rem 1fr;
+    gap: 1.25rem;
+    margin: -1rem 0 3.2rem;
+    padding: 1.2rem 0;
+    border-top: 1px solid var(--accent);
+    border-bottom: 1px solid var(--border);
+}
+
+.field-note-label {
+    margin: 0;
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+}
+
+.field-note h2 {
+    margin: 0 0 0.45rem;
+    font-size: 1.35rem;
+    line-height: 1.25;
+}
+
+.field-note div p {
+    margin: 0;
+    color: var(--text-muted);
+    font-size: 0.95rem;
 }
 
 .site-note {
@@ -832,6 +874,10 @@ main {
 }
 
 @media (max-width: 520px) {
+    .field-note {
+        grid-template-columns: 1fr;
+        gap: 0.55rem;
+    }
     .site-nav,
     main,
     .site-footer {
