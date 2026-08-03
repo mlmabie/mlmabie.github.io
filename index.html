@@ -4,22 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Malachi Mabie</title>
+    <meta name="description" content="Malachi Mabie builds testable systems for robotics, manufacturing, security research, and software repair.">
     <link rel="stylesheet" href="css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
 </head>
 <body>
     <nav class="site-nav">
-  <a href="/" class="nav-home">Malachi Mabie</a>
+  <a href="/" class="nav-home"><span>Malachi Mabie</span><small>Research engineering / physical systems</small></a>
   <div class="nav-links">
-    <a href="/about.html">About</a>
     <a href="/work.html">Work</a>
     <a href="/research.html">Research</a>
-    <a href="/blog.html">Blog</a>
-    <a href="/garden/">Garden</a>
-    <a href="/graph/">Graph</a>
-    <a href="/mabie-industries.html">Mabie Industries</a>
+    <a href="/blog.html">Writing</a>
+    <a href="/about.html">About</a>
     <a href="/resume.html">Resume</a>
     <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">&#9789;</button>
   </div>
@@ -27,148 +25,148 @@
 
     <main class="home">
         <header class="site-header">
-            <p class="site-kicker">Physical AI · research engineering · product judgment</p>
-            <h1>I find the real problem, then build the system that can answer it.</h1>
-            <p class="site-description">
-                I work where models meet physical constraints: robotics, CAD, manufacturing, agent environments, and high-stakes software.
-            </p>
-            <p class="site-note">
-                Based in Santa Barbara. Open to ambitious Bay Area teams, including a staged move north, and to unusually strong remote work.
-            </p>
+            <div class="site-intro">
+                <p class="site-kicker">Research engineer / Santa Barbara, California</p>
+                <h1>I make hard engineering decisions testable.</h1>
+                <p class="site-description">Current work: robot motion planning for real welds at Advanced Metal Research.</p>
+                <p class="site-note">Earlier work includes medical manufacturing tools, graph learning for tactical security, and verifier-backed code repair.</p>
+            </div>
+
+            <figure class="system-figure" aria-labelledby="planner-caption">
+                <div class="figure-heading">
+                    <span>Working figure 01</span>
+                    <span>Weld path search</span>
+                </div>
+                <svg viewBox="0 0 620 430" role="img" aria-labelledby="planner-title planner-desc">
+                    <title id="planner-title">Robot weld path planning diagram</title>
+                    <desc id="planner-desc">A technical diagram with a weld seam, six waypoints, candidate robot paths, and evaluation labels.</desc>
+                    <defs>
+                        <pattern id="minor-grid" width="20" height="20" patternUnits="userSpaceOnUse">
+                            <path d="M 20 0 L 0 0 0 20" class="grid-minor" />
+                        </pattern>
+                        <pattern id="major-grid" width="100" height="100" patternUnits="userSpaceOnUse">
+                            <rect width="100" height="100" fill="url(#minor-grid)" />
+                            <path d="M 100 0 L 0 0 0 100" class="grid-major" />
+                        </pattern>
+                        <marker id="arrow-blue" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                            <path d="M0,0 L0,6 L7,3 z" class="arrow-blue" />
+                        </marker>
+                    </defs>
+                    <rect x="0" y="0" width="620" height="430" class="figure-paper" />
+                    <rect x="18" y="18" width="584" height="394" fill="url(#major-grid)" />
+                    <path d="M72 336 C145 272 198 298 262 220 S390 98 548 122" class="candidate-path candidate-a" />
+                    <path d="M72 336 C126 306 198 270 258 236 S396 140 548 122" class="candidate-path candidate-b" />
+                    <path d="M72 336 C164 374 228 272 300 226 S430 118 548 122" class="candidate-path candidate-c" />
+                    <path d="M118 310 L196 276 L274 238 L358 190 L444 150 L526 126" class="weld-seam" marker-end="url(#arrow-blue)" />
+                    <g class="waypoints">
+                        <circle cx="118" cy="310" r="6" /><circle cx="196" cy="276" r="6" />
+                        <circle cx="274" cy="238" r="6" /><circle cx="358" cy="190" r="6" />
+                        <circle cx="444" cy="150" r="6" /><circle cx="526" cy="126" r="6" />
+                    </g>
+                    <g class="pose-vectors">
+                        <path d="M118 310 l-18 -30" /><path d="M196 276 l-12 -34" />
+                        <path d="M274 238 l-4 -36" /><path d="M358 190 l8 -35" />
+                        <path d="M444 150 l18 -31" /><path d="M526 126 l26 -24" />
+                    </g>
+                    <g class="figure-labels">
+                        <text x="33" y="46">ROBOT BASE / DATUM A</text>
+                        <text x="471" y="397">WORKPIECE FRAME</text>
+                        <text x="91" y="365">q0</text><text x="533" y="113">q5</text>
+                        <text x="388" y="294">CANDIDATES</text>
+                        <text x="388" y="316" class="label-a">A / MIN. CYCLE</text>
+                        <text x="388" y="338" class="label-b">B / MIN. JERK</text>
+                        <text x="388" y="360" class="label-c">C / MANUAL PRIOR</text>
+                    </g>
+                    <g class="score-register">
+                        <rect x="33" y="60" width="160" height="90" />
+                        <text x="45" y="82">SCORE REGISTER</text>
+                        <text x="45" y="104">REACH  COLLISION</text>
+                        <text x="45" y="124">ANGLE  SMOOTHNESS</text>
+                        <text x="45" y="144">CYCLE  MANUAL FIT</text>
+                    </g>
+                </svg>
+                <figcaption id="planner-caption">The planning harness compares candidate paths for reach, collision risk, torch angle, smoothness, cycle time, and similarity to manual programs.</figcaption>
+            </figure>
         </header>
 
-        <section class="field-note" aria-labelledby="current-work">
-            <p class="field-note-label">Current work</p>
-            <div>
-                <h2 id="current-work">Robot motion planning for real welds</h2>
-                <p>I am building a test-driven planning harness for Advanced Metal Research. It represents welds, waypoints, robot poses, and candidate configurations, then scores paths for smooth motion, reachability, collision risk, torch angle, cycle time, and similarity to manual programs.</p>
-            </div>
-        </section>
+        <div class="home-ledger">
+            <section class="proof-section" aria-labelledby="proof-title">
+                <div class="section-heading">
+                    <h2 id="proof-title">Selected work</h2>
+                    <a href="work.html">Full record</a>
+                </div>
 
-        <section class="home-principles" aria-label="How I work">
-            <div><span>See</span><strong>Find the decision hiding inside the noise.</strong></div>
-            <div><span>Shape</span><strong>Give the team a clearer object to work on.</strong></div>
-            <div><span>Test</span><strong>Turn taste into evidence and the next move.</strong></div>
-        </section>
-
-        <section class="essays-list">
-            <section class="home-group" aria-labelledby="start">
-                <h2 id="start" class="home-group-title">Start Here</h2>
-
-                <article class="essay-preview">
-                    <a href="about.html">
-                        <h3>About</h3>
-                        <p class="preview-text">
-                            Mechanisms, music, manufacturing, cognitive science, and AI systems.
-                        </p>
-                    </a>
-                </article>
-
-                <article class="essay-preview">
-                    <a href="work.html">
-                        <h3>Selected Work</h3>
-                        <p class="preview-text">
-                            Robotic weld planning, medical tooling, graph ML, agent environments, and production systems.
-                        </p>
-                    </a>
-                </article>
-
-                <article class="essay-preview">
-                    <a href="research.html">
-                        <h3>Research Map</h3>
-                        <p class="preview-text">
-                            Cursed regions, cognitive security, graph boundaries, agent environments, and physical AI.
-                        </p>
-                    </a>
-                </article>
-
-                <article class="essay-preview">
-                    <a href="resume.html">
-                        <h3>Resume</h3>
-                        <p class="preview-text">
-                            Public resume variants for systems, research, security, and physical-world ML.
-                        </p>
-                    </a>
-                </article>
+                <ol class="proof-list">
+                    <li>
+                        <a href="work.html#amr">
+                            <span class="proof-id">01 / Current</span>
+                            <strong>Advanced Metal Research</strong>
+                            <span>Offline search and evaluation for robot weld planning.</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="work.html#mechanical">
+                            <span class="proof-id">02 / Manufacturing</span>
+                            <strong>Applied Medical</strong>
+                            <span>A process fix that cut about $100k per month in operating variance.</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="work.html#tueba">
+                            <span class="proof-id">03 / Research</span>
+                            <strong>T-UEBA</strong>
+                            <span>$250k Army SBIR work on tactical behavior analytics.</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="work.html#patcher">
+                            <span class="proof-id">04 / Security</span>
+                            <strong>AIxCC / DL-Patcher</strong>
+                            <span>Verifier feedback, fuzzing, and a patent-filed repair architecture.</span>
+                        </a>
+                    </li>
+                </ol>
             </section>
 
-            <section class="home-group" aria-labelledby="themes">
-                <h2 id="themes" class="home-group-title">Current Themes</h2>
+            <aside class="home-index" aria-label="Research, writing, and contact">
+                <section>
+                    <div class="section-heading">
+                        <h2>Research</h2>
+                        <a href="research.html">Index</a>
+                    </div>
+                    <ul class="compact-index">
+                        <li><a href="research.html#physical-ai">Physical AI</a></li>
+                        <li><a href="agent-environments.html">Agent environments</a></li>
+                        <li><a href="cogsec.html">Cognitive security</a></li>
+                    </ul>
+                </section>
 
-                <article class="essay-preview">
-                    <a href="applied-epistemics.html">
-                        <h3>Applied Epistemics</h3>
-                        <p class="preview-text">
-                            Make the environment truthful before asking the model to improve.
-                        </p>
-                    </a>
-                </article>
+                <section>
+                    <div class="section-heading">
+                        <h2>Writing</h2>
+                        <a href="blog.html">All essays</a>
+                    </div>
+                    <ul class="compact-index">
+                        <li><a href="applied-epistemics.html">Applied Epistemics</a></li>
+                        <li><a href="essays/three-architectures-of-ascent.html">Three Alignment Architectures</a></li>
+                    </ul>
+                </section>
 
-                <article class="essay-preview">
-                    <a href="agent-environments.html">
-                        <h3>Agent Environments</h3>
-                        <p class="preview-text">
-                            Post-training depends on state, tools, traces, verifiers, and localized feedback.
-                        </p>
-                    </a>
-                </article>
-
-                <article class="essay-preview">
-                    <a href="mabie-industries.html">
-                        <h3>Mabie Industries</h3>
-                        <p class="preview-text">
-                            Verifier-backed AI systems for expert workflows where failure has a real cost.
-                        </p>
-                    </a>
-                </article>
-            </section>
-
-            <section class="home-group" aria-labelledby="blog">
-                <h2 id="blog" class="home-group-title">Blog</h2>
-
-                <article class="essay-preview">
-                    <a href="essays/three-architectures-of-ascent.html">
-                        <h3>Three Alignment Architectures</h3>
-                        <p class="preview-text">
-                            Self, ground, ascent, and why alignment keeps returning to ancient metaphysical forks.
-                        </p>
-                    </a>
-                </article>
-
-                <article class="essay-preview">
-                    <a href="essays/compression-ecology.html">
-                        <h3>A Compression Ecology</h3>
-                        <p class="preview-text">
-                            Attention, motivation, and the inner systems that let a mind move.
-                        </p>
-                    </a>
-                </article>
-
-                <article class="essay-preview">
-                    <a href="essays/fiction-is-all-that-is-seen.html">
-                        <h3>Fiction is All That is Seen</h3>
-                        <p class="preview-text">
-                            Plato's cave, perception, narrative, and the problem of seeing more clearly.
-                        </p>
-                    </a>
-                </article>
-
-                <article class="essay-preview">
-                    <a href="essays/narrative-architecture.html">
-                        <h3>Narrative Architecture</h3>
-                        <p class="preview-text">
-                            A 2017 slide essay on perception, story, structure, and soundness.
-                        </p>
-                    </a>
-                </article>
-            </section>
-
-        </section>
+                <section class="status-register">
+                    <h2>Contact</h2>
+                    <dl>
+                        <dt>Base</dt><dd>Santa Barbara, California</dd>
+                        <dt>Open to</dt><dd>Bay Area and strong remote teams</dd>
+                        <dt>Message</dt><dd><a href="https://www.linkedin.com/in/mlmabie/">LinkedIn</a> / <a href="https://x.com/init_malachi">X</a></dd>
+                    </dl>
+                </section>
+            </aside>
+        </div>
     </main>
 
     <footer class="site-footer">
-        <p><a href="/archive.html">Archive</a></p>
-    </footer>
+  <p><a href="/archive.html">Archive</a> / <a href="/graph/">Graph</a> / <a href="/garden/">Garden</a></p>
+</footer>
 
     <script src="js/main.js"></script>
 </body>

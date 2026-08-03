@@ -4,22 +4,20 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Selected Work | Malachi Mabie</title>
+  <meta name="description" content="Selected robotics, manufacturing, security research, and software repair work by Malachi Mabie.">
   <link rel="stylesheet" href="css/style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
 </head>
 <body>
   <nav class="site-nav">
-  <a href="/" class="nav-home">Malachi Mabie</a>
+  <a href="/" class="nav-home"><span>Malachi Mabie</span><small>Research engineering / physical systems</small></a>
   <div class="nav-links">
-    <a href="/about.html">About</a>
     <a href="/work.html">Work</a>
     <a href="/research.html">Research</a>
-    <a href="/blog.html">Blog</a>
-    <a href="/garden/">Garden</a>
-    <a href="/graph/">Graph</a>
-    <a href="/mabie-industries.html">Mabie Industries</a>
+    <a href="/blog.html">Writing</a>
+    <a href="/about.html">About</a>
     <a href="/resume.html">Resume</a>
     <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">&#9789;</button>
   </div>
@@ -28,61 +26,46 @@
   <main class="essay">
     <header class="essay-header">
       <h1>Selected Work</h1>
-      <p class="essay-subtitle">Work that turns ambiguous physical and technical problems into testable systems.</p>
+      <p class="essay-subtitle">Robotics, manufacturing, security research, and verifier-backed software.</p>
     </header>
 
     <article class="essay-content">
-      <p class="drop-cap">I am most useful when a team has a difficult object, too many plausible directions, and no clean way to tell what is working. I help find the core decision, make it inspectable, and build the next test.</p>
+      <p class="drop-cap">I turn open-ended engineering work into objects, constraints, and tests that a team can inspect.</p>
 
       <section id="amr" class="source-preserve">
         <h2>Advanced Metal Research</h2>
-        <p><strong>Constraint:</strong> a useful weld planner has to look ahead through awkward geometry without producing jerky or unsafe robot motion.</p>
-        <p><strong>Work:</strong> a test-driven planning and search harness for weld sequences and robot paths, with explicit representations for welds, waypoints, poses, and candidate configurations.</p>
-        <p><strong>Evaluation:</strong> smoothness, jerk, reachability, collision risk, torch angle, configuration changes, cycle time, and similarity to manually programmed paths.</p>
-        <p><strong>Current state:</strong> active project. The first milestone is a bounded offline harness that generates and compares several candidate plans on real CAD and CAM examples.</p>
+        <p><strong>Problem.</strong> A weld planner must look ahead through awkward geometry without producing jerky or unsafe robot motion.</p>
+        <p><strong>System.</strong> An offline search harness represents welds, waypoints, poses, and candidate configurations. It compares plans by reach, collision risk, torch angle, smoothness, cycle time, and similarity to manual programs.</p>
+        <p><strong>Status.</strong> Active project. The first milestone uses real CAD and CAM examples.</p>
       </section>
 
       <section id="mechanical" class="source-preserve">
         <h2>Applied Medical</h2>
-        <p><strong>Constraint:</strong> tooling had to survive material variation, operator habits, machine timing, and production pressure.</p>
-        <p><strong>Work:</strong> CAD, prototypes, fixtures, pneumatic tooling, robotic EOAT, test, qualification, and shop-floor debugging.</p>
-        <p><strong>Outcome:</strong> a MIM insert-molding process fix cut roughly $100k/month in operating variance.</p>
+        <p><strong>Problem.</strong> Production tooling had to survive material variation, operator habits, and machine timing.</p>
+        <p><strong>Work.</strong> I designed CAD, prototypes, fixtures, pneumatic tooling, and robotic end effectors. I also ran qualification and shop-floor debugging.</p>
+        <p><strong>Result.</strong> A MIM insert-molding process fix cut about $100k per month in operating variance.</p>
         <p><a href="/mechanical.html">Mechanical details</a></p>
       </section>
 
       <section id="tueba" class="source-preserve">
         <h2>T-UEBA</h2>
-        <p><strong>Constraint:</strong> tactical behavior shifts fast. Labels stay sparse. Analysts need evidence, not alert volume.</p>
-        <p><strong>Work:</strong> constrained heterogeneous temporal graphs, calibration, active learning, synthetic-data triggers, and evidence drilldown.</p>
-        <p><strong>Outcome:</strong> $250k SBIR PI work for Army tactical Zero Trust behavior analytics.</p>
+        <p><strong>Problem.</strong> Tactical behavior shifts fast, labels stay sparse, and analysts need evidence for each alert.</p>
+        <p><strong>Work.</strong> I led a $250k Army SBIR on Zero Trust behavior analytics. The system used constrained temporal graphs, active learning, and evidence drilldown.</p>
         <p><a href="/cogsec.html">Cognitive security</a> &middot; <a href="/ram-labs.html">RAM Labs</a></p>
-      </section>
-
-      <section id="augrade" class="source-preserve">
-        <h2>DXF/CAD representation</h2>
-        <p><strong>Constraint:</strong> geometry, relations, editability, and auditability have to survive conversion.</p>
-        <p><strong>Work:</strong> exact artifact, object state, typed relation graph, deterministic validators, learned residual repair.</p>
-        <p><strong>Signal:</strong> HATCH-IoU, provenance, and reviewable state make CAD-native learning less vague.</p>
-        <p><a href="/graph-modeling.html">Graph modeling</a> &middot; <a href="/applied-epistemics.html">Applied epistemics</a></p>
       </section>
 
       <section id="patcher" class="source-preserve">
         <h2>AIxCC / DL-Patcher</h2>
-        <p><strong>Constraint:</strong> code repair needs checker pressure, runtime feedback, and human review. Prompting alone cannot carry the patch loop.</p>
-        <p><strong>Work:</strong> code-model harnesses, static analysis, fuzzing, verifier feedback, and patent-filed repair architecture.</p>
+        <p><strong>Problem.</strong> Code repair needs runtime feedback and human review.</p>
+        <p><strong>Work.</strong> I built code-model harnesses with static analysis, fuzzing, and verifier feedback. The repair architecture is patent-filed.</p>
         <p><a href="/agent-environments.html">Agent environments</a></p>
-      </section>
-
-      <section id="production" class="source-preserve">
-        <h2>Production systems</h2>
-        <p><strong>Constraint:</strong> small teams need systems that stay legible under cost, latency, and operational limits.</p>
-        <p><strong>Work:</strong> AWS workflows, thermal/GIS processing, customer-facing tools, and production handoff.</p>
-        <p><a href="/resume.html">Resume variants</a></p>
       </section>
     </article>
   </main>
 
-  <footer class="site-footer"><p>&nbsp;</p></footer>
+  <footer class="site-footer">
+  <p><a href="/archive.html">Archive</a> / <a href="/graph/">Graph</a> / <a href="/garden/">Garden</a></p>
+</footer>
   <script src="js/main.js"></script>
 </body>
 </html>

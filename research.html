@@ -4,67 +4,57 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Research | Malachi Mabie</title>
+  <meta name="description" content="Research notes on physical AI, agent environments, and cognitive security by Malachi Mabie.">
   <link rel="stylesheet" href="css/style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
 </head>
 <body>
   <nav class="site-nav">
-    <a href="/" class="nav-home">Malachi Mabie</a>
-    <div class="nav-links">
-      <a href="/about.html">About</a>
+  <a href="/" class="nav-home"><span>Malachi Mabie</span><small>Research engineering / physical systems</small></a>
+  <div class="nav-links">
     <a href="/work.html">Work</a>
-      <a href="/research.html">Research</a>
-      <a href="/blog.html">Blog</a>
-      <a href="/mabie-industries.html">Mabie Industries</a>
-      <a href="/resume.html">Resume</a>
-        <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">&#9789;</button>
-    </div>
-  </nav>
+    <a href="/research.html">Research</a>
+    <a href="/blog.html">Writing</a>
+    <a href="/about.html">About</a>
+    <a href="/resume.html">Resume</a>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">&#9789;</button>
+  </div>
+</nav>
 
   <main class="essay">
     <header class="essay-header">
-      <h1>Research Map</h1>
-      <p class="essay-subtitle">Representation, validation, residual learning.</p>
+      <h1>Research</h1>
+      <p class="essay-subtitle">Three areas where the model cannot carry the whole system.</p>
     </header>
 
     <article class="essay-content">
-      <p class="drop-cap">The model should not carry the whole system. Keep artifacts, state, relations, validators, and review loops outside the learned part.</p>
+      <p class="drop-cap">I keep state, tools, validators, and review outside the learned part so people can inspect why a system acted.</p>
 
-      <section class="source-preserve">
-        <h2>Cursed regions</h2>
-        <p>Low-abstraction artifacts, scarce data, and unstable objectives need measurement before model selection.</p>
-        <p><a href="/applied-epistemics.html">Applied epistemics</a> &middot; <a href="/work.html#augrade">DXF/CAD work</a></p>
+      <section id="physical-ai" class="source-preserve">
+        <h2>Physical AI</h2>
+        <p>Robotics and CAD systems need exact geometry, stable object state, hard checks, and human review.</p>
+        <p><a href="/work.html#amr">Robot weld planning</a> &middot; <a href="/mechanical.html">Mechanical work</a></p>
       </section>
 
-      <section class="source-preserve">
-        <h2>Cognitive security</h2>
-        <p>Adversarial information systems need evidence paths, confidence, context, and operator agency.</p>
-        <p><a href="/cogsec.html">Cognitive security</a> &middot; <a href="/work.html#tueba">T-UEBA</a></p>
-      </section>
-
-      <section class="source-preserve">
-        <h2>Graph boundaries</h2>
-        <p>A graph is the relation layer. It works after object identity has been stabilized and validators keep the artifact honest.</p>
-        <p><a href="/graph-modeling.html">Graph modeling</a> &middot; <a href="/ram-labs.html">RAM Labs</a></p>
-      </section>
-
-      <section class="source-preserve">
+      <section id="agent-environments" class="source-preserve">
         <h2>Agent environments</h2>
-        <p>Post-training depends on state, tools, traces, verifier failures, and feedback close to the action that caused the failure.</p>
+        <p>Post-training depends on the state, tools, traces, and verifier failures around the model.</p>
         <p><a href="/agent-environments.html">Agent environments</a> &middot; <a href="/work.html#patcher">AIxCC / DL-Patcher</a></p>
       </section>
 
-      <section class="source-preserve">
-        <h2>Physical AI</h2>
-        <p>CAD and AEC workflows need exact artifacts, stable object state, typed relations, hard validators, learned residuals, and review.</p>
-        <p><a href="/mechanical.html">Mechanical roots</a> &middot; <a href="/work.html#mechanical">Manufacturing work</a></p>
+      <section id="cognitive-security" class="source-preserve">
+        <h2>Cognitive security</h2>
+        <p>Analysts need the evidence, confidence, and context behind each alert.</p>
+        <p><a href="/cogsec.html">Cognitive security</a> &middot; <a href="/work.html#tueba">T-UEBA</a></p>
       </section>
     </article>
   </main>
 
-  <footer class="site-footer"><p>&nbsp;</p></footer>
+  <footer class="site-footer">
+  <p><a href="/archive.html">Archive</a> / <a href="/graph/">Graph</a> / <a href="/garden/">Garden</a></p>
+</footer>
   <script src="js/main.js"></script>
 </body>
 </html>

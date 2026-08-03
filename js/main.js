@@ -16,33 +16,31 @@
         return localStorage.getItem(THEME_KEY);
     }
 
-    function setTheme(theme) {
+    function setTheme(theme, persist) {
         document.documentElement.setAttribute('data-theme', theme);
-        localStorage.setItem(THEME_KEY, theme);
+        if (persist !== false) localStorage.setItem(THEME_KEY, theme);
         // Update toggle button text
         var btn = document.querySelector('.theme-toggle');
-        if (btn) btn.textContent = theme === 'dark' ? '☀' : '☽';
+        if (btn) {
+            var isDark = theme === 'dark';
+            btn.textContent = isDark ? '☀' : '☽';
+            btn.setAttribute('aria-pressed', isDark ? 'true' : 'false');
+            btn.setAttribute('aria-label', isDark ? 'Use light theme' : 'Use dark theme');
+        }
     }
 
     function initTheme() {
         var stored = getStoredTheme();
         if (stored) {
-            setTheme(stored);
+            setTheme(stored, false);
         } else {
-            // Set button to match system preference
-            var btn = document.querySelector('.theme-toggle');
-            if (btn) {
-                var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-                btn.textContent = prefersDark ? '☀' : '☽';
-            }
+            setTheme('light', false);
         }
     }
 
     window.toggleTheme = function() {
-        var current = document.documentElement.getAttribute('data-theme');
-        var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-        if (current === 'dark' || (!current && prefersDark)) {
+        var current = document.documentElement.getAttribute('data-theme') || 'light';
+        if (current === 'dark') {
             setTheme('light');
         } else {
             setTheme('dark');
@@ -76,23 +74,6 @@
             });
             ref.addEventListener('mouseleave', function() {
                 tooltip.classList.remove('visible');
-            });
-        });
-    }
-
-    // ============================================
-    // SIDENOTE INTERACTIONS (mobile)
-    // ============================================
-
-    function initSidenotes() {
-        document.querySelectorAll('.sidenote-number').forEach(function(el) {
-            el.addEventListener('click', function() {
-                if (window.innerWidth <= 1100) {
-                    var toggle = this.previousElementSibling;
-                    if (toggle && toggle.classList.contains('sidenote-toggle')) {
-                        toggle.checked = !toggle.checked;
-                    }
-                }
             });
         });
     }
@@ -182,7 +163,6 @@
 
     function init() {
         initTheme();
-        initSidenotes();
         initSmoothScroll();
         generateTOC();
         initReadingProgress();
