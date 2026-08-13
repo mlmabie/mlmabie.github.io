@@ -1235,6 +1235,30 @@ main {
     background: white;
 }
 
+/* Maxwell's original was typeset in Nitti Pro through iA Writer. */
+.maxwell-essay .essay-header,
+.maxwell-essay .essay-content {
+    font-family: 'Nitti Pro', 'iA Writer Mono', 'IBM Plex Mono', var(--font-mono);
+}
+
+.maxwell-essay .essay-header h1 {
+    font-family: inherit;
+    font-weight: 600;
+    letter-spacing: 0.015em;
+}
+
+.maxwell-essay .essay-content > p,
+.maxwell-essay .essay-content > .footnotes {
+    max-width: 66ch;
+    font-size: 0.9rem;
+    line-height: 1.72;
+    letter-spacing: 0.01em;
+}
+
+.maxwell-essay .source-preserve {
+    font-family: var(--font-serif);
+}
+
 .slide-block {
     margin: 2.4rem 0;
 }
