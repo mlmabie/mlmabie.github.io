@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning Representations, Hybrid Geometric Compression, and Where GNNs Actually Fit — Malachi Mabie</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="site-nav">
+        <a href="../index.html" class="nav-home">Malachi Mabie</a>
+        <div class="nav-links">
+            <a href="../about.html">About</a>
+            <a href="../index.html">Essays</a>
+            <a href="../writing/">Writing</a>
+            <a href="../now.html">Now</a>
+            <a href="../marginalia.html">Marginalia</a>
+            <a href="/garden/">Garden</a>
+            <a href="../graph/">Graph</a>
+            <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">&#9789;</button>
+        </div>
+    </nav>
+
+    <main class="essay">
+        <header class="essay-header">
+            <h1>Learning Representations, Hybrid Geometric Compression, and Where GNNs Actually Fit</h1>
+            <p class="essay-subtitle">On multiscale representation boundaries for 3D spatial systems, and why the bottleneck is compression—not architecture</p>
+            <p class="essay-meta">2025 · Technical Writing</p>
+        </header>
+
+        <nav class="toc">
+            <p class="toc-title">Contents</p>
+            <ul>
+                <li><a href="#thesis">Thesis</a></li>
+                <li><a href="#why-many-teams-got-stuck">Why Many Teams Got Stuck</a></li>
+                <li><a href="#why-now-is-different">Why Now is Different</a></li>
+                <li><a href="#what-the-representation-should-be">What the Representation Should Be</a></li>
+                <li><a href="#where-gnns-help">Where GNNs Help, and Where They Do Not</a></li>
+                <li><a href="#preferred-hybrid-model">A Preferred Hybrid Model</a></li>
+                <li><a href="#data-strategy">Data Strategy: The Real Moat</a></li>
+                <li><a href="#build-for-future-gains">Build for Future Model Gains</a></li>
+                <li><a href="#design-response-matrix">The Design Response Matrix</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ul>
+        </nav>
+
+        <article class="essay-content">
+            <p class="drop-cap">The problem is not "put a GNN on BIM." The problem is to build the right multiscale representation boundary between raw geometry, object identity, constraints, and sequential decision-making. Earlier generations of spatial ML systems often had to choose between raw perception and hand-authored structure. They either stayed too low-level to plan well, or jumped too early into brittle symbolic abstractions. The opportunity now is to learn a multiscale bridge: geometric primitives at the bottom, stable object representations in the middle, typed relational reasoning on top, and deterministic validation around the loop.</p>
+
+            <h2 id="thesis">Thesis</h2>
+
+            <p>For this domain, the winning representation is probably: geometric at the bottom, object-centric in the middle, typed-relational at the top, compressed hierarchically across scales, and coupled to hard validators rather than asked to learn validity from scratch.
+            <input type="checkbox" id="sn-1" class="sidenote-toggle">
+            <label for="sn-1" class="sidenote-number"></label>
+            <span class="sidenote">Each object should have its own representation, while the global state is the synchronization of interrelated representations.</span>
+            </p>
+
+            <p>In other words: raw points, pixels, and splats are too low-level to plan over directly. A single global embedding is too lossy and too brittle. A pure symbolic BIM graph is too hand-authored and too disconnected from perception. The useful middle ground is a hybrid object-and-relation representation where local geometry is preserved, objects carry their own state, and global coherence emerges through synchronization across relations.</p>
+
+            <h2 id="why-many-teams-got-stuck">Why Many Teams Got Stuck</h2>
+
+            <p>A lot of work in this space got trapped in a pre-bitter-lesson local optimum. The old failure pattern looked like this: small, over-curated datasets; brittle hand-made graph schemas; too much hope that "the right architecture" would compensate for weak data coverage; poor interfaces between perception and reasoning; and no serious workflow tooling to collect edit traces, corrections, constraint violations, or counterfactuals.</p>
+
+            <p>Teams hit both of the classic walls. The <strong>data diversity wall</strong>: not enough variation to force the model to learn the right decomposition. And the <strong>expressivity wall</strong>: representations either collapsed too much detail or stayed too raw to support higher-level reasoning.</p>
+
+            <p>The right interim move would have been workflow tooling: instrument the CAD/BIM stack, capture edits, accepts/rejects, revisions, constraints, comments, and issue-resolution traces, build synthetic and semi-synthetic generators, and wait for the underlying representation learners to improve.</p>
+
+            <h2 id="why-now-is-different">Why Now is Different</h2>
+
+            <p>The ingredients are better now than they were even 12–18 months ago. Recent work suggests a real convergence.
+            <input type="checkbox" id="sn-2" class="sidenote-toggle">
+            <label for="sn-2" class="sidenote-number"></label>
+            <span class="sidenote">The field is shifting from "choose one representation" to "learn a hierarchy of interoperable representations." That is exactly the right shift for this problem.</span>
+            </p>
+
+            <p><strong>UniPre3D</strong> (CVPR 2025) demonstrates unified 3D point-cloud pretraining using cross-modal Gaussian splatting, with Gaussian primitive prediction as the pretraining task and 2D features injected to stabilize geometry-focused learning. <strong>PanoGS</strong> (CVPR 2025) builds open-vocabulary 3D scene understanding on Gaussian primitives, with graph cuts and clustering over learned super-primitives rather than over raw geometry. <strong>ArcPro</strong> (CVPR 2025) introduces architectural programs for structured 3D abstraction of sparse points—important because it treats buildings as structured programs, not just surfaces.</p>
+
+            <p><strong>PlaceIt3D</strong> (ICCV 2025) demonstrates language-guided object placement in real 3D scenes, a signal that the field is moving from passive scene understanding toward action and placement. <strong>SAS</strong> (ICCV 2025) achieves 3D scene segmentation by integrating multiple 2D priors into a shared 3D feature space. <strong>LangScene-X</strong> (ICCV 2025) produces language-embedded 3D scenes with a language quantized compressor—another signal that compression and semantic structure are becoming first-class representation concerns.</p>
+
+            <h2 id="what-the-representation-should-be">What the Representation Should Be</h2>
+
+            <h3>Geometric Substrate</h3>
+
+            <p>Start from a geometry-native substrate: point clouds, superpoints, Gaussian primitives, octree / hash-grid / tri-plane style spatial features. This layer should preserve pose, orientation, scale, local surface structure, uncertainty, and provenance from the upstream perception stack. Do not ask the graph layer to recover geometry that was already compressed away.</p>
+
+            <h3>Object-Centric Abstraction</h3>
+
+            <p>The next layer should convert geometry into persistent entities: walls, slabs, doors, beams, columns, ducts, fixtures, openings. Each object should carry canonical geometry parameters, local frame, material and type, uncertainty, editable state, and links to evidence in the raw perceptual layer.</p>
+
+            <p>This is where most systems are still weak. They jump from geometry to scene-level embeddings without creating stable object tokens.</p>
+
+            <h3>Typed Relational Graph</h3>
+
+            <p>Only after you have good object tokens should you construct the graph. The graph should not merely encode adjacency. It should encode different relation classes: support and load path, containment, alignment, clearance, connectivity, access and egress, code-relevant separation, "same intended assembly" or "same design motif," and uncertainty and provenance couplings.</p>
+
+            <p>This is where GNNs become useful: not as universal learners of geometry, but as <strong>constraint propagation and relational synchronization machines</strong> over object-centric state.</p>
+
+            <h3>Hierarchical Compression</h3>
+
+            <p>You do not want one embedding per building, and you do not want full-fidelity geometry everywhere all the time. You want a Matryoshka-like multiscale representation: primitive-level detail when local precision matters, component-level state for edits and identity, room / zone / floor aggregates for meso-scale reasoning, and building-level summaries for global objectives.
+            <input type="checkbox" id="sn-3" class="sidenote-toggle">
+            <label for="sn-3" class="sidenote-number"></label>
+            <span class="sidenote">The strongest pattern here is probably not one monolithic latent. It is a bundle: geometric latent, semantic latent, relational latent, constraint residuals, and uncertainty state.</span>
+            </p>
+
+            <p>The compression must be progressive (more detail when needed), localized (not everything promoted to global state), typed (structural, functional, geometric, and regulatory information should not all collapse into one undifferentiated vector), and reversible enough for planning and debugging.</p>
+
+            <h3>Hard-Validity Loop</h3>
+
+            <p>This domain has too many non-negotiable constraints to rely on learned implicit validity alone. Use deterministic checks for impossible intersections, egress minima, code-distance minima, anchoring requirements, obvious structural invalidity, and hard vendor/part compatibility. Then let the learned system handle plausibility, ranking, preference, tradeoffs, search guidance, and recovery from incomplete perception. That is the right division of labor.</p>
+
+            <h2 id="where-gnns-help">Where GNNs Help, and Where They Do Not</h2>
+
+            <p>GNNs help when the key question is: how does a local change propagate through a structured relational field? Which distant objects become relevant because of support, routing, containment, or regulation? What context should synchronize across nearby and nonlocal entities?</p>
+
+            <p>GNNs do <strong>not</strong> help much if you ask them to replace the perceptual stack, learn every hard rule implicitly, operate directly on raw massive geometry without compression, or stand in for search or planning when explicit optimization is the real problem.</p>
+
+            <p>So the best system is not "GNN-first." It is: perception, compression into stable entities, typed graph reasoning, hard validation, search / RL / planner loop.</p>
+
+            <h2 id="preferred-hybrid-model">A Preferred Hybrid Model</h2>
+
+            <p><strong>Stage A: Perceptual encoding.</strong> Multi-view 2D backbone plus 3D geometric backbone. Predict Gaussian / superpoint / octree primitives. Distill open-vocabulary and texture priors from strong 2D models.</p>
+
+            <p><strong>Stage B: Object formation.</strong> Cluster and parse primitives into components. Infer canonicalized object parameters when possible. Attach uncertainty and evidence links.</p>
+
+            <p><strong>Stage C: Typed graph construction.</strong> Heterogeneous graph over components, spaces, systems, and hierarchy levels. Message passing only over relations that matter. Explicit relation typing and edge features.</p>
+
+            <p><strong>Stage D: Geometric compression.</strong> Maintain multiscale latent states. Coarsen graph for long-range reasoning. Preserve local detail through residual retrieval instead of global embedding inflation.</p>
+
+            <p><strong>Stage E: Control and optimization.</strong> Deterministic validators for hard failures. Learned energy or scoring model for soft objectives. Planner / RL / search over graph edit actions.</p>
+
+            <p>This gives you a system that is both more scalable and more legible.</p>
+
+            <h2 id="data-strategy">Data Strategy: The Real Moat</h2>
+
+            <p>The best training data is not just scans, BIM files, and labels. It is also edit histories, reviewer comments, accepted vs rejected proposals, code-check failures, exception requests, vendor substitutions, geometry repair actions, sequence-of-work traces, designer disagreement, and time-to-fix and cost-to-fix.</p>
+
+            <p>That data teaches the system where the representation was insufficient, which constraints are common failure modes, which ambiguities matter operationally, and what "good enough to move forward" actually looks like. If you are sitting on or can instrument workflow exhaust, that may be more important than the exact model choice.</p>
+
+            <h2 id="build-for-future-gains">Build for Future Model Gains</h2>
+
+            <blockquote>
+                <p>Do not build only for what current models can do. Build the system so that when models get better at invariance or compositional generalization, the product gets simpler instead of needing a rewrite.</p>
+            </blockquote>
+
+            <p>That means separating the stack into <strong>stable interfaces</strong> that should survive model progress and <strong>replaceable learned components</strong> that should improve with new backbones, pretraining, or post-training.</p>
+
+            <p><strong>What should stay stable:</strong> object identity and edit history, a typed scene graph or scene program, deterministic validators and constraint checkers, action grammar for graph edits, evidence links back to raw geometry, workflow traces and repair history, and evaluation suites for symmetry shift, composition shift, and constraint satisfaction.</p>
+
+            <p><strong>What should remain replaceable:</strong> the perceptual encoder, the geometric compression scheme, the graph and message-passing backbone, the planner or RL/search layer, the amount of hand-authored canonicalization, and the amount of explicit curriculum shaping required.</p>
+
+            <p>That is the future-proofing principle: <strong>freeze the world interface, not the current model trick.</strong></p>
+
+            <h2 id="design-response-matrix">The Design Response Matrix</h2>
+
+            <p><strong>If invariance improves but compositionality does not:</strong> the model gets better at robust perception and matching, but still weak at novel structural recombination. Simplify input normalization, keep strong validators, keep search and planning external, and use the model mainly for better grounding, grouping, and scoring.</p>
+
+            <p><strong>If compositionality improves but invariance does not:</strong> the model can reason over structure well, but perception remains brittle. Invest in better perceptual front ends and evidence tracking, keep explicit object formation, and let the stronger model operate on object/graph/program representations rather than raw geometry.</p>
+
+            <p><strong>If both improve:</strong> you can seriously tighten the loop. Perception, object formation, graph reasoning, and planning can share a more unified state. More of the repair and placement loop can become learned. Some heuristic search can be replaced with learned proposal plus validator loops. Even here, keep deterministic validators. In AEC-like domains, they are not scaffolding—they are part of the substrate.</p>
+
+            <p>The bottleneck is not whether we can run message passing on a building graph. The bottleneck is whether the system has learned the right compressions: enough locality to preserve geometry, enough object identity to persist edits, enough relational structure to propagate constraints, and enough workflow signal to know what counts as a meaningful correction.</p>
+
+            <section class="footnotes">
+                <h2 id="sources">Sources</h2>
+
+                <p><a href="https://openaccess.thecvf.com/content/CVPR2025/html/Wang_UniPre3D_Unified_Pre-training_of_3D_Point_Cloud_Models_with_Cross-Modal_CVPR_2025_paper.html">UniPre3D, CVPR 2025</a> · <a href="https://openaccess.thecvf.com/content/CVPR2025/html/Zhai_PanoGS_Gaussian-based_Panoptic_Segmentation_for_3D_Open_Vocabulary_Scene_Understanding_CVPR_2025_paper.html">PanoGS, CVPR 2025</a> · <a href="https://openaccess.thecvf.com/content/CVPR2025/html/Huang_ArcPro_Architectural_Programs_for_Structured_3D_Abstraction_of_Sparse_Points_CVPR_2025_paper.html">ArcPro, CVPR 2025</a></p>
+
+                <p><a href="https://openaccess.thecvf.com/content/ICCV2025/html/Abdelreheem_PlaceIt3D_Language-Guided_Object_Placement_in_Real_3D_Scenes_ICCV_2025_paper.html">PlaceIt3D, ICCV 2025</a> · <a href="https://openaccess.thecvf.com/content/ICCV2025/html/Li_SAS_Segment_Any_3D_Scene_with_Integrated_2D_Priors_ICCV_2025_paper.html">SAS, ICCV 2025</a> · <a href="https://openaccess.thecvf.com/content/ICCV2025/html/Liu_LangScene-X_Reconstruct_Generalizable_3D_Language-Embedded_Scenes_with_TriMap_Video_Diffusion_ICCV_2025_paper.html">LangScene-X, ICCV 2025</a></p>
+
+                <p><a href="https://arxiv.org/abs/2503.15650">Survey on Generalization Theory for GNNs, arXiv 2025</a> · <a href="https://arxiv.org/abs/2405.15071">Grokked Transformers are Implicit Reasoners, arXiv 2024</a> · <a href="https://arxiv.org/abs/2404.04125">No "Zero-Shot" Without Exponential Data, arXiv 2024</a></p>
+
+                <p><a href="https://arxiv.org/abs/2203.09739">Do Deep Networks Transfer Invariances Across Classes?, arXiv 2022</a> · <a href="https://arxiv.org/abs/2408.08823">Optimal Symmetries in Binary Classification, arXiv 2024</a></p>
+            </section>
+        </article>
+    </main>
+
+    <footer class="site-footer">
+        <p>&nbsp;</p>
+    </footer>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>
