@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resume Variants — Malachi Mabie</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+  <nav class="site-nav">
+  <a href="/" class="nav-home">Malachi Mabie</a>
+  <div class="nav-links">
+    <a href="/about.html">About</a>
+    <a href="/work.html">Work</a>
+    <a href="/research.html">Research</a>
+    <a href="/blog.html">Blog</a>
+    <a href="/garden/">Garden</a>
+    <a href="/graph/">Graph</a>
+    <a href="/mabie-industries.html">Mabie Industries</a>
+    <a href="/resume.html">Resume</a>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">&#9789;</button>
+  </div>
+</nav>
+
+  <main class="essay">
+    <header class="essay-header">
+      <h1>Resume Variants</h1>
+      <p class="essay-subtitle">Four public resumes for different conversations.</p>
+      <p class="essay-meta">Public PDFs with phone number removed.</p>
+    </header>
+
+    <article class="essay-content">
+      <section class="source-preserve">
+        <h2>Choose a focus</h2>
+        <p>Use the version that matches the conversation: systems, research, security, or physical-world ML.</p>
+
+        <div class="resume-tabs" role="tablist" aria-label="Resume variants">
+          <button class="resume-tab active" data-key="systems" role="tab" aria-selected="true">AI Systems</button>
+          <button class="resume-tab" data-key="research" role="tab" aria-selected="false">AI Research</button>
+          <button class="resume-tab" data-key="security" role="tab" aria-selected="false">AI Security</button>
+          <button class="resume-tab" data-key="physical" role="tab" aria-selected="false">AI for Physical Systems</button>
+        </div>
+
+        <p id="resume-caption" class="resume-caption"></p>
+        <p class="resume-caption"><strong>Privacy:</strong> these public PDFs are redacted (no phone number). For direct outreach, use LinkedIn or X DM.</p>
+
+        <p class="resume-actions">
+          <a id="resume-open" href="/assets/resumes/resume_ai_systems.pdf" target="_blank" rel="noopener">Open in new tab</a>
+          ·
+          <a id="resume-download" href="/assets/resumes/resume_ai_systems.pdf" download>Download PDF</a>
+        </p>
+
+        <iframe id="resume-frame" class="source-frame" src="/assets/resumes/resume_ai_systems.pdf" title="Resume preview"></iframe>
+      </section>
+
+      <section class="source-preserve">
+        <h2>Contact</h2>
+        <p>Best channel: LinkedIn message.</p>
+        <p>Fast channel: X DM at <a href="https://x.com/init_malachi" target="_blank" rel="noopener">@init_malachi</a>.</p>
+        <p><a href="https://www.linkedin.com/in/mlmabie/" target="_blank" rel="noopener">Message on LinkedIn</a></p>
+      </section>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <p>&nbsp;</p>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    (function () {
+      const resumes = {
+        systems: {
+          caption: 'Architecture, deployment, and reliability for production systems operating under real latency, cost, and failure constraints.',
+          pdf: '/assets/resumes/resume_ai_systems.pdf'
+        },
+        research: {
+          caption: 'Model design, experimental method, evaluation discipline, and technical communication.',
+          pdf: '/assets/resumes/resume_ai_research.pdf'
+        },
+        security: {
+          caption: 'Security posture: adversarial analysis, secure pipeline design, and fault-tolerant operational controls.',
+          pdf: '/assets/resumes/resume_ai_security.pdf'
+        },
+        physical: {
+          caption: 'Embodied AI orientation: robotics, controls, and the interface between learned models and physical-world constraints.',
+          pdf: '/assets/resumes/resume_ai_physical.pdf'
+        }
+      };
+
+      const tabs = document.querySelectorAll('.resume-tab');
+      const caption = document.getElementById('resume-caption');
+      const frame = document.getElementById('resume-frame');
+      const openLink = document.getElementById('resume-open');
+      const downloadLink = document.getElementById('resume-download');
+
+      function switchResume(key) {
+        if (!resumes[key]) return;
+        const item = resumes[key];
+
+        tabs.forEach(t => {
+          const active = t.dataset.key === key;
+          t.classList.toggle('active', active);
+          t.setAttribute('aria-selected', active ? 'true' : 'false');
+        });
+
+        caption.textContent = item.caption;
+        frame.src = item.pdf;
+        openLink.href = item.pdf;
+        downloadLink.href = item.pdf;
+      }
+
+      tabs.forEach(t => t.addEventListener('click', () => switchResume(t.dataset.key)));
+      switchResume('systems');
+    })();
+  </script>
+</body>
+</html>

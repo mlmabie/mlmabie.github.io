@@ -3,84 +3,238 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Malachi Mabie</title>
+    <meta name="description" content="Malachi Mabie is an AI/ML research engineer working across physical AI, robotics, CAD, manufacturing, and reliable agent systems.">
+    <meta name="theme-color" content="#f3f0e9" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#121716" media="(prefers-color-scheme: dark)">
+    <meta property="og:title" content="Malachi Mabie — AI/ML Research Engineer">
+    <meta property="og:description" content="Research engineering for systems where models meet physical constraints.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://malachimabie.com/">
+    <title>Malachi Mabie — AI/ML Research Engineer</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 </head>
 <body>
+    <a class="skip-link" href="#content">Skip to content</a>
     <nav class="site-nav">
-        <a href="/" class="nav-home">Malachi Mabie</a>
-        <div class="nav-links">
-            <a href="/about.html">About</a>
-            <a href="/writing/">Writing</a>
-            <a href="/now.html">Now</a>
-            <a href="/marginalia.html">Marginalia</a>
-            <a href="/garden/">Garden</a>
-            <a href="/graph/">Graph</a>
-            <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">&#9789;</button>
-        </div>
-    </nav>
+  <a href="/" class="nav-home">Malachi Mabie</a>
+  <div class="nav-links">
+    <a href="/about.html">About</a>
+    <a href="/writing/">Writing</a>
+    <a href="/work.html">Work</a>
+    <a href="/research.html">Research</a>
+    <a href="/blog.html">Blog</a>
+    <a href="/garden/">Garden</a>
+    <a href="/graph/">Graph</a>
+    <a href="/mabie-industries.html">Mabie Industries</a>
+    <a href="/resume.html">Resume</a>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">&#9789;</button>
+  </div>
+</nav>
 
-    <main class="home">
+    <main class="home" id="content">
         <header class="site-header">
-            <h1>Malachi Mabie</h1>
+            <p class="site-kicker">AI/ML research engineer · physical systems</p>
+            <h1>I find the real problem, then build the system that can answer it.</h1>
             <p class="site-description">
-                Writing about systems, compression, and the structures
-                that hold ideas together. <a href="/about.html">About me</a>.
+                I work where models meet physical constraints: robotics, CAD, manufacturing, agent environments, and high-stakes software.
             </p>
+            <p class="site-note">
+                Based in Santa Barbara. Open to ambitious Bay Area teams, including a staged move north, and to unusually strong remote work.
+            </p>
+            <div class="hero-actions" aria-label="Primary links">
+                <a class="button-link button-link-primary" href="/work.html">See selected work <span aria-hidden="true">&#8594;</span></a>
+                <a class="button-link" href="/resume.html">Resume</a>
+            </div>
         </header>
 
+        <section class="featured-work" aria-labelledby="featured-work-title">
+            <div class="section-heading">
+                <p class="section-label">Selected work</p>
+                <h2 id="featured-work-title">From physical constraints to inspectable evidence.</h2>
+            </div>
+
+            <a class="featured-card featured-card-lead" href="/work.html#amr">
+                <div class="featured-card-copy">
+                    <p class="card-meta"><span>Current</span> Advanced Metal Research</p>
+                    <h3>Robot motion planning for real welds</h3>
+                    <p>A test-driven planning harness that compares candidate robot paths against reachability, collision risk, motion quality, torch angle, and cycle time.</p>
+                    <span class="text-link">Read the project brief <span aria-hidden="true">&#8594;</span></span>
+                </div>
+                <div class="path-study" aria-hidden="true">
+                    <svg viewBox="0 0 560 320" role="img">
+                        <defs>
+                            <linearGradient id="pathFade" x1="0" y1="0" x2="1" y2="1">
+                                <stop offset="0" stop-color="currentColor" stop-opacity=".08"/>
+                                <stop offset="1" stop-color="currentColor" stop-opacity=".26"/>
+                            </linearGradient>
+                        </defs>
+                        <path class="path-grid" d="M40 52H520M40 108H520M40 164H520M40 220H520M40 276H520M72 28V292M176 28V292M280 28V292M384 28V292M488 28V292"/>
+                        <path class="path-ghost" d="M45 252C110 245 125 158 196 174S292 265 352 198 437 67 515 87"/>
+                        <path class="path-main" d="M45 252C116 224 123 136 198 151S294 244 356 181 442 49 515 87"/>
+                        <g class="path-points">
+                            <circle cx="45" cy="252" r="6"/><circle cx="198" cy="151" r="6"/><circle cx="356" cy="181" r="6"/><circle cx="515" cy="87" r="6"/>
+                        </g>
+                        <path class="path-sweep" d="M45 252L198 151L356 181L515 87L515 276L45 276Z" fill="url(#pathFade)"/>
+                    </svg>
+                    <div class="study-key"><span>candidate path</span><span>bounded evaluation</span></div>
+                </div>
+            </a>
+
+            <div class="featured-grid">
+                <a class="featured-card featured-card-image" href="/mechanical.html">
+                    <img src="/assets/images/fixture-workbench.jpg" alt="Custom manufacturing fixture on a workbench" loading="lazy" width="1200" height="900">
+                    <div class="featured-card-copy">
+                        <p class="card-meta">Applied Medical · manufacturing</p>
+                        <h3>Tooling that survives the factory</h3>
+                        <p>CAD, prototypes, fixtures, robotic EOAT, qualification, and shop-floor debugging.</p>
+                    </div>
+                </a>
+                <a class="featured-card featured-card-image" href="/graph-modeling.html">
+                    <img src="/assets/images/cursed-regions.png" alt="Diagram mapping model performance across familiar and unfamiliar regions" loading="lazy" width="1200" height="750">
+                    <div class="featured-card-copy">
+                        <p class="card-meta">Graph ML · applied epistemics</p>
+                        <h3>Make failure visible before optimizing it</h3>
+                        <p>Typed relations, deterministic validators, calibrated uncertainty, and reviewable model state.</p>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <section class="home-principles" aria-label="How I work">
+            <div><span>See</span><strong>Find the decision hiding inside the noise.</strong></div>
+            <div><span>Shape</span><strong>Give the team a clearer object to work on.</strong></div>
+            <div><span>Test</span><strong>Turn taste into evidence and the next move.</strong></div>
+        </section>
+
         <section class="essays-list">
-            <article class="essay-preview">
-                <a href="essays/compression-ecology.html">
-                    <h2>A Compression Ecology Between Motivation and Inspiration</h2>
-                    <time datetime="2019-12">Fall 2019</time>
-                    <p class="preview-text">
-                        On predictive attention, motivation vectors, and the
-                        organizing systems that bridge instinct and reason.
-                    </p>
-                </a>
-            </article>
+            <section class="home-group" aria-labelledby="explore">
+                <h2 id="explore" class="home-group-title">Explore</h2>
 
-            <article class="essay-preview">
-                <a href="essays/fiction-is-all-that-is-seen.html">
-                    <h2>Fiction is All That is Seen</h2>
-                    <time datetime="2017">2017</time>
-                    <p class="preview-text">
-                        Plato's Cave Allegory and the necessitation of narrative.
-                        On perception, enlightenment, and the war on noticing.
-                    </p>
-                </a>
-            </article>
+                <article class="essay-preview">
+                    <a href="about.html">
+                        <h3>About</h3>
+                        <p class="preview-text">
+                            Mechanisms, music, manufacturing, cognitive science, and AI systems.
+                        </p>
+                    </a>
+                </article>
 
-            <article class="essay-preview">
-                <a href="essays/something-thats-sound.html">
-                    <h2>Something that's Sound</h2>
-                    <time datetime="2017">2017</time>
-                    <p class="preview-text">
-                        Architecturally actualized narrative. Music, harmonic structure,
-                        and the six core trajectories of story.
-                    </p>
-                </a>
-            </article>
+                <article class="essay-preview">
+                    <a href="research.html">
+                        <h3>Research Map</h3>
+                        <p class="preview-text">
+                            Cursed regions, cognitive security, graph boundaries, agent environments, and physical AI.
+                        </p>
+                    </a>
+                </article>
 
-            <article class="essay-preview">
-                <a href="essays/maxwells-mindset.html">
-                    <h2>Mindful at Every Step</h2>
-                    <time datetime="2017">2017</time>
-                    <p class="preview-text">
-                        The compelling mindset of James Maxwell. On purity of mind,
-                        philosophical detachment, and architecture into the invisible.
-                    </p>
-                </a>
-            </article>
+                <article class="essay-preview">
+                    <a href="resume.html">
+                        <h3>Resume</h3>
+                        <p class="preview-text">
+                            Public resume variants for systems, research, security, and physical-world ML.
+                        </p>
+                    </a>
+                </article>
+
+                <article class="essay-preview">
+                    <a href="marginalia.html">
+                        <h3>Marginalia</h3>
+                        <p class="preview-text">
+                            Fragments and working principles on design, intelligence, attention, work, and narrative.
+                        </p>
+                    </a>
+                </article>
+            </section>
+
+            <section class="home-group" aria-labelledby="themes">
+                <h2 id="themes" class="home-group-title">Current Themes</h2>
+
+                <article class="essay-preview">
+                    <a href="applied-epistemics.html">
+                        <h3>Applied Epistemics</h3>
+                        <p class="preview-text">
+                            Make the environment truthful before asking the model to improve.
+                        </p>
+                    </a>
+                </article>
+
+                <article class="essay-preview">
+                    <a href="agent-environments.html">
+                        <h3>Agent Environments</h3>
+                        <p class="preview-text">
+                            Post-training depends on state, tools, traces, verifiers, and localized feedback.
+                        </p>
+                    </a>
+                </article>
+
+                <article class="essay-preview">
+                    <a href="mabie-industries.html">
+                        <h3>Mabie Industries</h3>
+                        <p class="preview-text">
+                            Verifier-backed AI systems for expert workflows where failure has a real cost.
+                        </p>
+                    </a>
+                </article>
+            </section>
+
+            <section class="home-group" aria-labelledby="blog">
+                <h2 id="blog" class="home-group-title">Blog</h2>
+
+                <article class="essay-preview">
+                    <a href="essays/three-architectures-of-ascent.html">
+                        <h3>Three Alignment Architectures</h3>
+                        <p class="preview-text">
+                            Self, ground, ascent, and why alignment keeps returning to ancient metaphysical forks.
+                        </p>
+                    </a>
+                </article>
+
+                <article class="essay-preview">
+                    <a href="essays/compression-ecology.html">
+                        <h3>A Compression Ecology</h3>
+                        <p class="preview-text">
+                            Why attention needs a motivational vector—and why instinct or reason alone cannot orient a mind beyond what it already knows.
+                        </p>
+                    </a>
+                </article>
+
+                <article class="essay-preview">
+                    <a href="essays/fiction-is-all-that-is-seen.html">
+                        <h3>Fiction is All That is Seen</h3>
+                        <p class="preview-text">
+                            When perception is partial, narrative bridges what we see, what we infer, and what we are prepared to believe.
+                        </p>
+                    </a>
+                </article>
+
+                <article class="essay-preview">
+                    <a href="essays/narrative-architecture.html">
+                        <h3>Narrative Architecture</h3>
+                        <p class="preview-text">
+                            Harmony, analogy, narrative, and the structures through which we make sense of the world.
+                        </p>
+                    </a>
+                </article>
+
+                <article class="essay-preview">
+                    <a href="essays/maxwells-mindset.html">
+                        <h3>Mindful at Every Step</h3>
+                        <p class="preview-text">
+                            How James Clerk Maxwell joined disciplined analogy, philosophical caution, and scientific faith.
+                        </p>
+                    </a>
+                </article>
+            </section>
+
         </section>
     </main>
 
     <footer class="site-footer">
-        <p>&nbsp;</p>
+        <p><a href="/archive.html">Archive</a></p>
     </footer>
 
     <script src="js/main.js"></script>

@@ -1,14 +1,22 @@
 # mlmabie.github.io
 
-Personal site — essays, knowledge graph, and garden visualization. Static HTML hosted on GitHub Pages.
+Personal site: work, research, essays, marginalia, music, and public graph views. Static HTML hosted on GitHub Pages.
 
 ## Structure
 
 ```
 ├── index.html              # Homepage
+├── work.html / research.html
+├── blog.html               # New public writing index
+├── mabie-industries.html   # Commercial surface
+├── applied-epistemics.html
+├── agent-environments.html
+├── archive.html            # Secondary material
 ├── about.html / now.html   # Bio and current focus
+├── mechanical.html / music.html
+├── resume.html             # Public redacted resume variants
 ├── marginalia.html         # Aphorisms & fragments
-├── essays/                 # Long-form writing
+├── essays/                 # Long-form writing and blog posts
 ├── graph/                  # Interactive knowledge graph (3 topology views)
 │   └── preload.json        # Deployed from notes-network pipeline
 ├── garden/                 # Three.js garden visualization

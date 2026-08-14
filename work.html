@@ -1,529 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Work — Malachi Mabie</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <style>
-        .work-tabs {
-            max-width: var(--content-width);
-            margin: 0 0 2rem;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.4rem 0.8rem;
-        }
-        .work-tab {
-            font-family: var(--font-mono);
-            font-size: 0.72rem;
-            color: var(--text-faint);
-            background: none;
-            border: none;
-            padding: 0.25rem 0;
-            cursor: pointer;
-            border-bottom: 1px solid transparent;
-            transition: color var(--transition-fast), border-color var(--transition-fast);
-            white-space: nowrap;
-        }
-        .work-tab:hover { color: var(--accent); }
-        .work-tab.active {
-            color: var(--text);
-            border-bottom-color: var(--accent);
-        }
-        .work-panel {
-            display: none;
-            max-width: var(--content-width);
-        }
-        .work-panel.active { display: block; }
-        .work-panel h2 {
-            font-size: 1.4rem;
-            margin: 0 0 0.5rem;
-        }
-        .work-panel .work-era {
-            font-family: var(--font-mono);
-            font-size: 0.8rem;
-            color: var(--text-faint);
-            margin-bottom: 1rem;
-            display: block;
-        }
-        .work-panel p { margin: 0 0 1rem; }
-        .work-panel ul {
-            margin: 0 0 1.5rem;
-            padding-left: 1.2rem;
-        }
-        .work-panel li {
-            margin-bottom: 0.4rem;
-            font-size: 0.95rem;
-        }
-        .work-panel .artifact {
-            font-family: var(--font-mono);
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            padding: 0.8rem 1rem;
-            background: var(--bg-alt);
-            border-radius: 4px;
-            margin: 1rem 0;
-        }
-        .work-panel .artifact a {
-            color: var(--accent);
-            text-decoration: underline;
-            text-underline-offset: 2px;
-        }
-        .work-panel blockquote {
-            margin: 1.5rem 0;
-            padding: 1rem 1.5rem;
-            background: var(--bg-alt);
-            border-left: 3px solid var(--border);
-            font-style: italic;
-        }
-        .work-panel blockquote p { margin: 0; }
-        .work-intro {
-            max-width: var(--content-width);
-            margin-bottom: 2rem;
-            color: var(--text-muted);
-            font-size: 0.95rem;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Selected Work | Malachi Mabie</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 </head>
 <body>
-    <nav class="site-nav">
-        <a href="/" class="nav-home">Malachi Mabie</a>
-        <div class="nav-links">
-            <a href="/">Essays</a>
-            <a href="/about.html">About</a>
-            <a href="/writing/">Writing</a>
-            <a href="/now.html">Now</a>
-            <a href="/marginalia.html">Marginalia</a>
-            <a href="/garden/">Garden</a>
-            <a href="/graph/">Graph</a>
-            <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">&#9789;</button>
-        </div>
-    </nav>
-
-    <main class="essay">
-        <header class="essay-header">
-            <h1>Work</h1>
-            <p class="essay-subtitle">Interests, specialties, and proof of work</p>
-        </header>
-
-        <p class="work-intro">
-            Thirteen years of compressing complexity into reliable systems. The through-line is scaling intention&mdash;from pneumatic fixtures to graph neural networks to agent harnesses. Each tab is a domain I&rsquo;ve worked in with artifacts and specifics. Some are polished, some are scrappy, all are real.
-        </p>
-
-        <div class="work-tabs" id="work-tabs">
-            <button class="work-tab active" data-panel="agents">Agentic Coding</button>
-            <button class="work-tab" data-panel="post-training">Post-Training &amp; RL</button>
-            <button class="work-tab" data-panel="interp">Interpretability</button>
-            <button class="work-tab" data-panel="gnns">GNNs &amp; Associative Memory</button>
-            <button class="work-tab" data-panel="embeddings">Embeddings &amp; Optimization</button>
-            <button class="work-tab" data-panel="cybersecurity">Cybersecurity &amp; Vuln</button>
-            <button class="work-tab" data-panel="distributed">Decentralized Systems</button>
-            <button class="work-tab" data-panel="systems">Systems &amp; Infra</button>
-            <button class="work-tab" data-panel="defense">Defense Tech</button>
-            <button class="work-tab" data-panel="cogsci">Cognitive Science</button>
-            <button class="work-tab" data-panel="neural-data">Neural Data Science</button>
-            <button class="work-tab" data-panel="epistemology">Epistemology</button>
-            <button class="work-tab" data-panel="manufacturing">Manufacturing &amp; Automation</button>
-            <button class="work-tab" data-panel="robotics">Robotics &amp; Manipulators</button>
-            <button class="work-tab" data-panel="cad">CAD &amp; Design Engineering</button>
-            <button class="work-tab" data-panel="fullstack">Full Stack &amp; Product</button>
-            <button class="work-tab" data-panel="hci">Human-AI Interaction</button>
-            <button class="work-tab" data-panel="music">Music &amp; Composition</button>
-            <button class="work-tab" data-panel="signal">Signal Processing</button>
-            <button class="work-tab" data-panel="photography">Photography &amp; Painting</button>
-            <button class="work-tab" data-panel="philosophy">Natural Philosophy</button>
-            <button class="work-tab" data-panel="surfing">Surfing</button>
-            <button class="work-tab" data-panel="life">Coffee, Family, Life</button>
-        </div>
-
-        <!-- AGENTIC CODING & DEV EX -->
-        <div class="work-panel active" id="panel-agents">
-            <h2>Agentic Coding &amp; Developer Experience</h2>
-            <span class="work-era">2024&ndash;present</span>
-
-            <p>Agent harnesses should be thin interfaces to scalable computation, not the place you stash the intelligence. If model capability doubles next year, does your system get dramatically simpler without major refactors? That&rsquo;s the test.</p>
-
-            <p>Built an OTP-based agent runtime (Elixir) with signal classification, 3-store memory (working/episodic/semantic), and cognitive security layer. The architecture is product-first: Eben is the brain, products are the hands. Custom only where it matters&mdash;signal classification, memory, coordination logic. Everything else delegates to existing tools (Claude Code, Codex CLI, Slack).</p>
-
-            <ul>
-                <li>MCP tool orchestration, context engineering, recursive delegation</li>
-                <li>Harness engineering: self-verification, tracing, middleware patterns</li>
-                <li>Running Claude Code 12&ndash;16 hours/day since launch. Model selection matters (Sonnet for code, Opus for reasoning). Session management, Docker orchestration, background agent coordination via git</li>
-                <li>Conviction: &ldquo;Claude Code is the purest Tool for Thought when equipped with Skills to guide its thinking&rdquo;</li>
-            </ul>
-
-            <blockquote><p>Don&rsquo;t freeze your guess of the right specialists into the architecture.</p></blockquote>
-        </div>
-
-        <!-- POST-TRAINING & RL -->
-        <div class="work-panel" id="panel-post-training">
-            <h2>Post-Training &amp; Reinforcement Learning</h2>
-            <span class="work-era">2022&ndash;present · RAM Labs, consulting</span>
-
-            <p>The interesting work is in the hill climbing: reward-shaped eval, active learning, curriculum training, system 1&ndash;2 distillation. At RAM I built data-centric pipelines where synthetic generation, eval design, and structured generation mattered more than compute. Getting high-quality cherry data was even more important than architecture.</p>
-
-            <ul>
-                <li>RL: PPO, DPO, GRPO, DQN, MCTS, hierarchical RL (Options framework, feudal networks)</li>
-                <li>Continued pretraining with self-supervision variants, rejection sampling, bootstrapping</li>
-                <li>T-UEBA: RL-first design&mdash;reward-shaped eval, active learning, curriculum training. 95% accuracy, 15MB model (400&times; smaller than baseline)</li>
-                <li>Scoring/metric design for SBIR proposals: translating research objectives into measurable deliverables across 15+ funded proposals</li>
-                <li>Conditioning via energy-based models (modern Hopfield networks) to steer behavior analysis</li>
-            </ul>
-
-            <p>Much of the role at RAM was meta-research: turning the firehose of publications into SBIR narratives and actionable technical direction. 4&times; T4 GPUs. Implemented FSDP, custom flash attention same week it was announced.</p>
-        </div>
-
-        <!-- INTERPRETABILITY -->
-        <div class="work-panel" id="panel-interp">
-            <h2>Mechanistic Interpretability &amp; Controls</h2>
-            <span class="work-era">2024&ndash;present</span>
-
-            <p>Shift from read-only interpretability to methods that close the loop into optimization, modularity, architecture. Did this manually at RAM&mdash;sparse autoencoders informing design decisions, circuit-level reasoning about what features the GNN was learning. Newer methods automate and scale this.</p>
-
-            <ul>
-                <li>Sparse autoencoders on T-UEBA: interpretable feature extraction from learned representations, used to steer architecture decisions</li>
-                <li>Energy-based conditioning: Hopfield-inspired module (HopCPT) for behavior steering with calibrated uncertainty via conformal prediction</li>
-                <li>Following: transcoders, crosscoders, activation steering, control vectors, Singular Learning Theory, developmental interpretability</li>
-                <li>Low-rank sparse attention layers, rank-1 decomposition for attention computation, generative latent priors over activation space</li>
-                <li>SAEs as first-class citizens: the less you understand it, the more GPUs it takes</li>
-            </ul>
-
-            <p>CogSci degree means I approach representation learning with intuitions about how structure should emerge from data. The essays (&ldquo;Compression Ecology,&rdquo; &ldquo;Fiction is All That is Seen&rdquo;) are about this same problem from the human cognition side.</p>
-        </div>
-
-        <!-- GNNs & ASSOCIATIVE MEMORY -->
-        <div class="work-panel" id="panel-gnns">
-            <h2>Graph Neural Networks &amp; Associative Memory</h2>
-            <span class="work-era">2022&ndash;2025 · RAM Labs (PI)</span>
-
-            <p>Principal Investigator on $250k Army SBIR. Designed CC-GAT (Continuous-time Contextual Graph Attention) with heterogeneous temporal message passing over user-resource-action graphs. HopCPT module: modern Hopfield network + conformal prediction for calibrated out-of-distribution detection with coverage guarantees.</p>
-
-            <ul>
-                <li>95% accuracy, 0.887 F1, 15ms/graph (7.9&times; faster), 15MB model (400&times; smaller), &lt;3% FPR</li>
-                <li>Graph schema design mattered as much as neural architecture</li>
-                <li>Proposals authored: HopModKG (Hopfield-based modular knowledge graphs, Navy), LEAR (federated GNN-RAG, Air Force&mdash;one of my strongest concepts), Warfighter AI (transferable RL via Kolmogorov-Arnold Networks)</li>
-                <li>Scaling GNNs, SAEs, Hopfield networks: distributed gradient sparsification, energy state synchronization, distributed queue architectures</li>
-            </ul>
-
-            <div class="artifact">T-UEBA Phase II proposal: heterogeneous temporal GNN with System 1&ndash;2 multi-plane Hopfield energy modeling. Positioning for $2M Phase II.</div>
-        </div>
-
-        <!-- EMBEDDINGS & OPTIMIZATION -->
-        <div class="work-panel" id="panel-embeddings">
-            <h2>Embeddings &amp; Optimization</h2>
-            <span class="work-era">2019&ndash;present</span>
-
-            <p>Late interaction, sparse encoding, modular manifolds, matroshka embeddings. Information geometry as a lens on what models actually learn. Convex optimization coursework at UCSD, then applied to conformal prediction, calibration, and representation alignment in practice.</p>
-
-            <ul>
-                <li>Contrastive &amp; self-supervised learning (SimCLR-style, masked language modeling)</li>
-                <li>Parameter-efficient fine-tuning: LoRA, QLoRA, adapters, prefix tuning</li>
-                <li>Knowledge distillation: teacher-student frameworks, soft targets, feature matching</li>
-                <li>Higher-order optimization: meta-learning, learning rate scheduling as optimization over optimization</li>
-                <li>PEFT at RAM: getting maximum signal from constrained compute (4&times; T4 GPUs)</li>
-            </ul>
-        </div>
-
-        <!-- CYBERSECURITY -->
-        <div class="work-panel" id="panel-cybersecurity">
-            <h2>Cybersecurity, IoT, C/C++ Vulnerabilities</h2>
-            <span class="work-era">2020&ndash;2025 · RAM Labs, DARPA</span>
-
-            <p>Three distinct DARPA-funded AI security programs plus a patent.</p>
-
-            <ul>
-                <li><strong>DARPA AIxCC:</strong> AI vulnerability harness&mdash;orchestrated SLMs and foundation models (RoBERTa, GraphCodeBERT, CodeT5++, LLaMA QLoRA) with RL-driven online feedback loop. Static analysis &rarr; decompilation &rarr; runtime verification. PyTorch hook into high-performance C++ runtime</li>
-                <li><strong>DL-Patcher:</strong> Automated vulnerability patching via deep learning. Patent U.S. 18/375,839. MDA Phase I ($150k) + Phase II ($1.5M)</li>
-                <li><strong>COG-SAFE (DARPA FACT):</strong> LLM cognitive security for agent transactions&mdash;trust verification, behavioral monitoring, adversarial robustness. Georgia Tech collaboration. Represented RAM at Google</li>
-                <li><strong>DL-RTV:</strong> Deep Learning Run Time Verifier. Trains transformers on vulnerable input patterns (offline), monitors combat management system behavior (online). Navy Phase I ($239k)</li>
-                <li>Ontology development for vulnerability classification. Binary analysis integration with decompilation tools</li>
-            </ul>
-
-            <div class="artifact">Patent: U.S. Application No. 18/375,839 &mdash; &ldquo;Automated Bug Fixing Using Deep Learning Including Pre-training and Fine-Tuning&rdquo;</div>
-        </div>
-
-        <!-- DECENTRALIZED -->
-        <div class="work-panel" id="panel-distributed">
-            <h2>Decentralized Networking &amp; Inference</h2>
-            <span class="work-era">2022&ndash;present · RAM Labs, DeepShard, Gensyn</span>
-
-            <p>Actually built distributed AI systems under real constraints&mdash;15ms latency budgets, 15MB model size limits, adversarial network conditions.</p>
-
-            <ul>
-                <li><strong>DAICON:</strong> Fused Tile Partitioning for splitting model computation across heterogeneous tactical edge devices. Custom PyTorch backend for model-agnostic convolution distribution. NDN (Named Data Networking) content-centric model shard routing</li>
-                <li><strong>pySABRE:</strong> Containerized blockchain consensus simulation&mdash;PBFT, HotStuff, Streamlet. Sharding performance analysis, Byzantine fault tolerance. Integration with C++ EMANE NDN-SABRE tactical networking</li>
-                <li><strong>DeepShard:</strong> Visiting researcher. Agent network protocols, system memory architecture for decentralized AI. 21e8 Ltd affiliate</li>
-                <li><strong>Gensyn:</strong> Passed full technical evaluation for decentralized RL swarm training</li>
-            </ul>
-        </div>
-
-        <!-- SYSTEMS & INFRA -->
-        <div class="work-panel" id="panel-systems">
-            <h2>Systems Programming &amp; Chip Design</h2>
-            <span class="work-era">2019&ndash;2021 · Endura Technologies, UCSD</span>
-
-            <p>Quantized audio signal transforms via CNNs for tiny-ML deployment on custom AI accelerator ASICs at Endura Technologies. Java-based instrumentation control platform for SoC testing. Systems programming and HPC coursework at UCSD.</p>
-
-            <ul>
-                <li>Tiny-ML: model quantization, fixed-point arithmetic, memory-constrained inference</li>
-                <li>SoC test automation: Java instrumentation platform for chip characterization</li>
-                <li>C, C++, Assembly. Systems programming. High-performance computing</li>
-                <li>UCSD coursework: data structures, algorithms, systems programming, HPC</li>
-            </ul>
-        </div>
-
-        <!-- DEFENSE TECH -->
-        <div class="work-panel" id="panel-defense">
-            <h2>Defense Tech</h2>
-            <span class="work-era">2022&ndash;2025 · RAM Laboratories</span>
-
-            <p>Three years as technical lead and Principal Investigator across Army, Navy, Air Force, MDA, and DARPA programs. Authored 15+ SBIR/STTR proposals. The constraints are real: contested networks, edge compute, adversarial conditions, zero tolerance for false positives.</p>
-
-            <ul>
-                <li>T-UEBA: Zero Trust behavior analytics for tactical networks (Army, $250k)</li>
-                <li>DL-Patcher: Automated code repair (MDA, $1.65M across phases)</li>
-                <li>AIxCC: AI vulnerability harness (DARPA)</li>
-                <li>COG-SAFE: LLM cognitive security (DARPA FACT, with Georgia Tech)</li>
-                <li>DAICON: Distributed edge inference (Army, $1.2M+ across phases)</li>
-                <li>DL-RTV: Runtime verification (Navy, $239k)</li>
-                <li>pySABRE: Blockchain consensus for tactical NDN (Army)</li>
-                <li>Proposals: HopModKG, LEAR, Warfighter AI, DEMMV, VAAST, Army Translation LLM, HAYSTAC, and more</li>
-            </ul>
-
-            <p>The difference between defense ML and everything else: you can&rsquo;t restart, you can&rsquo;t ask for more data, and you can&rsquo;t say &ldquo;it usually works.&rdquo;</p>
-        </div>
-
-        <!-- COGNITIVE SCIENCE -->
-        <div class="work-panel" id="panel-cogsci">
-            <h2>Cognitive Science</h2>
-            <span class="work-era">2018&ndash;2021 · UC San Diego</span>
-
-            <p>B.S. Cognitive Science: Machine Learning &amp; Neural Computation. I decided that my interest in analytically modeling, understanding, and justifying intuition was going to distract me so much from anything else I tried to do, that I might as well spend the next few years explicitly devoted to it.</p>
-
-            <ul>
-                <li>RL with Mattar, neural data science with Voytek, The Design Lab with Hyundai and Ford</li>
-                <li>Distributed cognition (Hutchins): stereotypes as emergent memetic property within DCOG framework</li>
-                <li>Predictive coding: compression as the mechanism linking motivation to inspiration</li>
-                <li>Sensemaking and organizing: how people construct coherence from ambiguity</li>
-                <li>Neural computation: the bridge between biological and artificial learning systems</li>
-            </ul>
-
-            <blockquote><p>My approach is to abstract, to apply transcendental understanding. This is why it is natural for my first major to be in cognitive science.</p></blockquote>
-        </div>
-
-        <!-- NEURAL DATA SCIENCE -->
-        <div class="work-panel" id="panel-neural-data">
-            <h2>Cortical Organoids &amp; Neural Data Science</h2>
-            <span class="work-era">2019&ndash;2021 · UCSD</span>
-
-            <p>Neural data science with Bradley Voytek. Spike sorting, spectral analysis, oscillatory dynamics. The coursework that made the bridge between neuroscience and ML concrete: the same math describes both biological and artificial neural systems, but the constraints are different.</p>
-
-            <ul>
-                <li>Neural signal processing: spectral analysis, time-frequency decomposition, event-related potentials</li>
-                <li>Cortical organoids: lab-grown neural tissue as experimental substrate for studying emergent computation</li>
-                <li>The question that drove the degree: how does structure emerge from learning, in brains and in networks?</li>
-            </ul>
-        </div>
-
-        <!-- EPISTEMOLOGY -->
-        <div class="work-panel" id="panel-epistemology">
-            <h2>Epistemology &amp; Natural Philosophy</h2>
-            <span class="work-era">2017&ndash;present</span>
-
-            <p>Three essays published on this site explore the same question from different angles: how does perception shape understanding, and how do structures of knowledge constrain what we can discover?</p>
-
-            <ul>
-                <li><a href="/essays/fiction-is-all-that-is-seen.html">&ldquo;Fiction is All That is Seen&rdquo;</a> &mdash; Plato&rsquo;s Cave, narrative as translator between reality and cognition</li>
-                <li><a href="/essays/maxwells-mindset.html">&ldquo;Mindful at Every Step&rdquo;</a> &mdash; Maxwell&rsquo;s purity of mind, architecture on uncertain foundations</li>
-                <li><a href="/essays/something-thats-sound.html">&ldquo;Something that&rsquo;s Sound&rdquo;</a> &mdash; harmonic structure, Schoenberg, the six core story trajectories</li>
-                <li><a href="/essays/compression-ecology.html">&ldquo;Compression Ecology&rdquo;</a> &mdash; predictive attention as ecological niche between motivation and inspiration</li>
-            </ul>
-
-            <p>Hamilton taught that causal and analogical thinking are necessitated by the limitations of the brain: all one learns of the world is gained through the senses, liable to distortion; producing knowledge that is relative rather than absolute. The dynamical tradition in physics is propelled from that understanding.</p>
-
-            <blockquote><p>We search for what is architecturally sound. It is in this search that logic and spirit coincide.</p></blockquote>
-        </div>
-
-        <!-- MANUFACTURING -->
-        <div class="work-panel" id="panel-manufacturing">
-            <h2>Manufacturing &amp; Automation</h2>
-            <span class="work-era">2013&ndash;2018 · Applied Medical</span>
-
-            <p>Five years designing pneumatic robotic tools, end-of-arm tooling, and fixtures for medical device manufacturing. Polymer injection molding, metal injection molding. Concept to production, in a facility where complexity compresses into reliability or people get hurt.</p>
-
-            <ul>
-                <li>Final project saved $100k/month in operating variance for metal injection molding subassembly</li>
-                <li>Robotic manipulators from concept to assembly for polymer injection molding lines</li>
-                <li>Process development: material characterization, tolerance analysis, SPC, qualification</li>
-                <li>Started as intern at 16, progressed to technician, then design engineer while studying physics at IVC</li>
-            </ul>
-
-            <p>The instinct from this era never left: separate what changes from what must be stable. Same principle applied to T-UEBA pipeline, Drone Institute architecture, agent harness design.</p>
-        </div>
-
-        <!-- ROBOTICS -->
-        <div class="work-panel" id="panel-robotics">
-            <h2>Robotics &amp; Manipulator Design</h2>
-            <span class="work-era">2007&ndash;2018 · FIRST Robotics, Applied Medical</span>
-
-            <p>Six years of FIRST Robotics (FRC 1425 &amp; 3476), then five years of industrial robotic tooling. World Champion at 16 as design co-lead. That win got me hired at Applied Medical.</p>
-
-            <ul>
-                <li><strong>2013:</strong> World Champion, Newton Division. IRI Champion. Design co-lead: intake, drive, superstructure &amp; integration</li>
-                <li><strong>2012:</strong> San Diego Regional Champion. Introduced CAD (500 parts &amp; assemblies, 10-step design process, rapid prototyping)</li>
-                <li>Industrial Design Award, Innovation in Control Award, Excellence in Engineering Award</li>
-                <li>Mentored FLL teams, designed robotics summer camps from scratch, refereed/judged regionals</li>
-                <li>Applied Medical: pneumatic manipulators, EOAT (end-of-arm tooling), fixtures, process tooling</li>
-            </ul>
-
-            <blockquote><p>Immature design is too controlling&mdash;and it compromises the parts that really do have to be controlled.</p></blockquote>
-        </div>
-
-        <!-- CAD & DESIGN -->
-        <div class="work-panel" id="panel-cad">
-            <h2>CAD &amp; Design Engineering</h2>
-            <span class="work-era">2012&ndash;2018</span>
-
-            <p>Parametric and non-parametric CAD (Autodesk Inventor, SolidWorks). Design for manufacturability. Prototyping, testing, qualification. 500+ parts and assemblies modeled for competition robots and production medical devices.</p>
-
-            <ul>
-                <li>10-step design process developed for FRC robotics (2012, age 15)</li>
-                <li>Fixture design: locating, clamping, repeatability, GD&amp;T</li>
-                <li>DfM: wall thickness, draft angles, gate location, material flow for injection molding</li>
-                <li>Tolerance stack-up analysis, statistical process control</li>
-            </ul>
-        </div>
-
-        <!-- FULL STACK -->
-        <div class="work-panel" id="panel-fullstack">
-            <h2>Full Stack &amp; Product Engineering</h2>
-            <span class="work-era">2025 · Drone Institute</span>
-
-            <p>Six production systems solo in eight months. $35/month serverless infrastructure supporting $811k annual revenue potential. 943 commits, 22,696 LOC, 18 Lambda functions, 4 AppRunner services.</p>
-
-            <ul>
-                <li>Thermal CV pipeline: automated damage detection on drone-captured infrared, GIS integration, lead generation (99.5% webhook delivery)</li>
-                <li>Multi-tenant B2B/B2C marketplace, partner upload portal, drone order system, operations dashboard, pilot interfaces</li>
-                <li>AWS: Lambda, S3, CloudFront, AppRunner, EventBridge, Cognito, DynamoDB, SES/SNS</li>
-                <li>React 18, Vite, Tailwind, FastAPI, Pydantic, PostgreSQL, Redis</li>
-                <li>Entropy-aware architecture: 5% immutable core (entity IDs, state machines), 25% versioned (API contracts, schemas), 70% rapid iteration (UI, algorithms, internal tools)</li>
-            </ul>
-
-            <div class="artifact">99% gross margins. Daily shipping, zero integration breaks.</div>
-        </div>
-
-        <!-- HCI -->
-        <div class="work-panel" id="panel-hci">
-            <h2>Human-AI Interaction</h2>
-            <span class="work-era">2018&ndash;present</span>
-
-            <p>UCSD Design Lab: Hyundai-sponsored robotaxi design, Ford-sponsored contract mobility research. Speculative design, user research, storyboarding. The question that brought me to cognitive science: how do people and intelligent systems share control?</p>
-
-            <ul>
-                <li>Robotaxi UX: trust calibration, handoff protocols, passenger agency in autonomous systems</li>
-                <li>Contract mobility: how people negotiate access to shared autonomous vehicles</li>
-                <li>Current: agent DX&mdash;interfaces designed for how agents actually work, not how we wish they worked</li>
-                <li>Teaching: Inspirit AI (Stanford), Pilgrim School, Muirlands Middle School robotics. 3+ years of translating ML concepts for non-experts</li>
-            </ul>
-
-            <blockquote><p>I grew up loving robotics and music, and started working designing tooling for medical device manufacturing at an early age. I realized I wanted to understand how my perception is influenced and model intuition better, affording greater abstractions to my design practice.</p></blockquote>
-        </div>
-
-        <!-- MUSIC -->
-        <div class="work-panel" id="panel-music">
-            <h2>Music Composition &amp; Piano Performance</h2>
-            <span class="work-era">2005&ndash;present</span>
-
-            <p>Gold Cup OMTA Romantic Festival (2011). 2&times; Superior Award. ICM Contemporary Division III (2014). Beethoven, Liszt, Rachmaninoff, Chopin. Thousands of iterative improvisation sessions. I always played to my understanding of the composer&rsquo;s intentions and expression.</p>
-
-            <ul>
-                <li>Independent piano teacher (2012&ndash;2014, ages 14&ndash;16). Sight reading, musicianship, performance. End-of-year recital</li>
-                <li>Volunteer piano concerts at nursing homes (4 years). Solo and ensemble</li>
-                <li>Music production, composition, theory. Pursuit of expression and understanding of musical narrative architecture, structures of harmony, counterpoint, dissonance, and the path to musical climax</li>
-                <li>The essay <a href="/essays/something-thats-sound.html">&ldquo;Something that&rsquo;s Sound&rdquo;</a> is about Schoenberg&rsquo;s concept of musical form as living organism, and why satisfying structure is hard-wired</li>
-            </ul>
-
-            <blockquote><p>Expression lives within formal structure, not despite it.</p></blockquote>
-        </div>
-
-        <!-- SIGNAL PROCESSING -->
-        <div class="work-panel" id="panel-signal">
-            <h2>Signal Processing</h2>
-            <span class="work-era">2019&ndash;2021</span>
-
-            <p>Neural signal processing with Voytek (UCSD). Audio signal transforms for tiny-ML at Endura Technologies. The shared substrate: time-frequency decomposition, spectral analysis, and the compression of continuous signals into discrete representations that preserve what matters.</p>
-
-            <ul>
-                <li>Quantized audio CNNs for ASIC deployment&mdash;signal transforms under extreme memory/compute constraints</li>
-                <li>Neural oscillatory dynamics, event-related potentials, spike sorting</li>
-                <li>Physics at IVC: wave mechanics, electromagnetic theory, Fourier analysis</li>
-            </ul>
-        </div>
-
-        <!-- PHOTOGRAPHY -->
-        <div class="work-panel" id="panel-photography">
-            <h2>Photography &amp; Oil Painting</h2>
-            <span class="work-era">2010&ndash;present</span>
-
-            <p>Published in National Geographic Kids (February 2012). Landscape and abstract photography. Oil painting under John Eagle&mdash;impressionistic.</p>
-
-            <p>Competitive soccer through Silver, Gold, and Premier levels in Oregon and California. The visual arts and athletics share the same constraint: you have to see what&rsquo;s actually there, not what you expect to see.</p>
-        </div>
-
-        <!-- NATURAL PHILOSOPHY -->
-        <div class="work-panel" id="panel-philosophy">
-            <h2>Natural Philosophy</h2>
-            <span class="work-era">2015&ndash;present</span>
-
-            <p>Hamilton&rsquo;s seeing of a constant analogy between mind and nature. The dynamical tradition in physics. Maxwell&rsquo;s purity of mind. The structures implicit in every system&mdash;harmony as the multiplying, hardy relation of one thing to the other.</p>
-
-            <p>Physics at Irvine Valley College while working as a mechanical engineer. Wave mechanics, electromagnetism, statistical mechanics, thermodynamics. Music at IVC simultaneously&mdash;the same math, different media.</p>
-
-            <blockquote><p>Just as the structure of natural philosophy allowed for progress into a new spectra of enlightenment, so the settling into purity of a human psyche must be needed to advance towards the &lsquo;perfect&rsquo;, with the aim of that trajectory itself ever perfecting.</p></blockquote>
-        </div>
-
-        <!-- SURFING -->
-        <div class="work-panel" id="panel-surfing">
-            <h2>Surfing</h2>
-            <span class="work-era">2018&ndash;present · Carpinteria, CA</span>
-
-            <p>Longboard nose riding and high-performance surfing. Rincon, Mondos, Tar Pits. The ocean doesn&rsquo;t care about your model of the wave. You read it or you don&rsquo;t.</p>
-        </div>
-
-        <!-- LIFE -->
-        <div class="work-panel" id="panel-life">
-            <h2>Coffee, Family, Life</h2>
-            <span class="work-era">always</span>
-
-            <p>Carpinteria, California. Coffee as daily ritual and sensory calibration. Family as the stable foundation that makes high-entropy work sustainable.</p>
-
-            <blockquote><p>There are two archetypes within which I rest&mdash;the engineer, the artist, tinged with humanity: this combination is the key to understanding me and my pursuit of eudaemonia.</p></blockquote>
-        </div>
-
-    </main>
-
-    <footer class="site-footer">
-        <p>
-            <a href="mailto:malachi@outlook.com">malachi@outlook.com</a> ·
-            <a href="https://linkedin.com/in/mlmabie">LinkedIn</a> ·
-            <a href="https://github.com/mlmabie">GitHub</a> ·
-            Open to opportunities
-        </p>
-    </footer>
-
-    <script src="js/main.js"></script>
-    <script>
-        document.querySelectorAll('.work-tab').forEach(tab => {
-            tab.addEventListener('click', () => {
-                document.querySelectorAll('.work-tab').forEach(t => t.classList.remove('active'));
-                document.querySelectorAll('.work-panel').forEach(p => p.classList.remove('active'));
-                tab.classList.add('active');
-                document.getElementById('panel-' + tab.dataset.panel).classList.add('active');
-            });
-        });
-    </script>
+  <nav class="site-nav">
+  <a href="/" class="nav-home">Malachi Mabie</a>
+  <div class="nav-links">
+    <a href="/about.html">About</a>
+    <a href="/writing/">Writing</a>
+    <a href="/work.html">Work</a>
+    <a href="/research.html">Research</a>
+    <a href="/blog.html">Blog</a>
+    <a href="/garden/">Garden</a>
+    <a href="/graph/">Graph</a>
+    <a href="/mabie-industries.html">Mabie Industries</a>
+    <a href="/resume.html">Resume</a>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">&#9789;</button>
+  </div>
+</nav>
+
+  <main class="essay">
+    <header class="essay-header">
+      <h1>Selected Work</h1>
+      <p class="essay-subtitle">Work that turns ambiguous physical and technical problems into testable systems.</p>
+    </header>
+
+    <article class="essay-content">
+      <p class="drop-cap">I am most useful when a team has a difficult object, too many plausible directions, and no clean way to tell what is working. I help find the core decision, make it inspectable, and build the next test.</p>
+
+      <section id="amr" class="source-preserve">
+        <h2>Advanced Metal Research</h2>
+        <p><strong>Constraint:</strong> a useful weld planner has to look ahead through awkward geometry without producing jerky or unsafe robot motion.</p>
+        <p><strong>Work:</strong> a test-driven planning and search harness for weld sequences and robot paths, with explicit representations for welds, waypoints, poses, and candidate configurations.</p>
+        <p><strong>Evaluation:</strong> smoothness, jerk, reachability, collision risk, torch angle, configuration changes, cycle time, and similarity to manually programmed paths.</p>
+        <p><strong>Current state:</strong> active project. The first milestone is a bounded offline harness that generates and compares several candidate plans on real CAD and CAM examples.</p>
+      </section>
+
+      <section id="mechanical" class="source-preserve">
+        <h2>Applied Medical</h2>
+        <p><strong>Constraint:</strong> tooling had to survive material variation, operator habits, machine timing, and production pressure.</p>
+        <p><strong>Work:</strong> CAD, prototypes, fixtures, pneumatic tooling, robotic EOAT, test, qualification, and shop-floor debugging.</p>
+        <p><strong>Outcome:</strong> a MIM insert-molding process fix cut roughly $100k/month in operating variance.</p>
+        <p><a href="/mechanical.html">Mechanical details</a></p>
+      </section>
+
+      <section id="tueba" class="source-preserve">
+        <h2>T-UEBA</h2>
+        <p><strong>Constraint:</strong> tactical behavior shifts fast. Labels stay sparse. Analysts need evidence, not alert volume.</p>
+        <p><strong>Work:</strong> constrained heterogeneous temporal graphs, calibration, active learning, synthetic-data triggers, and evidence drilldown.</p>
+        <p><strong>Outcome:</strong> $250k SBIR PI work for Army tactical Zero Trust behavior analytics.</p>
+        <p><a href="/cogsec.html">Cognitive security</a> &middot; <a href="/ram-labs.html">RAM Labs</a></p>
+      </section>
+
+      <section id="augrade" class="source-preserve">
+        <h2>DXF/CAD representation</h2>
+        <p><strong>Constraint:</strong> geometry, relations, editability, and auditability have to survive conversion.</p>
+        <p><strong>Work:</strong> exact artifact, object state, typed relation graph, deterministic validators, learned residual repair.</p>
+        <p><strong>Signal:</strong> HATCH-IoU, provenance, and reviewable state make CAD-native learning less vague.</p>
+        <p><a href="/graph-modeling.html">Graph modeling</a> &middot; <a href="/applied-epistemics.html">Applied epistemics</a></p>
+      </section>
+
+      <section id="patcher" class="source-preserve">
+        <h2>AIxCC / DL-Patcher</h2>
+        <p><strong>Constraint:</strong> code repair needs checker pressure, runtime feedback, and human review. Prompting alone cannot carry the patch loop.</p>
+        <p><strong>Work:</strong> code-model harnesses, static analysis, fuzzing, verifier feedback, and patent-filed repair architecture.</p>
+        <p><a href="/agent-environments.html">Agent environments</a></p>
+      </section>
+
+      <section id="production" class="source-preserve">
+        <h2>Production systems</h2>
+        <p><strong>Constraint:</strong> small teams need systems that stay legible under cost, latency, and operational limits.</p>
+        <p><strong>Work:</strong> AWS workflows, thermal/GIS processing, customer-facing tools, and production handoff.</p>
+        <p><a href="/resume.html">Resume variants</a></p>
+      </section>
+    </article>
+  </main>
+
+  <footer class="site-footer"><p>&nbsp;</p></footer>
+  <script src="js/main.js"></script>
 </body>
 </html>
