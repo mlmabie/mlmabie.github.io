@@ -42,20 +42,19 @@
 
       <section class="source-preserve">
         <h2>Thesis</h2>
-        <p>The durable work is making messy reality legible enough to act on.</p>
-        <p>In cursed regions, the first job is not picking the biggest model. It is building an environment truthful enough that model improvement means something.</p>
+        <p>Useful model evaluation starts with measurable tasks.</p>
+        <p>When data and ground truth are scarce, defining the task and its checks can matter more than model selection.</p>
       </section>
 
       <section class="source-preserve">
         <h2>The map</h2>
         <p>High-abstraction, high-data tasks can borrow structure from pretraining.</p>
         <p>Lower-data or lower-abstraction domains need explicit scaffolds: object identity, typed relations, state boundaries, hard validators, trace capture, and human review loops.</p>
-        <p>This is why my work keeps returning to the same pattern across unrelated domains: preserve the artifact, expose constraints, build validators, and learn only the residual.</p>
       </section>
 
       <section class="source-preserve">
         <h2>Why blessed-region methods fail elsewhere</h2>
-        <p>Benchmarks become products. Final rewards smear credit. Models appear smart because the base distribution was already fertile.</p>
+        <p>A final reward can obscure which decision caused success or failure.</p>
         <p>Capability jumps can make a method look causal when the model crossed a threshold where the task became compressible.</p>
         <p>Agent systems make the issue sharper. Post-training depends on whether the environment produces localized feedback.</p>
         <p>Tool-call failures, state-boundary violations, runtime errors, and verifier failures should become correction signals, not terminal noise spread across whole rollouts.</p>
@@ -75,9 +74,8 @@
       <section class="source-preserve">
         <h2>How this shows up in my work</h2>
         <p><strong>T-UEBA</strong> used constrained graph ML, active learning, synthetic-data triggers, and calibration because tactical behavior does not stay stationary.</p>
-        <p><strong>AIxCC / DL-Patcher</strong> used code-model harnesses, checker feedback, patch verification, and human-in-loop repair because code repair needs verifier pressure.</p>
-        <p><strong>DXF-to-CAD</strong> treats drawings as structured artifact environments: HATCH-IoU, hard validators, typed geometry, and learned residual repair.</p>
-        <p>The Applied Medical and Drone Services Startup work had the same shape: make the workflow legible enough for action.</p>
+        <p><strong>DL-Patcher and the separate VULCAN/AIxCC effort</strong> used patch curation, code-model harnesses, and verification.</p>
+        <p><strong>DXF-to-CAD research</strong> explores geometric objects, relation graphs, and learned repair under deterministic checks.</p>
       </section>
 
       <section class="source-preserve">

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Resume Variants — Malachi Mabie</title>
+  <title>Resume — Malachi Mabie</title>
   <link rel="stylesheet" href="css/style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -27,15 +27,12 @@
 
   <main class="essay">
     <header class="essay-header">
-      <h1>Resume Variants</h1>
-      <p class="essay-subtitle">Four public resumes for different conversations.</p>
-      <p class="essay-meta">Public PDFs with phone number removed.</p>
+      <h1>Resume</h1>
     </header>
 
     <article class="essay-content">
       <section class="source-preserve">
         <h2>Choose a focus</h2>
-        <p>Use the version that matches the conversation: systems, research, security, or physical-world ML.</p>
 
         <div class="resume-tabs" role="tablist" aria-label="Resume variants">
           <button class="resume-tab active" data-key="systems" role="tab" aria-selected="true">AI Systems</button>
@@ -45,7 +42,6 @@
         </div>
 
         <p id="resume-caption" class="resume-caption"></p>
-        <p class="resume-caption"><strong>Privacy:</strong> these public PDFs are redacted (no phone number). For direct outreach, use LinkedIn or X DM.</p>
 
         <p class="resume-actions">
           <a id="resume-open" href="/assets/resumes/resume_ai_systems.pdf" target="_blank" rel="noopener">Open in new tab</a>
@@ -74,19 +70,19 @@
     (function () {
       const resumes = {
         systems: {
-          caption: 'Architecture, deployment, and reliability for production systems operating under real latency, cost, and failure constraints.',
+          caption: 'Architecture, deployment, and operations.',
           pdf: '/assets/resumes/resume_ai_systems.pdf'
         },
         research: {
-          caption: 'Model design, experimental method, evaluation discipline, and technical communication.',
+          caption: 'Model design, experiments, and evaluation.',
           pdf: '/assets/resumes/resume_ai_research.pdf'
         },
         security: {
-          caption: 'Security posture: adversarial analysis, secure pipeline design, and fault-tolerant operational controls.',
+          caption: 'Security research and vulnerability repair.',
           pdf: '/assets/resumes/resume_ai_security.pdf'
         },
         physical: {
-          caption: 'Embodied AI orientation: robotics, controls, and the interface between learned models and physical-world constraints.',
+          caption: 'Robotics, controls, and manufacturing.',
           pdf: '/assets/resumes/resume_ai_physical.pdf'
         }
       };
