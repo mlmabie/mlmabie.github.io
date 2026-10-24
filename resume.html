@@ -32,24 +32,16 @@
 
     <article class="essay-content">
       <section class="source-preserve">
-        <h2>Choose a focus</h2>
-
-        <div class="resume-tabs" role="tablist" aria-label="Resume variants">
-          <button class="resume-tab active" data-key="systems" role="tab" aria-selected="true">AI Systems</button>
-          <button class="resume-tab" data-key="research" role="tab" aria-selected="false">AI Research</button>
-          <button class="resume-tab" data-key="security" role="tab" aria-selected="false">AI Security</button>
-          <button class="resume-tab" data-key="physical" role="tab" aria-selected="false">AI for Physical Systems</button>
-        </div>
-
-        <p id="resume-caption" class="resume-caption"></p>
-
-        <p class="resume-actions">
-          <a id="resume-open" href="/assets/resumes/resume_ai_systems.pdf" target="_blank" rel="noopener">Open in new tab</a>
-          ·
-          <a id="resume-download" href="/assets/resumes/resume_ai_systems.pdf" download>Download PDF</a>
-        </p>
-
-        <iframe id="resume-frame" class="source-frame" src="/assets/resumes/resume_ai_systems.pdf" title="Resume preview"></iframe>
+        <h2>October 2026 resumes</h2>
+        <p>One-page PDFs focused on recent AMR work and the experience most relevant to each role.</p>
+        <ul>
+          <li><a href="/assets/resumes/resume_ml_evaluation_2026_10.pdf">ML evaluation and adversarial testing</a>: independent checks, replayable evidence, agents, and generated-code evaluation.</li>
+          <li><a href="/assets/resumes/resume_robotics_2026_10.pdf">Robotics software</a>: motion planning, operator controls, runtime integration, CAD, and manufacturing.</li>
+          <li><a href="/assets/resumes/resume_applied_ai_2026_10.pdf">Applied AI and product systems</a>: customer workflows, agents, APIs, and production software ownership.</li>
+          <li><a href="/assets/resumes/resume_cyber_ai_2026_10.pdf">AI security</a>: vulnerability repair, behavior analytics, threat modeling, and verification.</li>
+        </ul>
+        <p>Based in Carpinteria. Open to relocation to Los Angeles South Bay and Orange County.</p>
+        <p><a href="/work.html">Read the project evidence</a></p>
       </section>
 
       <section class="source-preserve">
@@ -66,52 +58,6 @@
   </footer>
 
   <script src="js/main.js"></script>
-  <script>
-    (function () {
-      const resumes = {
-        systems: {
-          caption: 'Architecture, deployment, and operations.',
-          pdf: '/assets/resumes/resume_ai_systems.pdf'
-        },
-        research: {
-          caption: 'Model design, experiments, and evaluation.',
-          pdf: '/assets/resumes/resume_ai_research.pdf'
-        },
-        security: {
-          caption: 'Security research and vulnerability repair.',
-          pdf: '/assets/resumes/resume_ai_security.pdf'
-        },
-        physical: {
-          caption: 'Robotics, controls, and manufacturing.',
-          pdf: '/assets/resumes/resume_ai_physical.pdf'
-        }
-      };
 
-      const tabs = document.querySelectorAll('.resume-tab');
-      const caption = document.getElementById('resume-caption');
-      const frame = document.getElementById('resume-frame');
-      const openLink = document.getElementById('resume-open');
-      const downloadLink = document.getElementById('resume-download');
-
-      function switchResume(key) {
-        if (!resumes[key]) return;
-        const item = resumes[key];
-
-        tabs.forEach(t => {
-          const active = t.dataset.key === key;
-          t.classList.toggle('active', active);
-          t.setAttribute('aria-selected', active ? 'true' : 'false');
-        });
-
-        caption.textContent = item.caption;
-        frame.src = item.pdf;
-        openLink.href = item.pdf;
-        downloadLink.href = item.pdf;
-      }
-
-      tabs.forEach(t => t.addEventListener('click', () => switchResume(t.dataset.key)));
-      switchResume('systems');
-    })();
-  </script>
 </body>
 </html>

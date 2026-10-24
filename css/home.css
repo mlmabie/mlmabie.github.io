@@ -19,3 +19,5 @@ footer { border-top: 1px solid #ddd; margin-top: 30px; padding-top: 14px; color:
     a { color: #9bc1ff; }
     footer { border-color: #444; color: #aaa; }
 }
+
+.availability { border-left: 3px solid currentColor; padding: 4px 0 1px 20px; margin: 26px 0; }
