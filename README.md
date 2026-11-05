@@ -8,20 +8,22 @@ Personal site: work, research, essays, marginalia, music, and public graph views
 ├── index.html              # Homepage
 ├── work.html / research.html
 ├── blog.html               # New public writing index
-├── mabie-industries.html   # Commercial surface
+├── mabie-industries.html   # Consulting (nav label: Consulting)
 ├── applied-epistemics.html
 ├── agent-environments.html
 ├── archive.html            # Secondary material
 ├── about.html / now.html   # Bio and current focus
 ├── mechanical.html / music.html
-├── resume.html             # Public redacted resume variants
+├── resume.html             # CV page (nav label: CV); links assets/resumes/malachi_mabie_cv.pdf
 ├── marginalia.html         # Aphorisms & fragments
 ├── essays/                 # Long-form writing and blog posts
 ├── graph/                  # Interactive knowledge graph (3 topology views)
 │   └── preload.json        # Deployed from notes-network pipeline
 ├── garden/                 # Three.js garden visualization
-├── css/style.css
-└── js/main.js
+├── css/style.css           # Shared styles for inner pages
+├── css/home.css            # Front page only (deliberately plain)
+├── js/main.js
+└── scripts/check_site.py   # Link, anchor, and nav-consistency check
 ```
 
 ## Knowledge Graph Pipeline
@@ -39,10 +41,26 @@ uv run python refresh.py --public --deploy
 
 To add a note to the public graph, add `public` to its frontmatter tags in Obsidian and rerun.
 
+## Layers
+
+Stable: the front page, About, Work, Research, Essays, Consulting, CV. These share one nav, which `scripts/check_site.py` keeps identical across pages.
+
+Experimental: `graph/`, `garden/`, `writing/`, and the archive. They keep their own layouts and are linked from the front page's "Elsewhere" section rather than the main nav.
+
+## Updating the CV
+
+The public CV is the comprehensive CV from the private resume-portfolio repo with the phone line redacted. When the CV changes, re-export it to `assets/resumes/malachi_mabie_cv.pdf` with the phone removed.
+
 ## Local Development
 
 Open any HTML file directly — no build step. For live reload:
 
 ```bash
 python3 -m http.server 8000
+```
+
+Before pushing:
+
+```bash
+python3 scripts/check_site.py
 ```

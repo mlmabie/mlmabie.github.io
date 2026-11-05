@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <title>Applied Epistemics in Cursed Regions &mdash; Malachi Mabie</title>
   <link rel="stylesheet" href="css/style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,19 +12,17 @@
 </head>
 <body>
   <nav class="site-nav">
-  <a href="/" class="nav-home">Malachi Mabie</a>
-  <div class="nav-links">
-    <a href="/about.html">About</a>
-    <a href="/work.html">Work</a>
-    <a href="/research.html">Research</a>
-    <a href="/blog.html">Essays</a>
-    <a href="/garden/">Garden</a>
-    <a href="/graph/">Graph</a>
-    <a href="/mabie-industries.html">Mabie Industries</a>
-    <a href="/resume.html">Resume</a>
-    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">&#9789;</button>
-  </div>
-</nav>
+    <a href="/" class="nav-home">Malachi Mabie</a>
+    <div class="nav-links">
+      <a href="/about.html">About</a>
+      <a href="/work.html">Work</a>
+      <a href="/research.html">Research</a>
+      <a href="/blog.html">Writing</a>
+      <a href="/mabie-industries.html">Consulting</a>
+      <a href="/resume.html">CV</a>
+      <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">&#9789;</button>
+    </div>
+  </nav>
 
   <main class="essay">
     <header class="essay-header">
@@ -36,7 +35,7 @@
       <p>Physical AI, robotics, neuro-data, world models, cognitive security, and research metadata sit closer to cursed regions: lower data, weaker ground truth, harder compression, unstable objectives.</p>
 
       <figure class="image-figure source-preserve">
-        <img src="/assets/images/cursed-regions.png" alt="Diagram mapping blessed and cursed AI task regions by data availability and abstraction level.">
+        <img loading="lazy" decoding="async" src="/assets/images/cursed-regions.png" alt="Diagram mapping blessed and cursed AI task regions by data availability and abstraction level.">
         <figcaption>Tasks become &ldquo;blessed&rdquo; when the model has enough data, abstraction, and compositional structure to learn from weak supervision. Cursed domains require stronger environment design: artifacts, validators, traces, and feedback loops.</figcaption>
       </figure>
 
