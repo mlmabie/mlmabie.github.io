@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta name="description" content="Selected work by Malachi Mabie: robotic welding at Advanced Metal Research, an Army SBIR in behavior analytics, DARPA AIxCC code repair, CAD geometry ML, and production systems.">
   <title>Selected Work | Malachi Mabie</title>
   <link rel="stylesheet" href="css/style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,20 +13,17 @@
 </head>
 <body>
   <nav class="site-nav">
-  <a href="/" class="nav-home">Malachi Mabie</a>
-  <div class="nav-links">
-    <a href="/about.html">About</a>
-    <a href="/writing/">Syntheses</a>
-    <a href="/work.html">Work</a>
-    <a href="/research.html">Research</a>
-    <a href="/blog.html">Essays</a>
-    <a href="/garden/">Garden</a>
-    <a href="/graph/">Graph</a>
-    <a href="/mabie-industries.html">Mabie Industries</a>
-    <a href="/resume.html">Resume</a>
-    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">&#9789;</button>
-  </div>
-</nav>
+    <a href="/" class="nav-home">Malachi Mabie</a>
+    <div class="nav-links">
+      <a href="/about.html">About</a>
+      <a href="/work.html">Work</a>
+      <a href="/research.html">Research</a>
+      <a href="/blog.html">Essays</a>
+      <a href="/mabie-industries.html">Consulting</a>
+      <a href="/resume.html">CV</a>
+      <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">&#9789;</button>
+    </div>
+  </nav>
 
   <main class="essay">
     <header class="essay-header">
@@ -34,9 +33,9 @@
     <article class="essay-content">
       <section id="amr" class="source-preserve">
         <h2>Advanced Metal Research</h2>
-        <p>Agent-assisted robotics software spanning motion-planning evaluation, reproducible experiment records, Steam Deck operator controls, and robot runtime integration.</p>
-        <p>Recent integration work resolved client/runtime packet, identity, and configured-axis mismatches, contributing to operator-confirmed jogging on the assembled robot. Full trajectory execution and welding remain separate validation work.</p>
-        <p>Planning and review use typed task records, candidate trajectories, and independent kinematic, collision, calibration, and interface checks. Evaluation evidence is tied to code revisions and robot frames so a result can be replayed and inspected.</p>
+        <p>Robotics ML research engineer (contract, Hawthorne, July 2026 to present). I lead research software across the robotic-welding stack: weld and materials data, learning and controls, motion planning, perception, multi-factor optimization, evaluation, and process-off integration.</p>
+        <p>I defined typed models for weld books, materials, joints, process windows, studies, trajectories, metallurgy outputs, traces, and evidence, with randomized experiments and content-addressed capture of human and simulator trajectories. Torch orientation and robot/positioner coordination are optimization variables rather than fixed constraints, and independent kinematic, collision, calibration, continuity, and process checks stay authoritative over execution.</p>
+        <p>Run evidence is bound to source revision, binaries, robot model, calibration, collision assets, and request/response pairs, so a planning result can be re-derived rather than trusted. I also designed the staged path from simulation to supervised process-off trials, and built Steam Deck operator controls and runtime integration that contributed to operator-confirmed jogging on the assembled robot. Full trajectory execution and welding remain separate validation work.</p>
       </section>
       <section id="mechanical" class="source-preserve">
         <h2>Applied Medical</h2>
@@ -45,7 +44,8 @@
       </section>
       <section id="tueba" class="source-preserve">
         <h2>T-UEBA</h2>
-        <p>Principal investigator on a $250k Army SBIR at RAM Laboratories. The work combined heterogeneous temporal graphs, conformal prediction, active learning, and analyst feedback for tactical behavior analytics.</p>
+        <p>Principal investigator on a $250k Army SBIR at RAM Laboratories in tactical user and entity behavior analytics. The model was a constrained heterogeneous temporal graph network over user, resource, and action graphs, with calibrated graph attention, conformal prediction, sparse-autoencoder interpretability, active learning, and curriculum training.</p>
+        <p>Results: 95% accuracy, 0.887 F1, under 3% false positives, 15.2 ms per graph, and a 15 MB model, 400× smaller and 7.9× faster than the baseline, under shifting data and hard compute limits. Because the model was interpretable, it also produced stronger access-control rules for an existing zero-trust policy decision point, so the customer could run the model inline or adopt the improved rules.</p>
         <p><a href="/cogsec.html">Cognitive security</a> · <a href="/ram-labs.html">RAM Labs</a></p>
       </section>
       <section id="augrade" class="source-preserve">
@@ -55,14 +55,14 @@
       </section>
       <section id="patcher" class="source-preserve">
         <h2>Automated code repair</h2>
-        <p>DL-Patcher: vulnerability-repair research involving patch-data curation, model fine-tuning, and verification. Co-inventor on a related patent application.</p>
-        <p>Separately, I directed VULCAN, RAM’s AIxCC effort, working on code-model harnesses with static analysis, fuzzing, and runtime verification.</p>
+        <p>I invented DL-Patcher for an MDA-sponsored SBIR: automated C/C++ vulnerability repair with synthetic bug insertion, natural-patch filtering, static-checker feedback, patch verification, and a human-in-the-loop VS Code workflow. U.S. patent application 18/375,839 is filed.</p>
+        <p>Separately, I directed VULCAN, RAM’s DARPA AI Cyber Challenge (AIxCC) submission: code-model harnesses where static analysis, decompilation, fuzzing, and runtime verification supply the accept or reject signal on generated patches.</p>
         <p><a href="/agent-environments.html">Agent environments</a></p>
       </section>
       <section id="production" class="source-preserve">
         <h2>Production systems</h2>
         <p>Built and shipped six production systems for Drone Institute: thermal imagery and GIS workflows, a marketplace, partner onboarding, operations, and order fulfillment. Owned architecture, implementation, deployment, and production debugging.</p>
-        <p><a href="/resume.html">Resume</a></p>
+        <p><a href="/resume.html">CV</a></p>
       </section>
     </article>
   </main>
