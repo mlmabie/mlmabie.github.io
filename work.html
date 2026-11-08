@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-  <meta name="description" content="Selected work by Malachi Mabie: robotic welding at Advanced Metal Research, an Army SBIR in behavior analytics, DARPA AIxCC code repair, CAD geometry ML, and production systems.">
+  <meta name="description" content="Selected work by Malachi Mabie: robotic welding run data and verification at Advanced Metal Research, an Army SBIR in behavior analytics, patent-pending code repair, CAD geometry ML, and production systems.">
   <title>Selected Work | Malachi Mabie</title>
   <link rel="stylesheet" href="css/style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -33,36 +33,37 @@
     <article class="essay-content">
       <section id="amr" class="source-preserve">
         <h2>Advanced Metal Research</h2>
-        <p>Robotics ML research engineer (contract, Hawthorne, July 2026 to present). I lead research software across the robotic-welding stack: weld and materials data, learning and controls, motion planning, perception, multi-factor optimization, evaluation, and process-off integration.</p>
-        <p>I defined typed models for weld books, materials, joints, process windows, studies, trajectories, metallurgy outputs, traces, and evidence, with randomized experiments and content-addressed capture of human and simulator trajectories. Torch orientation and robot/positioner coordination are optimization variables rather than fixed constraints, and independent kinematic, collision, calibration, continuity, and process checks stay authoritative over execution.</p>
-        <p>Run evidence is bound to source revision, binaries, robot model, calibration, collision assets, and request/response pairs, so a planning result can be re-derived rather than trusted. I also designed the staged path from simulation to supervised process-off trials, and built Steam Deck operator controls and runtime integration that contributed to operator-confirmed jogging on the assembled robot. Full trajectory execution and welding remain separate validation work.</p>
-        <p>I also build the software-factory and agent workflows the team uses to develop, test, and review the robotics software, held to the same replayable evidence as the planner.</p>
+        <p>Learning and autonomy engineer on robotic welding (Hawthorne, July 2026 to present, through Mabie Industries). I work across the co-founders to turn competing priorities into one engineering plan covering robot motion and welding, run data, robot CI/CD and deployment, and weld procedure integration, and I lead three to five of the team’s interns.</p>
+        <p>I delivered the shared run-data platform for the laser welder and the robot cells, from the robot controller to queryable evidence: typed robot-state rows, content-addressed capture, and a custody chain with explicit failure cases. Weld books, materials, joints, process windows, trajectories, and evidence are typed models, and each run is bound to source revision, binaries, robot model, calibration, and collision assets, so a result can be re-derived rather than trusted.</p>
+        <p>I wrote the team’s verification ladder, from hooks and lint through simulator, hardware, and weld-sample proofs to runtime monitors, and tied merges and releases to it. I also built the team’s agent software factory: Codex and Claude agents under one set of responsibilities, cross-agent review, a written verdict on every artifact, and simulated evidence never reported as physical.</p>
+        <p>On the motion side, torch orientation and robot/positioner coordination are optimization variables under independent kinematic, collision, calibration, and process checks. I designed the staged path from simulation to supervised process-off trials, and built Steam Deck operator controls and runtime integration on the way to operator-confirmed jogging on the assembled robot. Full trajectory execution and welding remain separate validation work.</p>
       </section>
       <section id="mechanical" class="source-preserve">
         <h2>Applied Medical</h2>
-        <p>Designed fixtures, pneumatic tools, and robotic end-of-arm tooling for medical-device production. A metal-injection insert-molding process fix reduced operating variance by roughly $100k/month.</p>
+        <p>From sixteen to twenty-one, intern and then full-time engineer in medical-device manufacturing. I designed, built, and qualified dozens of end-of-arm tools, fixtures, and other tooling for polymer injection molding and its automation, and they still run in production daily.</p>
+        <p>One metal-injection insert-molding problem was losing about $100k a month to pin misalignment on a new suturing device. I traced it to a magnetic pen polarizing the pins, then built a 3D-printed orientation grid with fishing-line sorting and machined stainless suction-pen tips, which ended the variance in production.</p>
         <p><a href="/mechanical.html">Mechanical work and photos</a></p>
       </section>
       <section id="tueba" class="source-preserve">
         <h2>T-UEBA</h2>
-        <p>Principal investigator on a $250k Army SBIR at RAM Laboratories in tactical user and entity behavior analytics. The model was a constrained heterogeneous temporal graph network over user, resource, and action graphs, with calibrated graph attention, conformal prediction, sparse-autoencoder interpretability, active learning, and curriculum training.</p>
-        <p>Results: 95% accuracy, 0.887 F1, under 3% false positives, 15.2 ms per graph, and a 15 MB model, 400× smaller and 7.9× faster than the baseline, under shifting data and hard compute limits. Because the model was interpretable, it also produced stronger access-control rules for an existing zero-trust policy decision point, so the customer could run the model inline or adopt the improved rules.</p>
+        <p>Principal investigator on a $250k Army SBIR at RAM Laboratories in tactical user and entity behavior analytics, producing enforcement rules for zero-trust policy points. I wrote the winning proposal, led one full-time engineer, and owned the graph schema and ontology, the synthetic-data generator for operational phase shifts, the data pipeline, the model, and the evaluation.</p>
+        <p>The model was a heterogeneous temporal graph network with calibrated graph attention, conformal thresholds, and sparse-autoencoder inspection. Results: 95% accuracy, 0.887 F1, under 3% false positives, 15.2 ms per graph, and a 15 MB model, 400× smaller and 7.9× faster than the baseline. In evaluation it generated candidate enforcement rules for policy decision and enforcement points.</p>
         <p><a href="/cogsec.html">Cognitive security</a> · <a href="/ram-labs.html">RAM Labs</a></p>
       </section>
       <section id="augrade" class="source-preserve">
-        <h2>DXF/CAD representation</h2>
-        <p>Research into reconstructing editable CAD from drawings using geometric objects, relation graphs, and deterministic checks. The proposed learned component repairs relations that geometry alone cannot resolve. A public geometry workbench recovered 2,237 polygons from approximately 67,000 CAD primitives across 111 layers, with parameter sweeps and SVG review artifacts.</p>
+        <h2>CAD from drawings</h2>
+        <p>A work trial with Augrade on converting DXF drawings into editable CAD: vector-native tokenization, provenance-preserving merges, and hard validators outside the learned stack. A public standard-library Python workbench recovered 2,237 wall, column, and curtain-wall polygons from about 67,000 primitives across 111 layers, with parameter sweeps and SVG review artifacts.</p>
         <p><a href="https://github.com/mlmabie/DXF_Primitive_to_Polygon">Geometry workbench</a> · <a href="/graph-modeling.html">Graph modeling</a> · <a href="/applied-epistemics.html">Applied epistemics</a></p>
       </section>
       <section id="patcher" class="source-preserve">
         <h2>Automated code repair</h2>
-        <p>I invented DL-Patcher for an MDA-sponsored SBIR: automated C/C++ vulnerability repair with synthetic bug insertion, natural-patch filtering, static-checker feedback, patch verification, and a human-in-the-loop VS Code workflow. U.S. patent application 18/375,839 is filed.</p>
-        <p>Separately, I directed VULCAN, RAM’s DARPA AI Cyber Challenge (AIxCC) submission: code-model harnesses where static analysis, decompilation, fuzzing, and runtime verification supply the accept or reject signal on generated patches.</p>
+        <p>DL-Patcher, an MDA SBIR on automated C/C++ vulnerability repair: I joined in Phase II and moved the models from seq2seq to RoBERTa, where repair started to work, with synthetic bug insertion, mined natural patches, static-checker feedback, patch verification, and a human-in-the-loop VS Code workflow. I’m a named co-inventor on the training method, patent pending (U.S. application 18/375,839).</p>
+        <p>I was also a core contributor to VULCAN, RAM’s DARPA AI Cyber Challenge entry: a code-model harness where static analysis, decompilation, fuzzing, and runtime verification supply the accept or reject signal on generated patches.</p>
         <p><a href="/agent-environments.html">Agent environments</a></p>
       </section>
       <section id="production" class="source-preserve">
         <h2>Production systems</h2>
-        <p>Built and shipped six production systems for Drone Institute: thermal imagery and GIS workflows, a marketplace, partner onboarding, operations, and order fulfillment. Owned architecture, implementation, deployment, and production debugging.</p>
+        <p>Sole engineer at Drone Institute, through Mabie Industries: I built the company’s software from scratch, six production services (lead marketplace, partner upload portal, drone orders, operations dashboard, thermal-imagery lead generation, pilot dashboard) and the CI/CD, infrastructure, and tests behind them. Serverless AWS with per-service dev and production deploys, running at about $30 a month.</p>
         <p><a href="/resume.html">CV</a></p>
       </section>
     </article>
