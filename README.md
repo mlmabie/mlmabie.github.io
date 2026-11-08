@@ -49,7 +49,7 @@ Experimental: `graph/`, `garden/`, `writing/`, and the archive. They keep their 
 
 ## Updating the CV
 
-The public CV is the comprehensive CV from the private resume-portfolio repo with the phone line redacted. When the CV changes, re-export it to `assets/resumes/malachi_mabie_cv.pdf` with the phone removed.
+The public CV is the comprehensive CV from the private resume-portfolio repo with the phone line redacted. When the CV changes, run `make publish-public-cv` in resume-portfolio: it builds the redacted CV, refuses to publish while any page here still states a claim the CV has retired, and copies the PDF to `assets/resumes/malachi_mabie_cv.pdf`.
 
 ## Local Development
 
