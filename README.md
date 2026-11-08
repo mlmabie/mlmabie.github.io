@@ -7,7 +7,7 @@ Personal site: work, research, essays, marginalia, music, and public graph views
 ```
 ├── index.html              # Homepage
 ├── work.html / research.html
-├── blog.html               # New public writing index
+├── blog.html               # Redirect to /writing/
 ├── mabie-industries.html   # Consulting (nav label: Consulting)
 ├── applied-epistemics.html
 ├── agent-environments.html
@@ -45,7 +45,7 @@ To add a note to the public graph, add `public` to its frontmatter tags in Obsid
 
 Stable: the front page, About, Work, Research, Essays, Consulting, CV. These share one nav, which `scripts/check_site.py` keeps identical across pages.
 
-Experimental: `graph/`, `garden/`, `writing/`, and the archive. They keep their own layouts and are linked from the front page's "Elsewhere" section rather than the main nav.
+Experimental: `graph/`, `garden/`, `syntheses/`, and the archive. They keep their own layouts and are linked from the front page's "Elsewhere" section rather than the main nav.
 
 ## Updating the CV
 

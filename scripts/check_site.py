@@ -11,7 +11,7 @@ import html.parser, pathlib, re, sys, urllib.parse
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 # Pages that intentionally have their own layout: the plain front page,
 # the experiments, and fragments embedded by other pages.
-OWN_LAYOUT = ("index.html", "graph/", "garden/", "writing/", "assets/")
+OWN_LAYOUT = ("index.html", "graph/", "garden/", "syntheses/", "assets/")
 
 
 class Page(html.parser.HTMLParser):
@@ -38,7 +38,8 @@ def main():
         page = Page()
         page.feed(text)
         pages[rel] = page
-        if not rel.startswith(OWN_LAYOUT):
+        # Redirect stubs (old URLs) carry no nav.
+        if not rel.startswith(OWN_LAYOUT) and 'http-equiv="refresh"' not in text:
             nav = re.search(r'<nav class="site-nav">.*?</nav>', text, re.S)
             navs[rel] = re.sub(r"\s+", " ", nav.group(0)) if nav else None
 
