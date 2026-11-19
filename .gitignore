@@ -2,3 +2,7 @@
 assets/originals/UC-Application-insights.pdf
 assets/originals/Personal-Statement.pdf
 assets/originals/weird-brainstorm-on-narrative-architecture-harmonic-esoteric-stuff.docx
+
+# Generated Cloudflare Pages output
+/dist/
+/.pages-build-*/

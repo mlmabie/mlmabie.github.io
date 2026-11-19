@@ -3145,7 +3145,7 @@
           const prevNote = noteById[prevId];
           if (prevNote) {
             connHtml += `<div class="conn-item">
-              <span class="conn-name" data-note-id="${prevId}">\u2191 ${escapeHtml(prevNote.name)}</span>
+              <span class="conn-name" data-note-id="${escapeHtml(String(prevId))}">\u2191 ${escapeHtml(prevNote.name)}</span>
               <span class="conn-label">older sibling</span>
             </div>`;
           }
@@ -3156,7 +3156,7 @@
           const nextNote = noteById[nextId];
           if (nextNote) {
             connHtml += `<div class="conn-item">
-              <span class="conn-name" data-note-id="${nextId}">\u2193 ${escapeHtml(nextNote.name)}</span>
+              <span class="conn-name" data-note-id="${escapeHtml(String(nextId))}">\u2193 ${escapeHtml(nextNote.name)}</span>
               <span class="conn-label">newer sibling</span>
             </div>`;
           }
@@ -3515,14 +3515,14 @@
 
     async function embedTexts(texts, apiKey) {
       const model = 'gemini-embedding-001';
-      const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:batchEmbedContents?key=${apiKey}`;
+      const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:batchEmbedContents`;
       const batchSize = 20;
       const allEmbeddings = [];
       for (let i = 0; i < texts.length; i += batchSize) {
         const batch = texts.slice(i, i + batchSize);
         const resp = await fetch(url, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: { 'Content-Type': 'application/json', 'x-goog-api-key': apiKey },
           body: JSON.stringify({
             requests: batch.map(t => ({ model: `models/${model}`, content: { parts: [{ text: t }] } }))
           }),
@@ -3577,7 +3577,7 @@
       const apiKey = getApiKey();
       if (!apiKey) return null;
       const model = 'gemini-3.1-flash-lite-preview';
-      const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
+      const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`;
       const prompt = `You are a creative knowledge synthesizer. Given two notes from a personal knowledge base, suggest ONE surprising but plausible connection or new idea that bridges them. Be specific and concise (2-3 sentences max).
 
 Reply in this exact format:
@@ -3591,7 +3591,7 @@ Note B: "${noteB.name}"
 ${noteB.text_preview || noteB.text?.slice(0, 500) || ''}`;
       const resp = await fetch(url, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', 'x-goog-api-key': apiKey },
         body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] }),
       });
       if (!resp.ok) {
@@ -4044,13 +4044,28 @@ ${noteB.text_preview || noteB.text?.slice(0, 500) || ''}`;
     const MAX_STACK_ITEMS = 10;
     let ideaDataStore = []; // full idea data for card display
 
+    function ideaSpan(text, style = {}, className = '') {
+      const span = document.createElement('span');
+      span.textContent = text;
+      if (className) span.className = className;
+      Object.assign(span.style, style);
+      return span;
+    }
+
     function showIdea(nameA, nameB, plantA, plantB, title, text, worldPos, colorA, colorB) {
       const stack = document.getElementById('idea-stack');
       const toast = document.getElementById('idea-toast');
       const leaderSvg = document.getElementById('idea-leader-line');
 
       // Prepare toast content
-      toast.innerHTML = `<div style="padding-left:1.2em;text-indent:-1.2em">✦ <span style="color:${colorA || '#fff'}">${nameA}</span></div><div style="padding-left:1.2em;text-indent:-1.2em">✦ <span style="color:${colorB || '#fff'}">${nameB}</span></div>`;
+      toast.replaceChildren();
+      for (const [name, color] of [[nameA, colorA], [nameB, colorB]]) {
+        const line = document.createElement('div');
+        line.style.paddingLeft = '1.2em';
+        line.style.textIndent = '-1.2em';
+        line.append('✦ ', ideaSpan(name, { color: color || '#fff' }));
+        toast.append(line);
+      }
       leaderSvg.classList.remove('visible');
 
       function showToastNow() {
@@ -4109,11 +4124,15 @@ ${noteB.text_preview || noteB.text?.slice(0, 500) || ''}`;
       item.className = 'idea-stack-item';
       const cA = colorA || 'var(--text)';
       const cB = colorB || 'var(--text)';
-      const blocks = `<span style="color:${cA}">▙</span><span style="color:${cB}">▜</span> `;
+      item.append(ideaSpan('▙', { color: cA }), ideaSpan('▜', { color: cB }), ' ');
       if (title) {
-        item.innerHTML = blocks + `<span style="color:var(--text)">${title}</span>`;
+        item.append(ideaSpan(title, { color: 'var(--text)' }));
       } else {
-        item.innerHTML = blocks + `<span style="color:${cA}">${nameA}</span><span class="idea-x">×</span><span style="color:${cB}">${nameB}</span>`;
+        item.append(
+          ideaSpan(nameA, { color: cA }),
+          ideaSpan('×', {}, 'idea-x'),
+          ideaSpan(nameB, { color: cB }),
+        );
       }
       item.addEventListener('click', () => openIdeaCard(ideaIdx));
       stack.appendChild(item);
@@ -4134,14 +4153,17 @@ ${noteB.text_preview || noteB.text?.slice(0, 500) || ''}`;
       const pair = document.getElementById('idea-card-pair');
       const text = document.getElementById('idea-card-text');
 
-      pair.innerHTML = `<span class="idea-card-name" style="background:${idea.colorA || 'var(--text-dim)'}">${idea.nameA}</span><span class="idea-card-x">×</span><span class="idea-card-name" style="background:${idea.colorB || 'var(--text-dim)'}">${idea.nameB}</span>`;
+      pair.replaceChildren(
+        ideaSpan(idea.nameA, { backgroundColor: idea.colorA || 'var(--text-dim)' }, 'idea-card-name'),
+        ideaSpan('×', {}, 'idea-card-x'),
+        ideaSpan(idea.nameB, { backgroundColor: idea.colorB || 'var(--text-dim)' }, 'idea-card-name'),
+      );
 
       const titleEl = document.getElementById('idea-card-title');
       titleEl.textContent = idea.title || '';
       titleEl.style.display = idea.title ? '' : 'none';
 
-      const parsed = idea.text
-        .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+      const parsed = escapeHtml(idea.text)
         .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
         .replace(/\*(.+?)\*/g, '<em>$1</em>')
         .replace(/`(.+?)`/g, '<code>$1</code>');

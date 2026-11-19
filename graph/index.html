@@ -479,24 +479,35 @@ function goEgo(nodeId) {
 }
 
 // ── UI ────────────────────────────────────────────
+function graphElement(tag, className, text = '') {
+  const element = document.createElement(tag);
+  if (className) element.className = className;
+  element.textContent = text;
+  return element;
+}
+
 function updateBreadcrumbs() {
   const el = document.getElementById('breadcrumbs');
-  let h = '<span onclick="goScatter()">Graph</span>';
+  const home = graphElement('span', '', 'Graph');
+  home.addEventListener('click', goScatter);
+  el.replaceChildren(home);
   if (level === LEVELS.EGO && selectedNode !== null) {
     const n = nodeById[selectedNode];
     const name = (n.name || n.filename.replace('.md',''));
     const short = name.length > 40 ? name.slice(0,40)+'...' : name;
-    h += `<span class="sep">\u203A</span><span class="current">${esc(short)}</span>`;
+    el.append(graphElement('span', 'sep', '\u203A'), graphElement('span', 'current', short));
   }
-  el.innerHTML = h;
 }
 
 function updateLegend() {
   const el = document.getElementById('legend');
-  el.innerHTML = clusterStats.map((cs, i) =>
-    `<div class="legend-item">
-      <div class="legend-dot" style="background:${CLUSTER_COLORS[i]}"></div>${cs.name} (${cs.count})</div>`
-  ).join('');
+  el.replaceChildren(...clusterStats.map((cluster, i) => {
+    const item = graphElement('div', 'legend-item');
+    const dot = graphElement('div', 'legend-dot');
+    dot.style.backgroundColor = CLUSTER_COLORS[i];
+    item.append(dot, `${cluster.name} (${cluster.count})`);
+    return item;
+  }));
 }
 
 function updateDetailPanel(nodeId) {
@@ -508,15 +519,21 @@ function updateDetailPanel(nodeId) {
   const bridge = bridgeScores[nodeId]||0;
   const created = n.created ? n.created.slice(0,10) : '';
 
-  let h = `<h3>${esc(name)}</h3>`;
-  h += `<div class="meta">`;
-  h += `<b>Cluster:</b> ${esc(n.cluster_name)}<br>`;
-  if (created) h += `<b>Created:</b> ${created}<br>`;
-  h += `<b>Neighbors:</b> ${neighbors.length}<br>`;
-  if (bridge) h += `<b>Bridge:</b> ${bridge} cross-cluster`;
-  h += `</div>`;
-  h += `<div class="preview">${esc(preview)}</div>`;
-  h += `<div class="neighbors-title">Neighbors (${neighbors.length})</div>`;
+  const metadata = graphElement('div', 'meta');
+  const fields = [['Cluster:', n.cluster_name || '']];
+  if (created) fields.push(['Created:', created]);
+  fields.push(['Neighbors:', neighbors.length]);
+  if (bridge) fields.push(['Bridge:', `${bridge} cross-cluster`]);
+  for (const [label, value] of fields) {
+    metadata.append(graphElement('b', '', label), ` ${value}`, document.createElement('br'));
+  }
+
+  panel.replaceChildren(
+    graphElement('h3', '', name),
+    metadata,
+    graphElement('div', 'preview', preview),
+    graphElement('div', 'neighbors-title', `Neighbors (${neighbors.length})`),
+  );
 
   const sorted = [...neighbors].sort((a,b) => {
     const na = nodeById[a.target], nb = nodeById[b.target];
@@ -531,32 +548,26 @@ function updateDetailPanel(nodeId) {
     const nn = nodeById[e.target]; if (!nn) return;
     const nname = nn.name || nn.filename.replace('.md','');
     const label = e.label_fwd && e.label_fwd !== 'connects to' ? e.label_fwd : '';
-    h += `<div class="neighbor-item" onclick="goEgo(${e.target})">
-      <div class="neighbor-dot" style="background:${CLUSTER_COLORS[nn.cluster_id]}"></div>
-      <div class="neighbor-name">${esc(nname)}</div>
-      <div class="neighbor-label">${esc(label)}</div></div>`;
+    const item = graphElement('div', 'neighbor-item');
+    const dot = graphElement('div', 'neighbor-dot');
+    dot.style.backgroundColor = CLUSTER_COLORS[nn.cluster_id];
+    item.append(dot, graphElement('div', 'neighbor-name', nname), graphElement('div', 'neighbor-label', label));
+    item.addEventListener('click', () => goEgo(e.target));
+    panel.append(item);
   });
-  panel.innerHTML = h;
 }
-
-function esc(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 
 // ── Tooltip ───────────────────────────────────────
 function showTooltip(x, y, ref) {
   const tt = document.getElementById('tooltip');
-  let h = '';
-  {
-    const n = nodeById[ref]; if (!n) return;
-    const name = n.name || n.filename.replace('.md','');
-    h = `<div class="tt-name">${esc(name)}</div>`;
-    h += `<div class="tt-cluster">${n.cluster_name}`;
-    const bs = bridgeScores[ref]||0;
-    if (bs) h += ` \u00B7 bridge: ${bs}`;
-    h += '</div>';
-    const preview = (n.text_preview||'').slice(0,150);
-    if (preview) h += `<div class="tt-preview">${esc(preview)}</div>`;
-  }
-  tt.innerHTML = h; tt.style.display = 'block';
+  const n = nodeById[ref]; if (!n) return;
+  const name = n.name || n.filename.replace('.md','');
+  const bs = bridgeScores[ref] || 0;
+  const cluster = (n.cluster_name || '') + (bs ? ` \u00B7 bridge: ${bs}` : '');
+  const preview = (n.text_preview || '').slice(0, 150);
+  tt.replaceChildren(graphElement('div', 'tt-name', name), graphElement('div', 'tt-cluster', cluster));
+  if (preview) tt.append(graphElement('div', 'tt-preview', preview));
+  tt.style.display = 'block';
   const rect = tt.getBoundingClientRect();
   let tx = x+15, ty = y+15;
   if (tx + rect.width > window.innerWidth-10) tx = x - rect.width - 15;
@@ -597,24 +608,25 @@ const searchResults = document.getElementById('search-results');
 
 searchInput.addEventListener('input', () => {
   const q = searchInput.value.trim().toLowerCase();
-  if (q.length < 2) { searchResults.style.display = 'none'; return; }
+  if (!DATA || q.length < 2) { searchResults.style.display = 'none'; return; }
   const matches = DATA.graphNodes
     .filter(n => (n.name||n.filename).toLowerCase().includes(q))
     .slice(0, 20);
   if (!matches.length) { searchResults.style.display = 'none'; return; }
-  searchResults.innerHTML = matches.map(n => {
+  searchResults.replaceChildren(...matches.map(n => {
     const name = n.name || n.filename.replace('.md','');
-    return `<div class="search-item" data-id="${n.id}">
-      <div class="name">${esc(name)}</div>
-      <div class="cluster" style="color:${CLUSTER_COLORS[n.cluster_id]}">${n.cluster_name}</div></div>`;
-  }).join('');
+    const item = graphElement('div', 'search-item');
+    const cluster = graphElement('div', 'cluster', n.cluster_name);
+    cluster.style.color = CLUSTER_COLORS[n.cluster_id];
+    item.append(graphElement('div', 'name', name), cluster);
+    item.addEventListener('click', () => {
+      searchResults.style.display = 'none';
+      searchInput.value = '';
+      goEgo(n.id);
+    });
+    return item;
+  }));
   searchResults.style.display = 'block';
-});
-
-searchResults.addEventListener('click', e => {
-  const item = e.target.closest('.search-item'); if (!item) return;
-  searchResults.style.display = 'none'; searchInput.value = '';
-  goEgo(+item.dataset.id);
 });
 
 searchInput.addEventListener('blur', () => { setTimeout(() => { searchResults.style.display = 'none'; }, 200); });

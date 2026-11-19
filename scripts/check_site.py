@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 """Check the site before pushing: broken internal links, missing anchors, and nav drift.
 
-Usage: python3 scripts/check_site.py   (exits 1 on any problem)
+Usage: python3 scripts/check_site.py [--root PATH]   (exits 1 on any problem)
 
 The site has no build step, so every page carries its own copy of the nav.
 This script is what keeps those copies identical.
 """
-import html.parser, pathlib, re, sys, urllib.parse
+import argparse, html.parser, pathlib, re, sys, urllib.parse
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 # Pages that intentionally have their own layout: the plain front page,
@@ -29,11 +29,15 @@ class Page(html.parser.HTMLParser):
 
 
 def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--root", type=pathlib.Path, default=ROOT)
+    root = parser.parse_args().root.resolve()
     pages, navs, problems = {}, {}, []
-    for path in sorted(ROOT.rglob("*.html")):
-        rel = path.relative_to(ROOT).as_posix()
-        if rel.startswith(".git"):
+    for path in sorted(root.rglob("*.html")):
+        relative_path = path.relative_to(root)
+        if relative_path.parts[0].startswith(".") or relative_path.parts[0] == "dist":
             continue
+        rel = relative_path.as_posix()
         text = path.read_text(encoding="utf-8")
         page = Page()
         page.feed(text)
@@ -57,13 +61,13 @@ def main():
             else:
                 target = (pathlib.PurePosixPath(rel).parent / url.path).as_posix()
             target = target or "index.html"
-            fs = ROOT / target
+            fs = root / target
             if fs.is_dir() or target.endswith("/"):
                 fs = fs / "index.html"
             if not fs.exists():
                 problems.append(f"{rel}: broken link {link}")
                 continue
-            key = fs.relative_to(ROOT).as_posix()
+            key = fs.relative_to(root).as_posix()
             if url.fragment and key in pages and url.fragment not in pages[key].ids:
                 problems.append(f"{rel}: missing anchor {link}")
 

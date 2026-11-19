@@ -49,7 +49,15 @@ Experimental: `graph/`, `garden/`, `syntheses/`, and the archive. They keep thei
 
 ## Updating the CV
 
-The public CV is the comprehensive CV from the private resume-portfolio repo with the phone line redacted. When the CV changes, re-export it to `assets/resumes/malachi_mabie_cv.pdf` with the phone removed.
+The private `resume-portfolio` repository is the source for the comprehensive CV. With both repositories checked out side by side, run `make publish-public-cv` in `resume-portfolio` to build and sync the PDF with phone and email removed to `assets/resumes/malachi_mabie_cv.pdf`. Review the website diff before publishing. The public CV page links to that PDF.
+
+## Cloudflare Pages Preview
+
+Connect only `mlmabie/mlmabie.github.io` in [Cloudflare Pages](https://developers.cloudflare.com/pages/get-started/git-integration/). For the isolated preview, select `cloudflare-preview` as the production branch of the Pages project. Leave the framework preset and root directory at their defaults, set the build command to `python3 scripts/build_pages.py`, and set the output directory to `dist`. Use the `pages.dev` URL for initial verification. Once this build is on `main`, point the Pages project at `main` to follow normal website updates.
+
+The build copies tracked public assets and checks links, anchors, and navigation in the output. GitHub Actions runs the same build on pull requests and pushes to `main`. The site-wide headers allow same-origin framing for the essay PDFs. The base `pages.dev` host carries `X-Robots-Tag: noindex`, and Cloudflare adds the same directive to branch previews. Check the home page, an embedded PDF, the graph, the garden, and a 404 on the preview before attaching a custom hostname. [Pages headers](https://developers.cloudflare.com/pages/configuration/headers/)
+
+The live domain currently uses Namecheap nameservers and Namecheap email forwarding. The `pages.dev` preview requires no DNS changes. A custom preview subdomain can be added through Pages and then pointed at the project with a Namecheap CNAME. Moving the apex to Pages requires a nameserver change. Record all active forwarding addresses and plan their replacement before that change because Namecheap forwarding depends on Namecheap DNS. [Pages custom domains](https://developers.cloudflare.com/pages/configuration/custom-domains/) · [Namecheap forwarding](https://www.namecheap.com/support/knowledgebase/article.aspx/308/2214/how-to-set-up-free-email-forwarding/)
 
 ## Local Development
 
