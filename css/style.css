@@ -1444,3 +1444,470 @@ main {
     border-radius: 6px;
     background: var(--bg-alt);
 }
+
+/* ============================================
+   TALMUDIC FOLIO, SOCRATIC INTERLEAVES & TRANSLATOR NOTES
+   ============================================ */
+
+:root {
+    --rashi-accent: #8b6928;
+    --rashi-tint: rgba(139, 105, 40, 0.11);
+    --tosafot-accent: #8f463a;
+    --tosafot-tint: rgba(143, 70, 58, 0.11);
+    --tx-border: #8b8579;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --rashi-accent: #c8b878;
+        --rashi-tint: rgba(200, 184, 120, 0.15);
+        --tosafot-accent: #d08c7e;
+        --tosafot-tint: rgba(208, 140, 126, 0.15);
+        --tx-border: #666;
+    }
+}
+
+[data-theme="dark"] {
+    --rashi-accent: #c8b878;
+    --rashi-tint: rgba(200, 184, 120, 0.15);
+    --tosafot-accent: #d08c7e;
+    --tosafot-tint: rgba(208, 140, 126, 0.15);
+    --tx-border: #666;
+}
+
+[data-theme="light"] {
+    --rashi-accent: #8b6928;
+    --rashi-tint: rgba(139, 105, 40, 0.11);
+    --tosafot-accent: #8f463a;
+    --tosafot-tint: rgba(143, 70, 58, 0.11);
+    --tx-border: #8b8579;
+}
+
+/* Diptych switcher & Talmud mode bar */
+.diptych-switcher {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem 0.9rem;
+    margin: 0.85rem 0 0;
+    padding-top: 0.85rem;
+    border-top: 1px solid var(--border);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.03em;
+    color: var(--text-muted);
+}
+
+.diptych-switcher a {
+    color: var(--accent);
+    text-decoration: none;
+}
+
+.diptych-switcher a:hover {
+    text-decoration: underline;
+}
+
+.diptych-pill-current {
+    color: var(--text);
+    font-weight: 500;
+}
+
+.talmud-bar {
+    max-width: var(--content-width);
+    margin: -1.2rem 0 2.2rem;
+    padding: 0.85rem 1rem;
+    background: var(--bg-alt);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.65rem 1rem;
+}
+
+.talmud-bar-legend {
+    font-size: 0.78rem;
+    line-height: 1.45;
+    color: var(--text-muted);
+}
+
+.talmud-bar-legend strong {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.legend-rashi {
+    color: var(--rashi-accent);
+}
+
+.legend-tosafot {
+    color: var(--tosafot-accent);
+}
+
+.talmud-modes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+}
+
+.talmud-mode-btn {
+    appearance: none;
+    border: 1px solid var(--border);
+    background: var(--bg);
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.03em;
+    padding: 0.28rem 0.55rem;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: border-color var(--transition-fast), color var(--transition-fast), background var(--transition-fast);
+}
+
+.talmud-mode-btn:hover {
+    border-color: var(--accent);
+    color: var(--text);
+}
+
+.talmud-mode-btn.active {
+    border-color: var(--accent);
+    color: var(--accent);
+    font-weight: 500;
+}
+
+/* Bilateral Talmudic geometry on wide screens */
+@media (min-width: 1260px) {
+    main.talmud-essay:not([data-talmud-mode="linear"]):not([data-talmud-mode="center"]) {
+        max-width: 1240px;
+    }
+
+    main.talmud-essay:not([data-talmud-mode="linear"]):not([data-talmud-mode="center"]) .essay-header,
+    main.talmud-essay:not([data-talmud-mode="linear"]):not([data-talmud-mode="center"]) .talmud-bar,
+    main.talmud-essay:not([data-talmud-mode="linear"]):not([data-talmud-mode="center"]) .toc,
+    main.talmud-essay:not([data-talmud-mode="linear"]):not([data-talmud-mode="center"]) .essay-content,
+    main.talmud-essay:not([data-talmud-mode="linear"]):not([data-talmud-mode="center"]) .diptych-bridge {
+        max-width: 620px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    main.talmud-essay:not([data-talmud-mode="linear"]):not([data-talmud-mode="center"]) .margin-rashi {
+        float: left;
+        clear: left;
+        width: 244px;
+        margin-left: -278px;
+        margin-bottom: 1.25rem;
+        padding-right: 0.75rem;
+        border-right: 2px solid var(--rashi-accent);
+        border-left: none;
+        text-align: left;
+    }
+
+    main.talmud-essay:not([data-talmud-mode="linear"]):not([data-talmud-mode="center"]) .margin-tosafot {
+        float: right;
+        clear: right;
+        width: 244px;
+        margin-right: -278px;
+        margin-bottom: 1.25rem;
+        padding-left: 0.75rem;
+        border-left: 2px solid var(--tosafot-accent);
+        text-align: left;
+    }
+}
+
+/* Single right-margin fallback on medium desktop */
+@media (min-width: 1040px) and (max-width: 1259px) {
+    main.talmud-essay:not([data-talmud-mode="linear"]):not([data-talmud-mode="center"]) .margin-note {
+        float: right;
+        clear: right;
+        width: var(--sidenote-width);
+        margin-right: calc(-1 * (var(--sidenote-width) + var(--sidenote-gap)));
+        margin-bottom: 1.15rem;
+        padding-left: 0.7rem;
+    }
+
+    main.talmud-essay:not([data-talmud-mode="linear"]):not([data-talmud-mode="center"]) .margin-rashi {
+        border-left: 2px solid var(--rashi-accent);
+    }
+
+    main.talmud-essay:not([data-talmud-mode="linear"]):not([data-talmud-mode="center"]) .margin-tosafot {
+        border-left: 2px solid var(--tosafot-accent);
+    }
+}
+
+/* Margin note base typography */
+.margin-note {
+    font-size: 0.78rem;
+    line-height: 1.48;
+    color: var(--text-muted);
+    transition: background var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast);
+}
+
+.margin-voice {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    font-weight: 500;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    margin-bottom: 0.22rem;
+}
+
+.margin-rashi .margin-voice {
+    color: var(--rashi-accent);
+}
+
+.margin-tosafot .margin-voice {
+    color: var(--tosafot-accent);
+}
+
+.margin-lemma {
+    color: var(--text);
+    font-weight: 600;
+}
+
+/* Linear mode and smaller screens */
+@media (max-width: 1039px) {
+    .margin-note {
+        float: none;
+        width: 100%;
+        margin: 0.75rem 0 1.35rem;
+        padding: 0.75rem 0.95rem;
+        background: var(--bg-alt);
+        border-radius: 3px;
+    }
+
+    .margin-rashi {
+        border-left: 2px solid var(--rashi-accent);
+    }
+
+    .margin-tosafot {
+        border-left: 2px solid var(--tosafot-accent);
+    }
+}
+
+main.talmud-essay[data-talmud-mode="linear"] .margin-note {
+    float: none;
+    width: 100%;
+    margin: 0.75rem 0 1.35rem;
+    padding: 0.75rem 0.95rem;
+    background: var(--bg-alt);
+    border-radius: 3px;
+    border-right: none;
+}
+
+main.talmud-essay[data-talmud-mode="linear"] .margin-rashi {
+    border-left: 2px solid var(--rashi-accent);
+}
+
+main.talmud-essay[data-talmud-mode="linear"] .margin-tosafot {
+    border-left: 2px solid var(--tosafot-accent);
+}
+
+/* Voice filtering */
+main.talmud-essay[data-talmud-mode="rashi"] .margin-tosafot,
+main.talmud-essay[data-talmud-mode="tosafot"] .margin-rashi,
+main.talmud-essay[data-talmud-mode="center"] .margin-note {
+    display: none !important;
+}
+
+/* Cross-reference anchor spotlight */
+.daf-anchor {
+    border-bottom: 1px dotted var(--tx-border);
+    cursor: pointer;
+    transition: background var(--transition-fast), border-color var(--transition-fast);
+}
+
+.daf-anchor.daf-rashi {
+    border-bottom-color: var(--rashi-accent);
+}
+
+.daf-anchor.daf-tosafot {
+    border-bottom-color: var(--tosafot-accent);
+}
+
+.daf-anchor.is-highlighted.daf-rashi,
+.margin-rashi.is-highlighted {
+    background: var(--rashi-tint);
+}
+
+.daf-anchor.is-highlighted.daf-tosafot,
+.margin-tosafot.is-highlighted {
+    background: var(--tosafot-tint);
+}
+
+.margin-note.is-highlighted {
+    border-radius: 2px;
+    color: var(--text);
+}
+
+/* Socratic dialogue interleaves */
+.socratic-interleave {
+    clear: both;
+    margin: 2.1rem 0;
+    padding: 1.15rem 1.35rem;
+    background: var(--bg-alt);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: 3px;
+}
+
+.socratic-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 0.5rem;
+    margin-bottom: 0.8rem;
+    padding-bottom: 0.45rem;
+    border-bottom: 1px solid var(--border);
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+}
+
+.socratic-turn {
+    margin-bottom: 0.85rem;
+}
+
+.socratic-turn:last-child {
+    margin-bottom: 0;
+}
+
+.socratic-speaker {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.15rem;
+}
+
+.socratic-speaker.speaker-model {
+    color: var(--text-muted);
+}
+
+.socratic-turn p {
+    margin: 0 !important;
+    font-size: 0.92rem;
+    line-height: 1.58;
+    color: var(--text);
+}
+
+.socratic-turn p + p {
+    margin-top: 0.55rem !important;
+}
+
+/* Bible-translator style hover-notes */
+.tx-note {
+    position: relative;
+    display: inline;
+    border-bottom: 1px dashed var(--tx-border);
+    cursor: help;
+}
+
+.tx-sigil {
+    font-family: var(--font-mono);
+    font-size: 0.68em;
+    color: var(--accent);
+    margin-left: 0.08em;
+    font-weight: 500;
+}
+
+.tx-popover {
+    display: none;
+    position: absolute;
+    left: 50%;
+    bottom: calc(100% + 8px);
+    transform: translateX(-50%);
+    width: min(310px, 84vw);
+    padding: 0.65rem 0.8rem;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-top: 2px solid var(--accent);
+    border-radius: 3px;
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.14);
+    font-family: var(--font-serif);
+    font-size: 0.78rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.45;
+    color: var(--text-muted);
+    text-align: left;
+    z-index: 90;
+    pointer-events: none;
+}
+
+.tx-popover strong {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--text);
+    display: block;
+    margin-bottom: 0.2rem;
+}
+
+.tx-note:hover .tx-popover,
+.tx-note:focus .tx-popover,
+.tx-note:focus-within .tx-popover,
+.tx-note.tx-open .tx-popover {
+    display: block;
+}
+
+@media (max-width: 640px) {
+    .tx-popover {
+        position: fixed;
+        left: 1rem !important;
+        right: 1rem !important;
+        bottom: 1rem !important;
+        top: auto !important;
+        width: auto !important;
+        transform: none !important;
+    }
+}
+
+/* Diptych continuation card */
+.diptych-bridge {
+    clear: both;
+    max-width: var(--content-width);
+    margin: 3rem 0 1rem;
+    padding: 1.25rem 1.4rem;
+    background: var(--bg-alt);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+}
+
+.diptych-bridge-kicker {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    margin-bottom: 0.35rem;
+}
+
+.diptych-bridge a {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--accent);
+    text-decoration: none;
+}
+
+.diptych-bridge a:hover {
+    text-decoration: underline;
+}
+
+.diptych-bridge p {
+    margin: 0.35rem 0 0;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}

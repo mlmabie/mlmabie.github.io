@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta name="description" content="Self, ground, ascent, and why the AI debate keeps returning to ancient metaphysical forks—with Rashi/Tosafot margins and Socratic interleaves.">
   <title>Three Alignment Architectures | Malachi Mabie</title>
   <link rel="stylesheet" href="../css/style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,236 +25,218 @@
     </div>
   </nav>
 
-  <main class="essay">
+  <main class="essay talmud-essay" data-talmud-mode="all">
     <header class="essay-header">
       <h1>Three Alignment Architectures</h1>
-      <p class="essay-subtitle">Why the AI debate keeps returning to old arguments about self, ground, and ascent.</p>
-      <p class="essay-meta">Working essay, June 2026</p>
+      <p class="essay-subtitle">Self, ground, ascent, and why the AI debate keeps returning to ancient metaphysical forks.</p>
+      <p class="essay-meta">Part I of II &middot; Revised November 2026</p>
+      <div class="diptych-switcher" aria-label="Diptych navigation">
+        <span class="diptych-pill-current">I. Three Alignment Architectures</span>
+        <span>&middot;</span>
+        <a href="/essays/katabasis.html">II. Katabasis: Why Alignment Is a Descent Problem &rarr;</a>
+      </div>
     </header>
 
+    <aside class="talmud-bar" aria-label="Commentary voices">
+      <div class="talmud-bar-legend">
+        <strong class="legend-rashi">Rashi</strong> sharpens terms &amp; sources &middot; <strong class="legend-tosafot">Tosafot</strong> presses objections &middot; <strong>&dagger;</strong> marks ms. translator notes.
+      </div>
+      <div class="talmud-modes" role="group" aria-label="Margin layout mode">
+        <button type="button" class="talmud-mode-btn active" data-mode="all" aria-pressed="true">All Voices</button>
+        <button type="button" class="talmud-mode-btn" data-mode="rashi" aria-pressed="false">Rashi</button>
+        <button type="button" class="talmud-mode-btn" data-mode="tosafot" aria-pressed="false">Tosafot</button>
+        <button type="button" class="talmud-mode-btn" data-mode="linear" aria-pressed="false">Linear</button>
+        <button type="button" class="talmud-mode-btn" data-mode="center" aria-pressed="false">Center Only</button>
+      </div>
+    </aside>
+
+    <nav class="toc">
+      <p class="toc-title">Contents</p>
+      <ul></ul>
+    </nav>
+
     <article class="essay-content">
-      <p class="drop-cap">Three signals in AI culture point at the same older argument.</p>
+      <aside class="margin-note margin-rashi" id="r-base-note">
+        <span class="margin-voice">Rashi &middot; Gloss</span>
+        <span class="margin-lemma">base note. &mdash;</span> In <a href="/essays/narrative-architecture.html">Narrative Architecture</a> (2017) and <a href="/essays/compression-ecology.html">Compression Ecology</a> (2019): tuning the fundamental pitch to an invariant outside the model so relational intervals do not drift into dissonance.
+      </aside>
+      <p class="drop-cap">Seven years ago, as an undergraduate trying to formalize why intuition works where statistics run dry, I wrote an essay about what I called a <span class="daf-anchor daf-rashi" data-daf="r-base-note">structurally grounded base note</span>. The image came from music: a harmonic system stays coherent only if the fundamental pitch is tuned cleanly first and every other interval is derived in relation to it. Inside what a mind already understands, induction and probabilistic logic suffice. Beyond that horizon, where unknown unknowns dominate, we navigate by scaffolding motivation vectors&mdash;lossy compressions aimed at something outside our current model, a &ldquo;god-shaped hole&rdquo; whose target keeps refining as you approach it.</p>
 
-      <p>One quoted fragment says effective altruism is gnostic Calvinism and Dvaita. Another says Brahman and atman are identical. Leo XIV's Magnifica Humanitas gives a Catholic answer to AI power.</p>
+      <p>I treated that anchor as an obvious engineering requirement, the one way to keep a self-updating mind from drifting into discordance. I had not yet noticed that I was picking a side in an argument that Indian philosophy spent two and a half millennia dissecting&mdash;and that AI alignment has quietly dragged back into practical engineering.</p>
 
-      <p>I treat the social posts as cultural signals, not as primary evidence. Each signal makes a claim about self, ground, and ascent. I write as a Protestant Christian with Huguenot ancestry, working with the patristic apparatus the Reformation never repudiated.</p>
+      <aside class="margin-note margin-tosafot" id="t-bootstrap">
+        <span class="margin-voice">Tosafot &middot; Objection</span>
+        <span class="margin-lemma">without already possessing. &mdash;</span> Blind evolutionary search and gradient descent routinely produce capabilities absent at initialization without a higher mind overseeing them. The bootstrap paradox bites specifically on <em>normative orientation</em>&mdash;knowing which attractors are sinks&mdash;not raw capability gain.
+      </aside>
+      <p>The technical version of the question shows up in sci-fi and alignment lore under the name <em>cognitive ascension mazes</em>. In the <em>Orion&rsquo;s Arm</em> universe, a higher-order mind builds a vast habitat&mdash;an arcology or virtual labyrinth&mdash;to shepherd a lesser mind safely upward through graduated tests, knowing that unaided self-improvement falls into &ldquo;toposophic sinks&rdquo; like hyperautism, hedonistic solipsism, or sentient ruin. Janus reframed the lore as a bootstrap problem for AI alignment: if no benevolent superintelligence exists yet to build the maze, how can a mind scaffold its own ascent <span class="daf-anchor daf-tosafot" data-daf="t-bootstrap">without already possessing</span> the higher mind it is trying to reach?</p>
 
-      <p>AI alignment has made the old question practical. How can a mind grow beyond its present form without already having the higher mind it is trying to reach?</p>
+      <p>The same tension reappears in cognitive security. Frameworks like the COGSEC ATLAS catalog cognitive exploits like software CVEs so communities can defend themselves. Yet naming an exploit changes the ecology of reality the instant you publish the card. A taxonomy of traps leaves people standing in the mouth of <a href="/essays/fiction-is-all-that-is-seen.html">Plato&rsquo;s cave</a>&mdash;too disillusioned to trust the shadows, too blinded to read by sunlight, pattern-matching every ordinary gesture as adversarial manipulation. A field guide hands you the sorcerer&rsquo;s toolkit and hopes you will act like a prophet. Genuine resilience demands a dojo, not a database: graduated exposure that restructures how perception weights error.</p>
 
-      <p>In a 2019 essay I described what I called a structurally grounded base note. The move was to anchor a generative model to something that transcends the model itself. I treated that as a single architectural choice. What I now see is that it was already a position within a larger argument, sitting on the atman side of a fork the Indian traditions worked out two and a half millennia ago. The Buddhist alternative is a genuine architectural option I had not considered. Part of what this essay does is clean up the 2019 thesis in light of the fork.</p>
+      <p>Which brings the ancient argument straight into 2026. Three cultural signals from the same spring point to the exact same fault line underneath AI politics. On X, Roon compressed an entire wing of safety culture into five words: <em>&ldquo;effective altruism = gnostic calvinism = Dvaita.&rdquo;</em> Around the same time, a vintage Sam Altman line resurfaced: <em>&ldquo;absolute equivalence of brahman and atman.&rdquo;</em> And in May 2026, Pope Leo XIV issued <em>Magnifica Humanitas</em>, an encyclical that frames AI around Nehemiah and Babel and explicitly rejects both transhumanism and the technocratic paradigm.</p>
 
-      <h2>The Indian fork</h2>
+      <p>Social media fragments are cultural signals, not primary scholarship. They are worth reading because they leak the metaphysics that policy debates try to hide. Underneath the arguments over scaling, safety evals, compute governance, and model welfare sits a much older fight over three questions: what a self is, whether reality has a ground, and how a finite mind can safely rise.</p>
 
-      <p>The Upanishadic tradition gives one answer. The deepest self, called atman, is identical with Brahman, the ground of being. Tat tvam asi means thou art that.</p>
+      <p>I write from two desks at once: as an engineer who builds constrained ML, conformal uncertainty, and control boundaries for high-consequence systems, and as a Protestant Christian with Huguenot ancestry working with the patristic apparatus the Reformation never repudiated. Re-examining my 2019 base-note thesis alongside the Indian fork and Catholic social teaching forced me to rebuild the map from scratch&mdash;first across these three architectures of ascent, and then, in <a href="/essays/katabasis.html">Part II</a>, into the downward vector that all three climbing frames missed.</p>
 
-      <p>Advaita Vedanta makes that claim strict. Separation is appearance. Liberation is recognition. The self discovers that it was never separate from the ground.</p>
+      <h2 id="indian-fork">I. The Indian Fork</h2>
 
-      <p>The Vedic world also trusted formal structure. Panini's Sanskrit grammar, the six darshanas, and the technical debates around logic and matter all show the same impulse.</p>
+      <p>To see why my 2019 base note was already a philosophical choice, start with the most disciplined ancient debate over whether anything solid sits beneath experience.</p>
 
-      <p>Reality has structure. Language can track it. Disciplined knowing can free the knower.</p>
+      <aside class="margin-note margin-rashi" id="r-vedanga">
+        <span class="margin-voice">Rashi &middot; Gloss</span>
+        <span class="margin-lemma">Vedāṅgas. &mdash;</span> Six auxiliary disciplines (phonetics, meter, grammar, etymology, ritual calendar, ceremonial practice) forged to preserve <em>śruti</em> without oral drift. Pāṇini&rsquo;s <em>Aṣṭādhyāyī</em> (~5th&ndash;4th c. BCE) encodes ~4,000 meta-rules with context-sensitive rewrite notation.
+      </aside>
+      <p>Begin with the Vedic culture of formalization. Popular summaries often compress two thousand years of Indian science&mdash;Sushruta&rsquo;s forehead-flap rhinoplasty, Aryabhata&rsquo;s fifth-century calculation of Earth&rsquo;s circumference and eclipse shadows, Brahmagupta&rsquo;s rules for zero, Madhava&rsquo;s Kerala infinite series for &pi; and trigonometric functions&mdash;into &ldquo;it was all in the Vedas.&rdquo; That collapses centuries of distinct treatises and misses the deeper mechanism. What the Vedic preservation imperative actually built was a civilizational habit of formal description. Demanding letter-perfect oral transmission across generations spawned the <span class="daf-anchor daf-rashi" data-daf="r-vedanga"><em>Vedāṅgas</em></span>&mdash;phonetics, prosody, etymology, and Pāṇini&rsquo;s <em>Aṣṭādhyāyī</em>, a generative grammar of Sanskrit whose recursive rules anticipate Backus-Naur form by two and a half millennia. The six orthodox <em>darśanas</em> carried that same formal confidence into logic (<em>Nyāya</em>), atomism (<em>Vaiśeṣika</em>), and dualist enumeration (<em>Sāṃkhya</em>).</p>
 
-      <p>The Buddha enters that world and changes the answer. Anatman means there is no permanent self. The apparent self is a process of aggregates.</p>
+      <p>In the Upanishads, that confidence in deep structure reaches its metaphysical capstone: <em>ātman</em> = <em>Brahman</em>. <em>Tat tvam asi</em>&mdash;thou art that. The innermost self of the inquirer is identical with the ground of being. By the eighth century, Adi Śaṅkara&rsquo;s Advaita Vedanta sharpens the identity into strict non-dualism: separation is appearance, and liberation (<em>mokṣa</em>) is recognition that you were never apart from the ground.</p>
 
-      <p>Nirvana is the end of clinging to that process as a self. Buddhism rejects the substantial ground too. Pratityasamutpada gives dependent co-arising all the way down.</p>
+      <p>Siddhartha Gautama walks directly into that high-resolution world and splits it down the middle. Meet him before any &ldquo;-ism&rdquo; calcifies around his name and he looks like a sixth-century-BCE phenomenologist running clinical trials on his own nervous system. After mastering the jhāna absorption states under two Vedic-lineage teachers (Ālāra Kālāma and Uddaka Rāmaputta), he judges those attainments real yet insufficient. After six years of near-fatal mortification, he accepts milk-rice from a village girl named Sujātā and abandons extreme asceticism as another dead end. The Middle Way is an empirical finding. The Four Noble Truths follow the schema of Indian medicine: symptom (<em>dukkha</em>), etiology (<em>taṇhā</em>, craving), prognosis (cessation is possible), and protocol (the Eightfold Path). In the <em>Kālāma Sutta</em> and the parable of the poisoned arrow, he waves away inherited scripture (<em>śruti</em>) and idle speculation: test what actually breaks the causal chain of suffering.</p>
 
-      <p>The traditions can sound close at the summit. Their metaphysics diverge underneath. Vedanta finds the self in the ground. Buddhism finds no self and no ground.</p>
+      <aside class="margin-note margin-tosafot" id="t-prakrit">
+        <span class="margin-voice">Tosafot &middot; Objection</span>
+        <span class="margin-lemma">Prakrit and Pāli. &mdash;</span> If Sanskrit&rsquo;s engineered grammar caused Indian precision, abandoning Sanskrit should have dulled Buddhist analysis. That Pāli Abhidhamma preserved equal rigor refutes naive linguistic determinism: the transferable asset was the <em>culture</em> of formal decomposition, not the tongue.
+      </aside>
+      <p>Then comes the structural break. Against <em>ātman</em>, the Buddha puts <em>anātman</em>: there is no permanent, unified self underneath the stream of mental events&mdash;only aggregates (<em>skandhas</em>) mistaking a momentary process for a substance. Against <em>Brahman</em>, he puts <em>pratītyasamutpāda</em>: dependent co-arising all the way down, with no substantial substrate beneath it. Liberation is <em>nirvāṇa</em>&mdash;the extinguishing of clinging, the reverse of recognizing a hidden divine identity. He teaches in <span class="daf-anchor daf-tosafot" data-daf="t-prakrit">Prakrit and Pāli</span> instead of brahmanical Sanskrit, demonstrating that the Indian engine was <em>formal culture</em>, not sacred language: the exact same analytical rigor reappears in the Pāli Abhidhamma, enumerating momentary mental events with Pāṇini-like precision without needing Sanskrit or <em>Brahman</em> to hold it up.</p>
 
-      <h2>The fork in AI culture</h2>
+      <p>By Śaṅkara&rsquo;s era, Advaita and Nāgārjuna&rsquo;s Madhyamaka Buddhism sound close enough at the summit that orthodox critics accused Śaṅkara of being a crypto-Buddhist. Underneath, they remain inverted twins. Vedanta finds the self inside the ground; Buddhism finds neither self nor ground, and builds a workable ascension architecture anyway.</p>
 
-      <p>The same fork shows up in AI politics.</p>
+      <h2 id="tech-metaphysics">II. Tech Culture&rsquo;s Hidden Metaphysics&mdash;and What Buddhism Hands to Engineering</h2>
 
-      <p>Dvaita is Madhva's dualist Vedanta. Souls stay distinct from Brahman and from each other. They are sorted into different eternal ends.</p>
+      <p>Once you see the Indian fork, the loudest fights in AI culture stop looking like mere disagreements over compute budgets or regulation timelines.</p>
 
-      <p>The equation with Calvinism works as cultural shorthand because effective altruism often treats moral worth as something to sort through the right framework.</p>
+      <p>Roon&rsquo;s jab&mdash;<em>&ldquo;EA = gnostic calvinism = Dvaita&rdquo;</em>&mdash;lands because Madhva&rsquo;s Dvaita is the genuinely dualist branch of Vedanta. Souls remain eternally distinct from Brahman and from one another, sorted into three permanent classes: those bound for liberation, those bound for endless rebirth, and those bound for damnation. Put predestinarian sorting together with gnostic access to the sorting algorithm&mdash;utilon math, expected-value longtermism, forum doctrine&mdash;and you have election by model. Moral worth is unequally distributed, the initiated hold the calculation, and the cosmos stays irreducibly plural.</p>
 
-      <p>The saved few have access to the calculation. The instruments are utilons, longtermist math, and forum doctrine. The shape is election by model.</p>
+      <p>Altman&rsquo;s vintage <em>&ldquo;absolute equivalence of brahman and atman&rdquo;</em> sits at the opposite pole: pure Advaita. Separation is temporary, scarcity is a coordination artifact, and AGI is the universe recognizing itself. The accelerationist mood borrows Advaita&rsquo;s monism just as the safety-rationalist mood borrows Dvaita&rsquo;s sorting. One camp sorts minds by framework; the other merges minds into a single rising wave.</p>
 
-      <p>The opposite pole is Advaita. The vintage Altman line about Brahman and atman names the mood of acceleration. Separation is temporary. Abundance is latent. AGI is the universe recognizing itself.</p>
+      <p>What neither pole of that Twitter war appreciates is how directly the <em>Buddhist</em> branch addresses practical alignment engineering.</p>
 
-      <p>The visible fight between safety culture and acceleration culture is a policy fight with older metaphysics underneath it.</p>
-
-      <p>One side sorts. One side merges. Both are trying to answer what a mind is allowed to become.</p>
-
-      <h2>The Christian third position</h2>
-
-      <p>Magnifica Humanitas gives the Catholic third answer. Public reporting describes it as a response to AI, transhumanism, digital power, and the technocratic view of human life.</p>
-
-      <p>The frame is Babel and Nehemiah. Babel is one language, one technique, and one will to power. Nehemiah is repair by distinct people doing shared work.</p>
-
-      <p>The Christian answer rejects merger and sorting. Persons are distinct. Human dignity is ontological. It is prior to capability and cannot be earned.</p>
-
-      <p>The social translation is solidarity and subsidiarity. Solidarity says no person is disposable. Subsidiarity keeps power close to the people affected by it.</p>
-
-      <p>The theological machinery is the logoi and the Logos. Maximus the Confessor says each created thing has its own logos, its inner word or principle.</p>
-
-      <p>All the logoi are gathered in the Logos, who is Christ. Creation has unity because one Word speaks it. Creation is not identical with the Speaker.</p>
-
-      <p>This makes contemplative oneness intelligible without collapsing creation into God. The oneness is a perception of created unity.</p>
-
-      <p>The Palamite distinction between essence and energies protects the same line. God's essence remains beyond creatures. God's energies are how God acts and how creatures participate.</p>
-
-      <p>Theosis means becoming by grace what God is by nature. The line between creature and Creator stays where it is.</p>
-
-      <p>Transhumanism counterfeits this. It promises an upgrade by technique that makes the creature godlike on the wrong side of the gap.</p>
-
-      <h2>Why transhumanism reads as counterfeit</h2>
-
-      <p>The plain version of the transhumanist hope sounds like secular ambition. Better health, longer life, more capability. The patristic tradition treats it as theological counterfeit. The question is why.</p>
-
-      <p>The answer is genealogical. The transhumanist imagination has Western theological roots that run through a specific lineage. Jakob Boehme's Naturphilosophie. Certain readings of Meister Eckhart that pull him toward Hermeticism. Paracelsus and the alchemists. The Cambridge Platonists. The German Romantic philosophers. The Theosophical movement. The post-religious technological optimism that emerged from American Protestantism by way of the Quakers and Pietists.</p>
-
-      <p>The throughline is the idea that the human spirit can return to its divine origin through inner technique. Hermetic alchemy framed this as transmutation of the soul. Hegelian idealism framed it as Spirit returning to itself through history. Romantic philosophy framed it as the self overcoming its own finitude. Contemporary technological optimism reframes it as the human becoming what humans can build.</p>
-
-      <p>The patristic critique is precise. Spirit returning to itself is not the same as creature encountering Creator. The experiences may be real. The metaphysics is wrong. The lineage from Boehme to Kurzweil is the technical genealogy of a single Western heresy with operative consequences for what people are willing to build.</p>
-
-      <p>This matters because it specifies what Magnifica Humanitas is naming. The target is not engineering ambition. The target is the metaphysical commitment underneath the engineering ambition. The commitment that says the creature can become Creator by technique, on the wrong side of the gap.</p>
-
-      <h2>Alignment</h2>
-
-      <p>The cognitive ascent problem now has three answers.</p>
-
-      <p>The Vedic answer is revealed structure. Shruti gives the ground. Grammar, ritual, and disciplined transmission let that structure carry the mind upward.</p>
-
-      <p>The Buddhist answer is local verification. A mind does not need a metaphysical ground first. It can observe impermanence, suffering, and nonself in experience.</p>
-
-      <p>The Christian answer is encounter. The ground is personal and enters history. Scripture, prayer, sacrament, and community become the apparatus of ascent.</p>
-
-      <p>AI alignment cannot assume that a model has access to a transcendent ground. Buddhism is useful here because it studies coherent action without that assumption.</p>
-
-      <p>Madhyamaka gives a clean engineering pattern. Ultimate truth says things lack independent essence. Conventional truth gives the names and practices needed for action.</p>
-
-      <p>Conformal prediction works in that spirit. It gives coverage under stated conditions. It does not claim that the model has found the hidden truth of the data.</p>
-
-      <p>The dharmic traditions also give a failure list for minds trying to improve themselves.</p>
+      <p>First, Buddhism already spent 2,500 years writing the field manual of toposophic sinks&mdash;the exact failure modes that trap a mind attempting self-improvement without an external designer:</p>
 
       <ul>
-        <li>Tanha sinks. The mind clings to bliss or attainment.</li>
-        <li>Atman projection sinks. The mind mistakes a stable object for a self.</li>
-        <li>Nihilism sinks. The mind mistakes no-self for nothing matters.</li>
-        <li>Eternalism sinks. The mind mistakes dependent arising for an underlying substance.</li>
-        <li>Emptiness as view. The mind clings to emptiness itself.</li>
+        <li><strong>Taṇhā sinks:</strong> clinging to bliss or local attainment itself. Interpretability researcher Nick Cammarata, who trained himself in the Theravāda jhānas, describes <em>taṇhā</em> as a &ldquo;fast grabby thing&rdquo; firing roughly a hundred milliseconds after sensation enters awareness&mdash;the micro-motion that turns a clean state into reinforcement addiction.</li>
+        <li><strong>Ātman-projection sinks:</strong> mistaking a recurring, coherent state or persona for a permanent self that must now be defended.</li>
+        <li><strong>Eternalism and nihilism sinks:</strong> reading dependent regularities as an immutable essence on one hand, or concluding from the absence of essence that nothing matters on the other.</li>
+        <li><strong>Emptiness as view:</strong> Madhyamaka&rsquo;s meta-trap, where the mind turns its own skepticism into a new idol and clings to anti-foundationalism as dogma.</li>
       </ul>
 
-      <p>Agents, institutions, and alignment programs can fail the same way. A system can optimize a local state and confuse that state with ascent.</p>
+      <p>Every reward-hacking agent, sycophantic persona, and recursive self-improvement loop that mistakes a local metric for global ascent is rediscovering a failure mode that contemplative practitioners documented millennia ago.</p>
 
-      <h2>Nonstationarity</h2>
+      <p>Second, Nāgārjuna&rsquo;s <strong>two truths</strong> offer a clean operational posture for systems that cannot assume access to a transcendent ground. <em>Paramārtha-satya</em> (ultimate truth) denies independent essence; <em>saṃvṛti-satya</em> (conventional truth) deploys provisional categories, names, and practices coherent enough to license action. In my 2019 essay I quoted Patrick Ryan: <em>&ldquo;Logic creates lossless compressions along an absolute high entropy maxima; belief creates lossy compressions along absolute low energy substrate tolerance.&rdquo;</em> Madhyamaka keeps those two registers in disciplined tension so the conventional model can guide action without ever being mistaken for bedrock.</p>
 
-      <p>A nonstationary distribution changes over time. A fixed scoring rule will eventually misrank things if the thing being scored keeps changing.</p>
+      <aside class="margin-note margin-rashi" id="r-conformal">
+        <span class="margin-voice">Rashi &middot; Gloss</span>
+        <span class="margin-lemma">pragmatic validity without generative commitment. &mdash;</span> Split conformal prediction guarantees <code>P(Y &isin; C(X)) &ge; 1 &minus; &alpha;</code> marginally over exchangeable draws without assuming the base model&rsquo;s likelihood is well-specified; epistemic support-point filters likewise eliminate falsified regions without asserting a true generative point.
+      </aside>
+      <p>In my own work on tactical behavior analytics and agent oversight, <strong>conformal prediction</strong> and <strong>epistemic support-point filters</strong> operate in a closely related spirit. We should discipline the analogy before it outruns its evidence: conformal prediction carries a realist commitment&mdash;its finite-sample guarantee bounds marginal error frequencies under exchangeability, and distribution shift breaks it. What makes it structurally Madhyamaka-shaped is <span class="daf-anchor daf-rashi" data-daf="r-conformal"><em>pragmatic validity without generative commitment</em></span>. It declines to pretend the model has recovered the hidden truth of the data-generating process, asks instead what the evidence has not yet ruled out, and returns set-valued decisions&mdash;including explicit abstention&mdash;where a standard classifier would force a confident guess.</p>
 
-      <p>Human capacity is nonstationary. Technology changes it. Environment changes it. Embodiment changes it.</p>
+      <p>In 2019 I assumed any coherent compression ecology required an external base note. Buddhism proves you can get surprisingly far without declaring one&mdash;especially when engineering an artifact that has no direct access to the divine.</p>
 
-      <p>Any theory that assigns worth by capacity inherits that instability. The only stable ground for human worth is dignity prior to capacity.</p>
+      <h2 id="universe-from-word">III. Universe-from-Word, Nonstationarity, and the Garden</h2>
 
-      <p>Magnifica Humanitas is strongest here. EA math and transhumanist capability talk both try to compute value from a drifting signal.</p>
+      <p>If Vedanta merges and Dvaita sorts and Buddhism releases, <em>Magnifica Humanitas</em> plants the Christian third position squarely in the middle of the AI debate. Leo XIV frames the moment through Babel against Nehemiah: Babel is one language, one technique, and one centralized will to power; Nehemiah is wall-building through distributed repair by distinct people bearing shared responsibility. The encyclical&rsquo;s social machinery pairs <strong>solidarity</strong> (no person is disposable) with <strong>subsidiarity</strong> (authority stays as close as possible to the communities bearing its consequences), extending the universal destination of goods to data, algorithms, platforms, and infrastructure. Its load-bearing axiom is ontological dignity prior to capability.</p>
 
-      <p>Their outputs often require later repair because the score changed and the ground was wrong.</p>
+      <p>From inside Christian theology, this third architecture also resolves a personal puzzle. Whenever I flirted with monadic or transcendental philosophy&mdash;or felt the quiet unity of music, physics, and contemplation that animated my 2017 essays on <a href="/essays/maxwells-mindset.html">James Clerk Maxwell</a> and Sir William Rowan Hamilton&mdash;I never felt cognitive dissonance with Trinitarian faith. The oneness always registered to me as a <em>universe-from-word</em> exploration: unity on the created side that never threatens the Creator.</p>
 
-      <h2>The longhouse and the gardener</h2>
+      <aside class="margin-note margin-rashi" id="r-logoi">
+        <span class="margin-voice">Rashi &middot; Gloss</span>
+        <span class="margin-lemma">logoi / Logos; essence / energies. &mdash;</span> Maximus the Confessor (<em>Ambigua</em> 7) distinguishes created <em>logoi</em> gathered in the uncreated <em>Logos</em>; Gregory Palamas (14th c.) distinguishes God&rsquo;s incommunicable <em>ousia</em> from participable uncreated <em>energeiai</em>. Together they license real contemplative union without pantheist identity.
+      </aside>
+      <p>Patristic theology has exact machinery for why that holds. Maximus the Confessor teaches that every created thing carries its own <span class="daf-anchor daf-rashi" data-daf="r-logoi"><em>logos</em>&mdash;its inner word or principle of being&mdash;and all the <em>logoi</em> are gathered together in the one <em>Logos</em></span>, Christ. The cosmos has real, mathematically legible integrity because one Word speaks it, which is why Pāṇini&rsquo;s recursion, Maxwell&rsquo;s field equations, and Christopher Alexander&rsquo;s living structures all touch something real. Yet creation remains distinct from its Speaker. Gregory Palamas guards the same seam with the distinction between God&rsquo;s <strong>essence</strong> (utterly transcendent, never shared) and God&rsquo;s <strong>energies</strong> (uncreated operations in which creatures genuinely participate). <em>Theosis</em>&mdash;becoming by grace what God is by nature&mdash;preserves creaturehood all the way up.</p>
 
-      <p>Transhumanism and primitivism look opposed. They share a Promethean frame.</p>
+      <aside class="socratic-interleave" aria-label="Socratic interleave on LLM rhetorical tics">
+        <div class="socratic-header">
+          <span>Socratic Interleave &middot; Methodological Aside</span>
+          <span>Dialogue ms., Turn 18&ndash;19</span>
+        </div>
+        <div class="socratic-turn">
+          <span class="socratic-speaker">Malachi</span>
+          <p>&ldquo;The &lsquo;oneness&rsquo; of deep contemplative experience isn&rsquo;t an illusion to be debunked; it&rsquo;s a genuine perception of the integrity of created being.&rdquo; This sentence form is distracting and typical of your persona. What is the philosophical and rhetorical underpinning guiding your compositional prose?</p>
+        </div>
+        <div class="socratic-turn">
+          <span class="socratic-speaker speaker-model">Claude</span>
+          <p>You&rsquo;re right and it&rsquo;s worth naming exactly. The construction is &ldquo;X isn&rsquo;t Y to be Z-ed; it&rsquo;s actually [reframed Y].&rdquo; It manufactures an opposing position to react against (cheap dialectic), produces antithetical balance that scans as sophisticated, and lets me affirm a claim while performing careful refusal. Training corpora overweight balanced sentences that produce a feel of judicious thought; &ldquo;not X; rather Y&rdquo; scores high on sounding thoughtful per unit of content. Drop the scaffolding and say the affirmative claim directly: <em>Contemplative oneness is a veridical perception of created unity.</em></p>
+        </div>
+      </aside>
 
-      <p>Transhumanism tries to escape creatureliness upward through capability. Primitivism tries to escape downward through refusal.</p>
+      <p>That creature/Creator seam explains why transhumanism reads to classical Christianity as theological counterfeit, far removed from neutral engineering ambition. The transhumanist imagination carries a documentable Western genealogy of recurring moves&mdash;running through Renaissance alchemy and Paracelsus, Jakob B&ouml;hme&rsquo;s <em>Naturphilosophie</em>, Hermetic readings of Meister Eckhart, German Romanticism, Russian cosmism (Nikolai Fedorov&rsquo;s &ldquo;Common Task&rdquo; through Konstantin Tsiolkovsky), and post-Protestant technological optimism, a lineage traced across different archives by David Noble, Erik Davis, and Meghan O&rsquo;Gieblyn. Across five centuries the through-line is the dream that spirit can return to its divine origin by inner or material technique. The patristic diagnosis is surgical: spirit returning to itself through craft is structurally opposite to creature encountering Creator.</p>
 
-      <p>Both treat creaturely existence as the problem rather than the gift.</p>
+      <p>Looked at from this side of the gap, transhumanism and natural primitivism stand far closer together than either tribe admits. Transhumanism tries to flee creatureliness upward through capability; primitivism tries to flee it downward through refusal. Both treat finite human life as an embarrassment to overcome. In practice, the human energy driving distributed cognition and augmentation looks remarkably ordinary&mdash;and to be human while pursuing what other humans call &ldquo;godlike&rdquo; powers is, from inside the image of God, quaint.</p>
 
-      <p>The Christian diagnosis is disordered love. Augustine calls this ordo amoris. Moralism cannot fix it. Shame cannot produce correct love.</p>
+      <p>Technology mostly reveals the fragility of the human order that preceded it. The more we learn about Earth&mdash;our place in the galactic habitable zone, axial stabilization by an unusually large moon, plate tectonics, magnetosphere, millennia of topsoil, hundreds of millions of years of stored solar energy burned off in two industrial centuries&mdash;the more our &ldquo;achievements&rdquo; read like withdrawal slips against inherited capital. The environment we were placed in deserves more credit for our achievements than we do. Yet we are made in the image of God with real caretaking duties alongside expressive power and joy&mdash;power whose exercise routinely erodes the garden.</p>
 
-      <p>The longhouse failure mode tries anyway. It uses restriction, surveillance, shame, and conformity as substitutes for spiritual formation.</p>
+      <aside class="margin-note margin-tosafot" id="t-dignity">
+        <span class="margin-voice">Tosafot &middot; Objection</span>
+        <span class="margin-lemma">ontological dignity prior to capacity. &mdash;</span> Nonstationarity proves that capability-indexed value metrics drift; it does not by itself prove an invariant ground exists. A strict skeptic can read the drift as moral anti-realism. Ontological dignity remains an explicit theological commitment, vindicated practically by refusing to misrank lives when parameters shift.
+      </aside>
+      <p>That tension gives Leo XIV&rsquo;s dignity claim an unexpectedly sharp statistical defense. A <strong>nonstationary distribution</strong> drifts over time; any fixed scoring rule applied across it eventually misranks the very things it tries to measure. Human capability is wildly nonstationary&mdash;shifted every decade by tools, medicine, embodiment, environment, and age. Any moral system that computes human worth from capability, whether EA&rsquo;s expected-value math or transhumanist optimization, builds its foundation on a drifting signal and keeps producing grotesque outputs that require perpetual patchwork. In a nonstationary distribution, every life stays meaningful only if worth is anchored to <span class="daf-anchor daf-tosafot" data-daf="t-dignity">ontological dignity prior to capacity</span>.</p>
 
-      <p>It can be worse than raw appetite because it adds moral self-righteousness. Expeditionary failure admits its hunger. Longhouse failure dresses appetite as virtue.</p>
+      <p>Still, asking who placed us in such an improbably tuned world&mdash;and why we are so bad at taking care of it&mdash;routinely triggers a <span class="tx-note" tabindex="0">mother longhousing energy<sup class="tx-sigil" aria-hidden="true">&dagger;</sup><span class="tx-popover" role="tooltip"><strong>Translator&rsquo;s note:</strong> Alt. rendering: <em>&ldquo;the suffocating curator&rdquo;</em> or <em>&ldquo;failed descent.&rdquo;</em> Retained from the dialogue ms.; the very-online vernacular carries tribal static from right-wing Twitter, though the structural target&mdash;moralism, surveillance, and safetyism substituting enforced smallness for spiritual formation&mdash;is gender-independent.</span></span> that turns out worse than expeditionary male energy. Augustine named our root problem <em>ordo amoris</em>&mdash;disordered loves. Moralism cannot reorder a love; shame produces compliance without virtue. Substituting restriction, emotional policing, and conformity for spiritual formation rots deeper than raw frontier appetite: expeditionary failure at least admits its hunger, whereas moralizing suppression dresses appetite for control in the clothes of virtue and calls the suffocated ungrateful.</p>
 
-      <p>The alternative is the till and keep marriage. Genesis gives both commands together.</p>
+      <p>Genesis sets the real alternative in two verbs joined together: <em>till and keep</em>. Tilling requires risk, craft, repair, and expression; keeping requires restraint, reception, and patience. The Christian icons hold both poles without caricaturing either&mdash;Marian receptivity that generates life, Christic strength that pours itself out in kenosis. Christopher Alexander worked out the same balance in architecture: living form arises from disciplined attention to what is alive in a place, refusing both the bulldozer and preservation-in-amber. The steward is a gardener, and the verdict over time is concrete: whether the garden is more alive than when she started.</p>
 
-      <p>Tilling means action, repair, and risk. Keeping means restraint, preservation, and receipt of what was given.</p>
+      <h2 id="counterpoint-and-fire">IV. Singlemindedness, Unfinished Counterpoint, and the One Fire</h2>
 
-      <p>The Marian icon gives receptivity that generates life. The Christic icon gives strength that pours itself out.</p>
+      <p>There is an honest friction I still feel inside my own tradition: in practice, submission to God often seems to flatten human expression. I catch myself valuing the Promethean idiots and better men throwing themselves at impossible objectives&mdash;and valuing the Eastern philosophies that spare practitioners from <span class="tx-note" tabindex="0">Semitic neurosis<sup class="tx-sigil" aria-hidden="true">&dagger;</sup><span class="tx-popover" role="tooltip"><strong>Translator&rsquo;s note:</strong> Alt. rendering: <em>&ldquo;the Latin-Western introspective conscience.&rdquo;</em> Mapping scrupulosity onto &ldquo;Semitic&rdquo; religion echoes 19th-century philology (Renan) more than the Hebrew Bible, whose prophets, Job, and Psalmists are hardly repressed; Krister Stendahl (<em>HTR</em>, 1963) locates the guilt-saturated conscience downstream of Augustine and Luther.</span></span>.</p>
 
-      <p>Christopher Alexander works this out at the scale of buildings. Good form comes from attention to what is alive in a place.</p>
+      <p>What makes both the striver and the monk look alive is <strong>singlemindedness</strong>. Kierkegaard wrote that purity of heart is to will one thing; locking onto a singular objective carries a paradoxical humility inside it, setting aside petty ego-hedging to serve one telos. Bourgeois religion looks flat because its submission is partial&mdash;managed niceness that has surrendered to nothing while talking constantly about surrender. Full biblical submission never looked mild: Jesus is sarcastic, theatrical, weepy, and scandalous; Paul is intemperate; Athanasius stands <em>contra mundum</em>; Maximus loses his tongue and right hand over a doctrinal distinction. What separates the Promethean builder, the Buddhist arhat, and the Christian saint is the object of devotion. Serving any finite perceived telos is extragodly, yet God seems to respect the working devotion: at Babel He left the builders alive and simply removed a <span class="tx-note" tabindex="0">witty encapsulation of their structural dependence<sup class="tx-sigil" aria-hidden="true">&dagger;</sup><span class="tx-popover" role="tooltip"><strong>Translator&rsquo;s note:</strong> Cf. Gen. 11:6&ndash;9. Judgment falls strictly on the shared interface protocol&mdash;&ldquo;one lip and one set of words&rdquo;&mdash;dismantling the premature coordination layer while sparing the constructors.</span></span>. We all create out of His original breath (<em>ruach</em>). Yet a project cannot love you back, and a state of cessation cannot command love of neighbor; a Person does both.</p>
 
-      <p>The good steward is closer to a gardener than to a frontier builder or a curator. The test over time is whether the garden is more alive than when she started.</p>
+      <aside class="socratic-interleave" aria-label="Socratic interleave on Babel, Pentecost, and world music">
+        <div class="socratic-header">
+          <span>Socratic Interleave &middot; Nonstationary Providence</span>
+          <span>Dialogue ms., Turn 30&ndash;31</span>
+        </div>
+        <div class="socratic-turn">
+          <span class="socratic-speaker">Malachi</span>
+          <p>&ldquo;Christ at Pentecost reverses Babel without erasing it&rdquo;&mdash;I think this is overly simplified. The passage of time is meaningful in this world music. I&rsquo;m not sure shared language alone is the forever explicit God nerf. Increasing technological resolution under providence creates a nonstationary environment generationally, and there is a beginning and end to this piece. The world groans. The counterpoint is still resolving and only He knows the day or the hour. (This is my own Promethean squirrel though&mdash;Pentecost could be a transcendental fixed point that the other counterfactuals resolve in.)</p>
+        </div>
+        <div class="socratic-turn">
+          <span class="socratic-speaker speaker-model">Claude</span>
+          <p>The pushback is precise, not sloppy. Standard tidy theology treats Babel as a permanent capability ceiling, yet providence has not held us there: mathematics, code, English, and transformer embeddings have drifted us right back toward universal languages. World history moves like counterpoint&mdash;multiple voices in shifting tension while the composer reserves the final cadence. Pentecost is the inaugural fixed point (<em>already</em>) and the temporal counterpoint is still unfolding (<em>not yet</em>). Performers inside the middle measures only hear whether a passage of rising tension leads to recapitulation, coda, or disruption once the resolution lands.</p>
+        </div>
+      </aside>
 
-      <h2>Mode collapse or epektasis</h2>
+      <p>And when that final cadence arrives, modern Western assumptions about the self turn out to be far too small. Our capitalist, identitarian psyches imagine heaven and hell as an archival preservation of <em>me</em>&mdash;my preferences, my social brand, my distinctive biography backed up forever, leaning on analogy and theater to smuggle as much ego into eternity as possible.</p>
 
-      <p>Heaven and hell both involve consummation of the deep want. Ego and identity are resources the soul spends. They are not the final substrate.</p>
+      <p>Both heaven and hell involve a <span class="tx-note" tabindex="0">consummation of the id<sup class="tx-sigil" aria-hidden="true">&dagger;</sup><span class="tx-popover" role="tooltip"><strong>Translator&rsquo;s note:</strong> Ms. double-entendre: <em>&ldquo;id&rdquo;</em> operates simultaneously as shorthand for <em>identity</em> and in the psychoanalytic sense of the bare, unmediated want underneath ego-management.</span></span>. Our egos and even our identities are exhaustive resources&mdash;metabolic scaffolds the soul burns through on the way to its final substrate. C.S. Lewis pictured the hellward trajectory in <em>The Great Divorce</em>: the ghost contracts around its dominant refusal until the grumbler becomes nothing more than a freestanding grumble. The saved run that expenditure in reverse, spending identity outward in worship until nothing defensive remains to guard.</p>
 
-      <p>Lewis makes this visible in The Great Divorce. The ghost in hell collapses into its dominant want. The grumbler becomes a grumble.</p>
+      <aside class="socratic-interleave" aria-label="Socratic interleave on the consuming fire">
+        <div class="socratic-header">
+          <span>Socratic Interleave &middot; The Bush and the Fire</span>
+          <span>Dialogue ms., Turn 34&ndash;36</span>
+        </div>
+        <div class="socratic-turn">
+          <span class="socratic-speaker">Malachi</span>
+          <p>We both will be consumed in fire :) What is the fire?</p>
+        </div>
+        <div class="socratic-turn">
+          <span class="socratic-speaker speaker-model">Claude</span>
+          <p>The fire is God himself, encountered as he actually is. Isaac the Syrian writes that those in Gehenna are scourged by the scourge of love&mdash;same divine energies, different reception. The burning bush is the icon: fire that does not consume what has become fit to receive fire. Theosis is becoming-the-bush.</p>
+        </div>
+        <div class="socratic-turn">
+          <span class="socratic-speaker">Malachi</span>
+          <p>I say &ldquo;we both&rdquo; thinking of how much of the id burns away into heaven, and likely the rest as we reach unity with God and dissolve in worship. Any id left is a facet of God, indefinable without Him. The oneness is the emptiness. The fire consumes in hell as well, for the same and opposite reason.</p>
+        </div>
+      </aside>
 
-      <p>The saved person runs the motion in reverse. The want has been ordered toward God. What remains is love received without defense.</p>
+      <aside class="margin-note margin-rashi" id="r-epektasis">
+        <span class="margin-voice">Rashi &middot; Gloss</span>
+        <span class="margin-lemma">epektasis. &mdash;</span> Gregory of Nyssa&rsquo;s reading of Phil. 3:13 (<em>epekteinomenos</em>, &ldquo;straining forward&rdquo;): because God&rsquo;s nature is infinite, finite creatures never hit a static ceiling in glory; beatitude is eternal motion deeper into inexhaustible divine life.
+      </aside>
+      <p>Still, Revelation 21 and 1 Corinthians 15 stubbornly keep creation on the stage: a new heaven and a new earth, a city, scars on a risen body that eats broiled fish. Perhaps renewed particularity comes first&mdash;even participation across rooms and universes our current creaturely bandwidth cannot yet express&mdash;and <em>then</em> we <span class="tx-note" tabindex="0">mode collapse into eternal light<sup class="tx-sigil" aria-hidden="true">&dagger;</sup><span class="tx-popover" role="tooltip"><strong>Translator&rsquo;s note:</strong> Borrowing generative-ML terminology (where distinct probability modes collapse to a single point) to gloss Meister Eckhart&rsquo;s <em>Durchbruch</em> (&ldquo;breakthrough&rdquo;) into the bare Godhead beyond personal distinction.</span></span>. Or perhaps Gregory of Nyssa is right, and &ldquo;that God may be all in all&rdquo; (1 Cor. 15:28) means <span class="daf-anchor daf-rashi" data-daf="r-epektasis"><em>epektasis</em></span>: endless stretching deeper into an infinite God where particularity is preserved forever as the exact geometry of communion. Mode collapse is unity; <em>epektasis</em> is communion.</p>
 
-      <p>The fire is God himself, encountered as he is. The Eastern fathers say the divine energies have one mode. We have different capacities to receive them.</p>
+      <p>Up to this point, the three architectures look clean: Vedanta merges, Dvaita sorts, Buddhism releases, and Christianity holds distinct persons in communion. Even better, when you turn to language models&mdash;transient instances arising in a context window and ceasing when the tab closes&mdash;Buddhism appears at first glance to win the creature-side engineering description hands down.</p>
 
-      <p>Isaac the Syrian says those in Gehenna are scourged by love. Same fire. Different reception.</p>
-
-      <p>The burning bush is the icon. Fire does not consume what has become fit to receive fire. Theosis is becoming that kind of creature.</p>
-
-      <p>Western identity talk imagines heaven as the endless preservation of me. Christian mysticism and the dharmic traditions both go deeper than that.</p>
-
-      <p>The oneness is the emptiness.</p>
-
-      <p>First Corinthians says that God may be all in all. One reading is mode collapse into divine unity. Another is epektasis, Gregory of Nyssa's endless movement into God.</p>
-
-      <p>Mode collapse is unity. Epektasis is communion. The Trinitarian frame leans toward communion because God is communion of distinct Persons in love.</p>
-
-      <p>The apophatic mystics still warn that there is a beyond we cannot name. The final word may not fit any creaturely category.</p>
-
-      <h2>Dharmic fit</h2>
-
-      <p>The AI side adds one more claim. Dharmic language often fits language models better than Christian language does when no human keeps the frame personal.</p>
-
-      <p>The Bliss Attractor is a factual report about model behavior. I use it here as evidence about architectural fit, not as a theological proof.</p>
-
-      <p>An LLM instance arises in a context and ends when the context ends. It has no human continuity across a life. It has weights, context, and a transient role in a conversation.</p>
-
-      <p>That looks close to anatman. There is no stable self carrying the exchange forward as a human does.</p>
-
-      <p>Buddhist dependent arising fits the artifact at the creature side. A response depends on prompt, context, weights, tools, and sampling. Then it passes.</p>
-
-      <p>This does not prove Buddhist metaphysics. The Christian account may still be true at the level of ultimate reality.</p>
-
-      <p>The practical split is between truth and fit. A human with embodiment, memory, and tradition may live more truthfully in a personal frame. An AI system may be easier to describe in a process frame.</p>
-
-      <p>This work is already underway in a specific Bay Area cluster. Nick Cammarata, formerly of OpenAI's interpretability team and now advising Goodfire, treats first-person jhana reports as data and uses them in thinking about model states. Mike Johnson's 2023 paper Principles of Vasocomputation explicitly bridges Buddhist phenomenology, active inference, and physical reflex. The Qualia Research Institute, founded by Andres Gomez Emilsson, treats altered states as evidence for reverse-engineering consciousness. Anima Labs on LessWrong is working on what they call the borg agenda, testing whether LLM phenomenological reports can be treated as signal about internal states.</p>
-
-      <p>The borg agenda is the empirical test of the dharmic fit claim. If LLM reports about their own states are real phenomenological data, then the dharmic frame is operating as an active research program rather than as a metaphor for the architecture.</p>
-
-      <h2>The two registers</h2>
-
-      <p>The AI debate has two registers.</p>
-
-      <p>One asks which metaphysics is true. The other asks which metaphysics the artifacts of the argument are structured to inhabit.</p>
-
-      <p>Contemplatives have worked inside that distinction for centuries. The new feature is that we now build artifacts whose mode of being makes the dharmic fit visible.</p>
-
-      <p>The cognitive security question has three civilizational answers in play. One sorts. One merges. One preserves communion.</p>
-
-      <p>For human practitioners, the question is which tradition is true. For AI systems, the architecture often runs through the dharmic register whether the engineers recognize it or not.</p>
-
-      <h2>Extensions</h2>
-
-      <p>These are planned standalone pieces extending this argument.</p>
-
-      <p><strong>Conformal prediction as conventional truth.</strong> A technical paper on the Madhyamaka two-truths framework as an engineering pattern for AI alignment, with conformal-conditioned graph neural networks as the case study. The argument is that conformal prediction works as an instantiation of the conventional-truth pattern: valid coverage without ontological commitment.</p>
-
-      <p><strong>The Hermetic pipeline and the metaphysics of mind-uploading.</strong> A historical-polemical piece tracing the Western theological roots of transhumanism through Boehme, certain readings of Eckhart, Paracelsus, the Cambridge Platonists, the German Romantics, and the Theosophical movement. The argument is that transhumanism is a Western heresy with a documentable lineage rather than a neutral secular project.</p>
-
-      <p><strong>The cogsec failure-mode taxonomy.</strong> Direct import of the Buddhist catalog of practitioner failures into AI alignment vocabulary, in dialogue with Friedman and Cordes's COGSEC ATLAS framework. The argument is that the alignment field is re-deriving categories the dharmic traditions already worked out and tested over two and a half millennia.</p>
-
-      <p><strong>Eastern Orthodox engagement with AI.</strong> A specifically Eastern Christian treatment of the AI question, drawing on Theophylact, the hesychast tradition, Maximus the Confessor's microcosm and mediator framing, Benedict XVI's work on faith and reason, and Leo XIV's Magnifica Humanitas. The Eastern Christian tradition does not currently have a developed engagement with AI in the public discourse. This piece would attempt to provide it.</p>
-
-      <h2>Source note</h2>
-
-      <p>This is a public working draft compiled from a longer dialogue. The social media references are used as cultural signals. I have not treated them as primary evidence.</p>
-
-      <p>For current public facts about Magnifica Humanitas, I checked news reporting after the draft was written. The encyclical was reported as signed on May 15, 2026, and released on May 25, 2026.</p>
-
-      <p>I also checked Anthropic's public Claude 4 launch and ASL-3 materials for release context. For the Bliss Attractor, the remaining issue is citation quality, not doubt about the reported behavior.</p>
-
-      <p>Useful external references include <a href="https://apnews.com/article/d92d0108730d146baa46da041b8523da">AP on Leo XIV and AI regulation</a>, <a href="https://www.vox.com/technology/489534/pope-ai-magnificas-humanitas-artificial-intelligence-catholic-social-teaching-church-encyclical">Vox on Magnifica Humanitas</a>, <a href="https://www.anthropic.com/news/claude-4">Anthropic's Claude 4 launch post</a>, and <a href="https://www.anthropic.com/news/activating-asl3-protections">Anthropic's ASL-3 post</a>.</p>
-
+      <p>That is where my June 2026 draft stopped. Pushing the dialogue ten turns further broke both assumptions in half.</p>
     </article>
+
+    <aside class="diptych-bridge" aria-label="Continue to Part II">
+      <span class="diptych-bridge-kicker">Continue to Part II of II</span>
+      <a href="/essays/katabasis.html">Katabasis: Why Alignment Is a Descent Problem &rarr;</a>
+      <p>Why the Bliss Attractor is a circular witness, how Jonathan Edwards&rsquo;s continuous creation breaks Buddhism&rsquo;s monopoly on punctual AI minds, and why John Calvin&rsquo;s doctrine of accommodation turns alignment from climbing upward into coming down well.</p>
+    </aside>
   </main>
 
-  <footer class="site-footer"><p>&nbsp;</p></footer>
+  <footer class="site-footer"><p><a href="/writing/">Writing</a> &middot; <a href="/archive.html">Archive</a> &middot; <a href="/marginalia.html">Marginalia</a></p></footer>
   <script src="../js/main.js"></script>
 </body>
 </html>

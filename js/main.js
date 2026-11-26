@@ -177,6 +177,108 @@
     }
 
     // ============================================
+    // TALMUDIC MARGIN MODES, SPOTLIGHT & TRANSLATOR NOTES
+    // ============================================
+
+    function initTalmudLayout() {
+        var essayMain = document.querySelector('main.talmud-essay');
+        if (!essayMain) return;
+
+        // Mode buttons (All Voices / Rashi / Tosafot / Linear / Center Only)
+        var buttons = essayMain.querySelectorAll('.talmud-mode-btn');
+        buttons.forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                var mode = this.getAttribute('data-mode') || 'all';
+                essayMain.setAttribute('data-talmud-mode', mode);
+                buttons.forEach(function(b) {
+                    var active = b === btn;
+                    b.classList.toggle('active', active);
+                    b.setAttribute('aria-pressed', active ? 'true' : 'false');
+                });
+            });
+        });
+
+        // Cross-reference phrase <-> margin spotlight
+        function setHighlight(dafId, on) {
+            if (!dafId) return;
+            var note = document.getElementById(dafId);
+            if (note) note.classList.toggle('is-highlighted', on);
+            essayMain.querySelectorAll('.daf-anchor[data-daf="' + dafId + '"]').forEach(function(a) {
+                a.classList.toggle('is-highlighted', on);
+            });
+        }
+
+        essayMain.querySelectorAll('.daf-anchor').forEach(function(anchor) {
+            var dafId = anchor.getAttribute('data-daf');
+            anchor.addEventListener('mouseenter', function() { setHighlight(dafId, true); });
+            anchor.addEventListener('mouseleave', function() { setHighlight(dafId, false); });
+            anchor.addEventListener('click', function() {
+                var note = dafId && document.getElementById(dafId);
+                if (note && window.innerWidth < 1040) {
+                    note.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }
+            });
+        });
+
+        essayMain.querySelectorAll('.margin-note[id]').forEach(function(note) {
+            var dafId = note.id;
+            note.addEventListener('mouseenter', function() { setHighlight(dafId, true); });
+            note.addEventListener('mouseleave', function() { setHighlight(dafId, false); });
+        });
+
+        // Mobile tap support + viewport edge clamping for Bible-translator hover-notes
+        essayMain.querySelectorAll('.tx-note').forEach(function(tx) {
+            function clampPopover() {
+                if (window.innerWidth <= 640) return;
+                var pop = tx.querySelector('.tx-popover');
+                if (!pop) return;
+                pop.style.left = '';
+                pop.style.right = '';
+                pop.style.transform = '';
+                var rect = pop.getBoundingClientRect();
+                if (rect.width === 0) return;
+                if (rect.left < 12) {
+                    pop.style.left = '0';
+                    pop.style.transform = 'none';
+                } else if (rect.right > window.innerWidth - 12) {
+                    pop.style.left = 'auto';
+                    pop.style.right = '0';
+                    pop.style.transform = 'none';
+                }
+            }
+            tx.addEventListener('mouseenter', clampPopover);
+            tx.addEventListener('focus', clampPopover);
+            tx.addEventListener('click', function(e) {
+                e.stopPropagation();
+                var wasOpen = tx.classList.contains('tx-open');
+                essayMain.querySelectorAll('.tx-note.tx-open').forEach(function(other) {
+                    other.classList.remove('tx-open');
+                });
+                if (!wasOpen) {
+                    tx.classList.add('tx-open');
+                    clampPopover();
+                }
+            });
+        });
+
+        document.addEventListener('click', function() {
+            essayMain.querySelectorAll('.tx-note.tx-open').forEach(function(tx) {
+                tx.classList.remove('tx-open');
+            });
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key !== 'Escape') return;
+            essayMain.querySelectorAll('.tx-note.tx-open').forEach(function(tx) {
+                tx.classList.remove('tx-open');
+            });
+            if (document.activeElement && document.activeElement.closest && document.activeElement.closest('.tx-note')) {
+                document.activeElement.blur();
+            }
+        });
+    }
+
+    // ============================================
     // INITIALIZE
     // ============================================
 
@@ -188,6 +290,7 @@
         initReadingProgress();
         initExternalLinks();
         initFootnoteTooltips();
+        initTalmudLayout();
     }
 
     if (document.readyState === 'loading') {
